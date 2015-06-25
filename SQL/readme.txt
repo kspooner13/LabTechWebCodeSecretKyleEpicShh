@@ -1,0 +1,1 @@
+Open and Run EDF's first.  The the routines then the Stored Proc, then the function.
