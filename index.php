@@ -96,7 +96,7 @@ if (USE_LOGIN == 'YES' && AUTH_TYPE == 'LT'){
 	<div class="container-fluid expanded-panel">
 		<div class="row">
 			<div id="logo" class="col-xs-12 col-sm-2">
-				<a href="index.html">ControlCenter</a>
+				<a href="index.php">ControlCenter</a>
 			</div>
 			<div id="top-panel" class="col-xs-12 col-sm-10">
 				<div class="row">
@@ -162,6 +162,7 @@ if (USE_LOGIN == 'YES' && AUTH_TYPE == 'LT'){
 						<span class="hidden-xs">System Stability</span>
 					</a>
 					<ul class="dropdown-menu">
+											 <li>a< class="ajax-link" href="ajax/page_trending.php">Trending</a></li>
 						<li><a class="ajax-link" href="ajax/charts_xcharts.html">Anti-Virus</a></li>
 						<li><a class="ajax-link" href="ajax/charts_flot.html">Intrusions</a></li>
 						<li><a class="ajax-link" href="ajax/charts_google.html">Disk Performance</a></li>
@@ -184,7 +185,7 @@ FROM v_extradataclients WHERE `Team Assignment` != '' ORDER BY `Team Assignment`
 					</a>
 					<ul class="dropdown-menu">
 						<?php
-                                while ($row = mysqli_fetch_array($result4)) {echo "<li><a class='ajax-link' href=\'ns_score.php?net_sp='".$row['Team Assignment']."\'>".$row["Team Assignment"]."</a></li>";}
+                                while ($row = mysqli_fetch_array($result4)) {echo "<li><a class='ajax-link' href='ajax/page_teams.php?team=".$row['Team Assignment']."'>".$row["Team Assignment"]."</a></li>";}
                           ?>
 					</ul>
 				</li>
