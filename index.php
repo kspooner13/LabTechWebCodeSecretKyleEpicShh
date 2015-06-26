@@ -172,7 +172,8 @@ if (USE_LOGIN == 'YES' && AUTH_TYPE == 'LT'){
 					</ul>
 				</li>
 				<?php
-                                 $sql4 = "SELECT DISTINCT ` Team Assignment` AS team_spec FROM v_extradataclients WHERE ` team assignment` != '' ORDER BY team_spec ASC";
+                                 $sql4 = "SELECT DISTINCT	`Team Assignment` 
+FROM v_extradataclients WHERE `Team Assignment` != '' ORDER BY `Team Assignment` ASC";
                                  $result4 = mysqli_query($conn,$sql4);
 								 if (mysqli_num_rows($result4) > 0 ){
 								 ?>
@@ -183,7 +184,7 @@ if (USE_LOGIN == 'YES' && AUTH_TYPE == 'LT'){
 					</a>
 					<ul class="dropdown-menu">
 						<?php
-                                while ($row = mysqli_fetch_array($result4)) {echo "<li><a class='ajax-link' href=\'ns_score.php?net_sp='".$row['team_spec']."\'>".$row["team_spec"]."</a></li>";}
+                                while ($row = mysqli_fetch_array($result4)) {echo "<li><a class='ajax-link' href=\'ns_score.php?net_sp='".$row['Team Assignment']."\'>".$row["Team Assignment"]."</a></li>";}
                           ?>
 					</ul>
 				</li>
