@@ -21,8 +21,8 @@ $columns = array(
 );
 
 // getting total number records without any search
-$sql = "SELECT  `CARE Team` as Team, ROUND(AVG(`Antivirus`),1) AS 'Antivirus', ROUND(AVG(`Disk`),1) AS 'Disk', ROUND(AVG(`Intrusion`),1) AS 'Intrusion', ROUND(AVG(`Usability`),1) AS 'Usability', ROUND(AVG(`Services`),1) AS 'Services', ROUND(AVG(`Updates`),1) AS 'Updates', ROUND(AVG(`Event Log`),1) AS 'Events', ROUND(((ROUND(AVG(`Antivirus`),1)+ROUND(AVG(`Disk`),1)+ROUND(AVG(`Intrusion`),1)+ROUND(AVG(`Usability`),1)+ROUND(AVG(`Services`),1)+ROUND(AVG(`Updates`),1)+ROUND(AVG(`Event Log`),1))/7),1) AS 'Overall Score' ";
-$sql.=" FROM hc_scores GROUP BY `CARE Team`";
+$sql = "SELECT  `Team Assignment` as Team, ROUND(AVG(`Antivirus`),1) AS 'Antivirus', ROUND(AVG(`Disk`),1) AS 'Disk', ROUND(AVG(`Intrusion`),1) AS 'Intrusion', ROUND(AVG(`Usability`),1) AS 'Usability', ROUND(AVG(`Services`),1) AS 'Services', ROUND(AVG(`Updates`),1) AS 'Updates', ROUND(AVG(`Event Log`),1) AS 'Events', ROUND(((ROUND(AVG(`Antivirus`),1)+ROUND(AVG(`Disk`),1)+ROUND(AVG(`Intrusion`),1)+ROUND(AVG(`Usability`),1)+ROUND(AVG(`Services`),1)+ROUND(AVG(`Updates`),1)+ROUND(AVG(`Event Log`),1))/7),1) AS 'Overall Score' ";
+$sql.=" FROM hc_scores GROUP BY `Team Assignment`";
 $query=mysqli_query($conn, $sql) or die("Team List - Failed Query");
 $totalData = mysqli_num_rows($query);
 $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
@@ -76,7 +76,7 @@ $columns = array(
 );
 
 // getting total number records without any search
-$sql = "SELECT         `CARE Team` as Team,
+$sql = "SELECT         hc_scores.`Team Assignment` as Team,
                         ROUND(AVG(NULLIF(`AV Ex`,0)),1) AS 'Antivirus',
                         ROUND(AVG(NULLIF(`Disk Ex`,0)),1) AS 'Disk',
                         ROUND(AVG(NULLIF(`Intrusion Ex`,0)),1) AS 'Intrusion',
@@ -86,7 +86,7 @@ $sql = "SELECT         `CARE Team` as Team,
                         ROUND(AVG(NULLIF(`Event Ex`,0)),1) AS 'Events',
                         ROUND(((ROUND(AVG(NULLIF(`AV Ex`,0)),1)+ROUND(AVG(NULLIF(`Disk Ex`,0)),1)+ROUND(AVG(NULLIF(`Intrusion Ex`,0)),1)+ROUND(AVG(NULLIF(`Usability Ex`,0)),1)+ROUND(AVG(NULLIF(`Services Ex`,0)),1)+ROUND(AVG(NULLIF(`Updates Ex`,0)),1)+ROUND(AVG(NULLIF(`Event Ex`,0)),1))/7),1) AS 'Overall Score'
                  ";
-$sql.=" FROM hc_scores JOIN v_extradataclients USING (clientid) WHERE v_extradataclients.`Exclude Reporting` <> 1  AND clientid NOT IN(SELECT clientid FROM `v_extradataclients` WHERE `v_extradataclients`.`Go Live Date` < DATE_ADD(NOW(), INTERVAL -1 MONTH) AND `v_extradataclients`.`Go Live Date` > 0) GROUP BY `CARE Team`";
+$sql.=" FROM hc_scores JOIN v_extradataclients USING (clientid) WHERE v_extradataclients.`Exclude Reporting` <> 1  AND clientid NOT IN(SELECT clientid FROM `v_extradataclients` WHERE `v_extradataclients`.`Go Live Date` < DATE_ADD(NOW(), INTERVAL -1 MONTH) AND `v_extradataclients`.`Go Live Date` > 0) GROUP BY hc_scores.`Team Assignment`";
 $query=mysqli_query($conn, $sql) or die("Exclusion List - Failed Query");
 $totalData = mysqli_num_rows($query);
 $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
