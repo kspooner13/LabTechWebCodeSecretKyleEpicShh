@@ -10,6 +10,12 @@ include('../config/Login.php');
 $login = new Login();
 
 
+if ($_REQUEST['logout'] === true) {
+	
+	$login->doLogout();
+	
+}
+
 if (isset($login)) {
     if ($login->errors) {
         foreach ($login->errors as $error) {

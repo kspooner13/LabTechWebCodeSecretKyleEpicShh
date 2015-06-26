@@ -15,7 +15,7 @@
 //
 include('config/Login.php');
 include('config/config.php');
-require('/config/dbconnect.php');
+require('config/dbconnect.php');
 
 if (USE_LOGIN == 'YES' && AUTH_TYPE == 'LT'){
 
@@ -131,7 +131,7 @@ if (USE_LOGIN == 'YES' && AUTH_TYPE == 'LT'){
 									</div>
 								</a>
 								<ul class="dropdown-menu">
-										<a href="#">
+										<a href="page_login.php?logout=true">
 											<i class="fa fa-power-off"></i>
 											<span>Logout</span>
 										</a>
