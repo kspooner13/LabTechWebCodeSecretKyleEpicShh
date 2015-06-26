@@ -57,7 +57,10 @@ if (USE_LOGIN == 'YES' && AUTH_TYPE == 'LT'){
 		<link href="plugins/select2/select2.css" rel="stylesheet">
 		<link href="css/theme.css" rel="stylesheet">
 		
-		
+		<script>
+
+			
+		</script>
 		
 </head>
 <body>
@@ -112,7 +115,7 @@ if (USE_LOGIN == 'YES' && AUTH_TYPE == 'LT'){
 					<div class="col-xs-4 col-sm-8 top-panel-right">
 						<ul class="nav navbar-nav pull-right panel-menu">
 							<li class="hidden-xs">
-								<a href="http://status.marconet.com/" target='_blank' class="modal-link">
+								<a href="ajax/page_login.php" class="submenu" id="locked-screen">
 									<i class="fa fa-bell"></i>
 									<span class="badge">NOC</span>
 								</a>
@@ -219,6 +222,24 @@ FROM v_extradataclients WHERE `Team Assignment` != '' ORDER BY `Team Assignment`
 <!--End Container-->
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Session Expiration Warning</h4>
+                </div>
+                <div class="modal-body">
+                    <p>You've been inactive for a while. For your security, we'll log you out automatically. Click "Stay Online" to continue your session. </p>
+                    <p>Your session will expire in <span class="bold" id="sessionSecondsRemaining">120</span> seconds.</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="extendSession" type="button" class="btn btn-default btn-success" data-dismiss="modal">Stay Online</button>
+                    <button id="logoutSession" type="button" class="btn btn-default" data-dismiss="modal">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="js/jquery.idletimeout.js"></script>
 <script src="plugins/datatables/jquery.datatables.js"></script>
 <script src="plugins/datatables/dataTables.bootstrap.js"></script>
 <script src="plugins/datatables/TableTools.js"></script>
