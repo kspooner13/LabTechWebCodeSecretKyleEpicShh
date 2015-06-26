@@ -131,7 +131,7 @@ if (USE_LOGIN == 'YES' && AUTH_TYPE == 'LT'){
 									</div>
 								</a>
 								<ul class="dropdown-menu">
-										<a href="page_login.php?logout=true">
+										<a href="ajax/page_login.php?logout=true">
 											<i class="fa fa-power-off"></i>
 											<span>Logout</span>
 										</a>
@@ -219,7 +219,7 @@ if (USE_LOGIN == 'YES' && AUTH_TYPE == 'LT'){
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="plugins/datatables/jquery.datatables.js"></script>
 <script src="plugins/datatables/dataTables.bootstrap.js"></script>
-<script src="plugins/datatables/tabletools.js"></script>
+<script src="plugins/datatables/TableTools.js"></script>
 <script src="plugins/bootstrap/bootstrap.min.js"></script>
 <script src="plugins/justified-gallery/jquery.justifiedgallery.min.js"></script>
 <script src="plugins/tinymce/tinymce.min.js"></script>

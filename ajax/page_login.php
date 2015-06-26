@@ -10,7 +10,7 @@ include('../config/Login.php');
 $login = new Login();
 
 
-if ($_REQUEST['logout'] === true) {
+if (isset($_REQUEST['logout'])) {
 	
 	$login->doLogout();
 	
