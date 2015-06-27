@@ -46,22 +46,24 @@ $(document).ready( function () {
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
+				<div style="padding: 10px;">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="table">
 					<thead>
 						<tr>
-							<th><a href=\"care_score.php?careteam={$careteam}&sorting=".$sort."&field=Client Name\">Client Name</a></th>
-							<th><a href=\"care_score.php?careteam={$careteam}&sorting=".$sort."&field=Antivirus\">Antivirus</a></th>
-							<th><a href=\"care_score.php?careteam={$careteam}&sorting=".$sort."&field=Disk\">Disk</a></th>
-							<th><a href=\"care_score.php?careteam={$careteam}&sorting=".$sort."&field=Intrusion\">Intrusion</a></th>
-							<th><a href=\"care_score.php?careteam={$careteam}&sorting=".$sort."&field=Usability\">Usability</a></th>
-							<th><a href=\"care_score.php?careteam={$careteam}&sorting=".$sort."&field=Services\">Services</a></th>
-							<th><a href=\"care_score.php?careteam={$careteam}&sorting=".$sort."&field=Updates\">Updates</a></th>
-							<th><a href=\"care_score.php?careteam={$careteam}&sorting=".$sort."&field=Events\">Events</a></th>
-							<th><a href=\"care_score.php?careteam={$careteam}&sorting=".$sort."&field=Overall Score\">Overall Score</a></th>
+							<th>Client Name</th>
+							<th>Antivirus</th>
+							<th>Disk</th>
+							<th>Intrusion</th>
+							<th>Usability</th>
+							<th>Services</th>
+							<th>Updates</th>
+							<th>Events</th>
+							<th>Overall Score</th>
 						</tr>
 					</thead>
 
 				</table>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -70,3 +72,4 @@ $(document).ready( function () {
 // Run Datables plugin and create 3 variants of settings
 
 </script>
+
