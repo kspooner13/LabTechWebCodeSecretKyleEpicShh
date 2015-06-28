@@ -41,11 +41,12 @@ if ($_REQUEST['type'] === 'getTeamData') {
 		$searchString = "'" . str_replace(",", "','", $requestData['search']['value']) . "'"; //wrapping qoutation
 		$sql.=" AND ( `Client Name` IN (".$searchString.") ";    
 		$sql.=" OR DISK < (".$searchString.")  )";
-	
+	}
 	$query=mysqli_query($conn, $sql) or die("Failed getting data from TeamPage|Error 2204");
-	$totalFiltered = mysqli_num_rows($query); // when there is a search parameter then we have to modify total number filtered rows as per search result. 
-	$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."  LIMIT ".$requestData['start']." ,".$requestData['length']."   ";
-	/* $requestData['order'][0]['column'] contains colmun index, $requestData['order'][0]['dir'] contains order such as asc/desc  */	}
+	$totalFiltered = mysqli_num_rows($query); // when there is a search parameter then we have to modify total number filtered rows as per search result. e
+	if (isset($_REQUEST['order'][0]['column'])) {
+	$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."  LIMIT ".$requestData['start']." ,".$requestData['length']."   "; }
+	/* $requestData['order'][0]['column'] contains colmun index, $requestData['order'][0]['dir'] contains order such as asc/desc  */	
 	$query=mysqli_query($conn, $sql) or die("Team List - Failed Query");
 
 
