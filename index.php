@@ -28,6 +28,13 @@ if (USE_LOGIN == 'YES' && AUTH_TYPE == 'LT'){
 }
 
 
+if (!empty($_REQUEST['client'])) {
+
+$load_ajax = 'ajax/client_page.php?type=getData&team=';
+$load_ajax .= $_REQUEST['team'];
+}
+
+
 
 
 
@@ -206,13 +213,14 @@ FROM v_extradataclients WHERE `Team Assignment` != '' ORDER BY `Team Assignment`
 								 
                                 while ($row = mysqli_fetch_array($result4)) {
 								$encode = urlencode($row['client_spec']);
-								echo "<li><a class='ajax-link' href=\'ns_score.php?net_sp='".$encode."'>".$row['client_spec']."</a></li>";
+								echo "<li><a class='ajax-link' href=\'page_spec.php?net_sp='".$encode."'>".$row['client_spec']."</a></li>";
 								
 								
 								}
                           ?>
 					</ul>
 				</li>
+				<li><?php echo $load_ajax; ?>
 
 			</ul>
 		</div>
@@ -256,5 +264,9 @@ FROM v_extradataclients WHERE `Team Assignment` != '' ORDER BY `Team Assignment`
 <script src="plugins/tinymce/jquery.tinymce.min.js"></script>
 <!-- All functions for this theme + document.ready processing -->
 <script src="js/template.js"></script>
+<script>
+$(document).ready( function () {
+LoadAjaxContent('#<?php echo $load_ajax; ?>');
+});
 </body>
 </html>

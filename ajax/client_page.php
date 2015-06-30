@@ -1,4 +1,19 @@
+<script>
+$(document).ready( function () {
+   var teamTable= $('#table').DataTable({
+		"processing": true,
+		"serverSide": true,
+		"searching": false,
+		"ajax" : {
+			url: "json/clientpage.php?type=getData&team=<?php echo $_REQUEST['team'];?>",
+			type: "post" }
 
+			
+			
+		});
+	WinMove();
+	});
+</script>
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12">
 		<a href="#" class="show-sidebar">
@@ -7,6 +22,7 @@
 		<ol class="breadcrumb pull-left">
 			<li><a href="#">Dashboard</a></li>
 			<li><a href="#">Teams</a></li>
+			<li><a href="#">Computers</a></li>
 			<li><a href="#"><?php echo $_REQUEST['team']; ?></a></li>
 		</ol>
 	</div>
@@ -17,7 +33,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-desktop"></i>
-					<span><?php echo $_REQUEST['team'];?> Team</span>
+					<span><?php echo $_REQUEST['team'];?> Team Computers</span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -36,7 +52,8 @@
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="table">
 					<thead>
 						<tr>
-							<th><a href="#">Client Name</a></th>
+							<th><a href="#">Computer Name</a></th>
+							<th><a href="#">Status</a></th>
 							<th><a href="#">Antivirus</a></th>
 							<th><a href="#">Disk</a></th>
 							<th><a href="#">Intrusion</a></th>
@@ -53,27 +70,3 @@
 		</div>
 	</div>
 </div>
-<script>
-$(document).ready( function () {
-   var teamTable= $('#table').DataTable({
-		"processing": true,
-		"serverSide": true,
-		"searching": false,
-		
-		"ajax" : {
-			url: "json/teampage.php?type=getTeamData&team=<?php echo $_REQUEST['team'];?>",
-			type: "post" },
-		"aoColumnDefs": [
-		{
-			"aTargets": [ 0 ],
-			"mRender": function ( data, type, full ) {
-				return "<a href='index.php?client=1&team=" + full[0] + "'>" + data + "</a>";
-				}
-			}
-		]
-		}
-
-	);
-	WinMove();
-	});
-</script>

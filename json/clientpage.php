@@ -6,7 +6,7 @@ include('../config/dbconnect.php');
 // storing  request (ie, get/post) global array to a variable  
 $requestData = $_REQUEST;
 
-if ($_REQUEST['type'] === 'getTeamData') {
+if ($_REQUEST['type'] === 'getData') {
 
 	$excl = $_REQUEST['excl'];
 	$team = urldecode($_REQUEST['team']);

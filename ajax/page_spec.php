@@ -6,8 +6,8 @@
 		</a>
 		<ol class="breadcrumb pull-left">
 			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Teams</a></li>
-			<li><a href="#"><?php echo $_REQUEST['team']; ?></a></li>
+			<li><a href="#">Specialists</a></li>
+			<li><a href="#"><?php echo $_REQUEST['client_spec']; ?></a></li>
 		</ol>
 	</div>
 </div>
@@ -17,7 +17,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-desktop"></i>
-					<span><?php echo $_REQUEST['team'];?> Team</span>
+					<span><?php echo $_REQUEST['client_spec'];?></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -61,7 +61,7 @@ $(document).ready( function () {
 		"searching": false,
 		
 		"ajax" : {
-			url: "json/teampage.php?type=getTeamData&team=<?php echo $_REQUEST['team'];?>",
+			url: "json/specpage.php?type=getData&spec=<?php echo $_REQUEST['client_spec'];?>",
 			type: "post" },
 		"aoColumnDefs": [
 		{
