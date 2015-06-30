@@ -39,8 +39,7 @@ if ($_REQUEST['type'] === 'getTeamData') {
 	
 	if( !empty($requestData['search']['value']) ) {   // if there is a search parameter, $requestData['search']['value'] contains search parameter
 		$searchString = "'" . str_replace(",", "','", $requestData['search']['value']) . "'"; //wrapping qoutation
-		$sql.=" AND ( `Client Name` IN (".$searchString.") ";    
-		$sql.=" OR DISK < (".$searchString.")  )";
+		$sql.=" AND ( `Client Name` IN (".$searchString.") )";    	
 	}
 	$query=mysqli_query($conn, $sql) or die("Failed getting data from TeamPage|Error 2204");
 	$totalFiltered = mysqli_num_rows($query); // when there is a search parameter then we have to modify total number filtered rows as per search result. e
@@ -53,7 +52,7 @@ if ($_REQUEST['type'] === 'getTeamData') {
 	$data = array();
 	while( $row=mysqli_fetch_array($query) ) {  // preparing an array
 		$nestedData=array(); 
-
+		
 		$nestedData[] = $row["Client"];
 		$nestedData[] = $row["Antivirus"];
 		$nestedData[] = $row["Disk"];

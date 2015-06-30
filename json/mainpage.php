@@ -165,16 +165,20 @@ $sql = "SELECT `Client Specialist` AS Specialist,
                  ";
 $sql.=" FROM hc_scores JOIN v_extradataclients USING (clientid) WHERE `Client Specialist` != 'None' GROUP BY `Client Specialist`";
 
-if (isset($_REQUEST['order'][0]['column'])) {
+	$query=mysqli_query($conn, $sql) or die("employee-grid-data.php: get employees");
+	$totalData = mysqli_num_rows($query);
+	$totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
+	
+	if( !empty($requestData['search']['value']) ) {   // if there is a search parameter, $requestData['search']['value'] contains search parameter
+		$searchString = "'" . str_replace(",", "','", $requestData['search']['value']) . "'"; //wrapping qoutation
+		$sql.=" AND ( `Client Name` IN (".$searchString.") )";    	
+	}
+	$query=mysqli_query($conn, $sql) or die("Failed getting data from TeamPage|Error 2204");
+	$totalFiltered = mysqli_num_rows($query); // when there is a search parameter then we have to modify total number filtered rows as per search result. e
+	if (isset($_REQUEST['order'][0]['column'])) {
 	$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."  LIMIT ".$requestData['start']." ,".$requestData['length']."   "; }
-
-$query=mysqli_query($conn, $sql) or die("Specialist List - Failed Query Counting");
-$totalData = mysqli_num_rows($query);
-$totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
-
-
-
-$query=mysqli_query($conn, $sql) or die("Specialist List - Failed Query Other");
+	/* $requestData['order'][0]['column'] contains colmun index, $requestData['order'][0]['dir'] contains order such as asc/desc  */	
+	$query=mysqli_query($conn, $sql) or die("Team List - Failed Query");
 
 
 $data = array();

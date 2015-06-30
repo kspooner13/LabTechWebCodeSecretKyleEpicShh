@@ -4,11 +4,20 @@ $(document).ready( function () {
 		"processing": true,
 		"serverSide": true,
 		"searching": false,
+		
 		"ajax" : {
 			url: "json/teampage.php?type=getTeamData&team=<?php echo $_REQUEST['team'];?>",
-			type: "post" }
-	
+			type: "post" },
+		"aoColumnDefs": [
+		{
+			"aTargets": [ 0 ],
+			"mRender": function ( data, type, full ) {
+				return "<a class='ajax-link' href='ajax/client_page.php?team=" + full[0] + "'>" + data + "</a>";
+				}
+			}
+		]
 		}
+
 	);
 	WinMove();
 	});

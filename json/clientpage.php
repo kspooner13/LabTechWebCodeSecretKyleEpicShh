@@ -9,7 +9,7 @@ $requestData = $_REQUEST;
 if ($_REQUEST['type'] === 'getTeamData') {
 
 	$excl = $_REQUEST['excl'];
-	$team = $_REQUEST['team'];
+	$team = urldecode($_REQUEST['team']);
 	$columns = array( 
 	// datatable column index  => database column name
 		0 => 'Computer Name',
