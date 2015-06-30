@@ -165,14 +165,14 @@ if (USE_LOGIN == 'YES' && AUTH_TYPE == 'LT'){
 						<span class="hidden-xs">System Stability</span>
 					</a>
 					<ul class="dropdown-menu">
-											 <li>a< class="ajax-link" href="ajax/page_trending.php">Trending</a></li>
-						<li><a class="ajax-link" href="ajax/charts_xcharts.html">Anti-Virus</a></li>
-						<li><a class="ajax-link" href="ajax/charts_flot.html">Intrusions</a></li>
-						<li><a class="ajax-link" href="ajax/charts_google.html">Disk Performance</a></li>
-						<li><a class="ajax-link" href="ajax/charts_morris.html">Services</a></li>
-						<li><a class="ajax-link" href="ajax/charts_morris.html">Updates</a></li>
-						<li><a class="ajax-link" href="ajax/charts_morris.html">Events</a></li>
-						<li><a class="ajax-link" href="ajax/charts_morris.html">Overall Score</a></li>
+						<li><a class="ajax-link" href="ajax/page_trending.php">Trending</a></li>
+						<li><a class="ajax-link" href="ajax/get_page.php?type=AntiVirus">Anti-Virus</a></li>
+						<li><a class="ajax-link" href="ajax/get_page.php?type=Intrusions">Intrusions</a></li>
+						<li><a class="ajax-link" href="ajax/get_page.php?type=Disk">Disk Performance</a></li>
+						<li><a class="ajax-link" href="ajax/get_page.php?type=Services">Services</a></li>
+						<li><a class="ajax-link" href="ajax/get_page.php?type=Updates">Updates</a></li>
+						<li><a class="ajax-link" href="ajax/get_page.php?type=Events">Events</a></li>
+						<li><a class="ajax-link" href="ajax/get_page.php?type=Overall">Overall Score</a></li>
 					</ul>
 				</li>
 				<?php
@@ -188,6 +188,7 @@ FROM v_extradataclients WHERE `Team Assignment` != '' ORDER BY `Team Assignment`
 					</a>
 					<ul class="dropdown-menu">
 						<?php
+						
                                 while ($row = mysqli_fetch_array($result4)) {echo "<li><a class='ajax-link' href='ajax/page_teams.php?team=".$row['Team Assignment']."'>".$row["Team Assignment"]."</a></li>";}
                           ?>
 					</ul>
@@ -202,7 +203,13 @@ FROM v_extradataclients WHERE `Team Assignment` != '' ORDER BY `Team Assignment`
                           <?php
                                  $sql4 = "SELECT DISTINCT `Client Specialist` AS client_spec FROM v_extradataclients WHERE `client specialist` != '' ORDER BY client_spec asc";
                                  $result4 = mysqli_query($conn,$sql4);
-                                while ($row = mysqli_fetch_array($result4)) {echo "<li><a class='ajax-link' href=\'ns_score.php?net_sp='".$row['client_spec']."\'>".$row["client_spec"]."</a></li>";}
+								 
+                                while ($row = mysqli_fetch_array($result4)) {
+								$encode = urlencode($row['client_spec']);
+								echo "<li><a class='ajax-link' href=\'ns_score.php?net_sp='".$encode."'>".$row['client_spec']."</a></li>";
+								
+								
+								}
                           ?>
 					</ul>
 				</li>

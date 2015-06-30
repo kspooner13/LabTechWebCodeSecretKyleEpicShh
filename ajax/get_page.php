@@ -5,12 +5,11 @@ $(document).ready( function () {
 		"serverSide": true,
 		"searching": false,
 		"ajax" : {
-			url: "json/teampage.php?type=getTeamData&team=<?php echo $_REQUEST['team'];?>",
+			url: "json/getpage.php?type=<?php echo $_REQUEST['type'];?>",
 			type: "post" }
 	
 		}
 	);
-	WinMove();
 	});
 </script>
 <div class="row">
@@ -20,8 +19,7 @@ $(document).ready( function () {
 		</a>
 		<ol class="breadcrumb pull-left">
 			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Teams</a></li>
-			<li><a href="#"><?php echo $_REQUEST['team']; ?></a></li>
+			<li><a href="#"><?php echo $_REQUEST['type']; ?></a></li>
 		</ol>
 	</div>
 </div>
@@ -31,7 +29,7 @@ $(document).ready( function () {
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-desktop"></i>
-					<span><?php echo $_REQUEST['team'];?> Team</span>
+					<span><?php echo $_REQUEST['type'];?> Team</span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -52,12 +50,6 @@ $(document).ready( function () {
 						<tr>
 							<th><a href="#">Client Name</a></th>
 							<th><a href="#">Antivirus</a></th>
-							<th><a href="#">Disk</a></th>
-							<th><a href="#">Intrusion</a></th>
-							<th><a href="#">Usability</a></th>
-							<th><a href="#">Services</a></th>
-							<th><a href="#">Updates</a></th>
-							<th><a href="#">Events</a></th>
 							<th><a href="#">Overall Score</a></th>
 						</tr>
 					</thead>
@@ -67,3 +59,7 @@ $(document).ready( function () {
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+// Run Datables plugin and create 3 variants of settings
+
+</script>

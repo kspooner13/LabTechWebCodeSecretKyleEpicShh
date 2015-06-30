@@ -89,6 +89,8 @@ $sql = "SELECT         hc_scores.`Team Assignment` as Team,
                         ROUND(((ROUND(AVG(NULLIF(`AV Ex`,0)),1)+ROUND(AVG(NULLIF(`Disk Ex`,0)),1)+ROUND(AVG(NULLIF(`Intrusion Ex`,0)),1)+ROUND(AVG(NULLIF(`Usability Ex`,0)),1)+ROUND(AVG(NULLIF(`Services Ex`,0)),1)+ROUND(AVG(NULLIF(`Updates Ex`,0)),1)+ROUND(AVG(NULLIF(`Event Ex`,0)),1))/7),1) AS 'Overall Score'
                  ";
 $sql.=" FROM hc_scores JOIN v_extradataclients USING (clientid) WHERE v_extradataclients.`Exclude Reporting` <> 1  AND clientid NOT IN(SELECT clientid FROM `v_extradataclients` WHERE `v_extradataclients`.`Go Live Date` < DATE_ADD(NOW(), INTERVAL -1 MONTH) AND `v_extradataclients`.`Go Live Date` > 0) GROUP BY hc_scores.`Team Assignment`";
+if (isset($_REQUEST['order'][0]['column'])) {
+	$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."  LIMIT ".$requestData['start']." ,".$requestData['length']."   "; }
 $query=mysqli_query($conn, $sql) or die("Exclusion List - Failed Query");
 $totalData = mysqli_num_rows($query);
 $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
@@ -162,6 +164,10 @@ $sql = "SELECT `Client Specialist` AS Specialist,
                         ROUND(((ROUND(AVG(NULLIF(`AV Ex`,0)),1)+ROUND(AVG(NULLIF(`Disk Ex`,0)),1)+ROUND(AVG(NULLIF(`Intrusion Ex`,0)),1)+ROUND(AVG(NULLIF(`Usability Ex`,0)),1)+ROUND(AVG(NULLIF(`Services Ex`,0)),1)+ROUND(AVG(NULLIF(`Updates Ex`,0)),1)+ROUND(AVG(NULLIF(`Event Ex`,0)),1))/7),1) AS 'Overall Score'
                  ";
 $sql.=" FROM hc_scores JOIN v_extradataclients USING (clientid) WHERE `Client Specialist` != 'None' GROUP BY `Client Specialist`";
+
+if (isset($_REQUEST['order'][0]['column'])) {
+	$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."  LIMIT ".$requestData['start']." ,".$requestData['length']."   "; }
+
 $query=mysqli_query($conn, $sql) or die("Specialist List - Failed Query Counting");
 $totalData = mysqli_num_rows($query);
 $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.

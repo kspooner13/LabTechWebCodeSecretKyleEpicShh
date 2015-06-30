@@ -18,6 +18,23 @@ DEFINE('USE_SPEC', 'YES');
 DEFINE('USE_TEAM', 'YES');
 
 
+//Page Settings
+
+
+/*
+This determines how many high your standards are. 
+*/
+
+DEFINE('AV_STANDARD', '95');
+DEFINE('IN_STANDARD', '95');
+DEFINE('DSK_STANDARD', '95');
+DEFINE('SRV_STANDARD', '95');
+DEFINE('UPD_STANDARD', '95');
+DEFINE('EVT_STANDARD', '95');
+DEFINE('OVR_STANDARD', '95');
+
+
+///END SETTINGS
 
 
 ?>
