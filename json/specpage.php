@@ -6,26 +6,40 @@ include('../config/dbconnect.php');
 // storing  request (ie, get/post) global array to a variable  
 $requestData = $_REQUEST;
 
-if ($_REQUEST['type'] === 'getTeam') {
+
+if ($_REQUEST['type'] === 'getData') {
+	
+$spec = urldecode($_REQUEST['spec']);
+	
 $columns = array( 
 // datatable column index  => database column name
-	0 =>'Team',
-	1 =>'Antivirus', 
+	0 => 'Client',
+	1 => 'Antivirus', 
 	2 => 'Disk',
-	3=> 'Intrusion',
-	4=> 'Usability',
-	5=> 'Services',
-	6=> 'Updates',
-	7=> 'Events',
-	8=> 'Overall Score'
+	3 => 'Intrusion',
+	4 => 'Usability',
+	5 => 'Services',
+	6 => 'Updates',
+	7 => 'Event Log',
+	8 => 'Overall Score'
 );
 
 // getting total number records without any search
-$sql = "SELECT  `Team Assignment` as Team, ROUND(AVG(`Antivirus`),1) AS 'Antivirus', ROUND(AVG(`Disk`),1) AS 'Disk', ROUND(AVG(`Intrusion`),1) AS 'Intrusion', ROUND(AVG(`Usability`),1) AS 'Usability', ROUND(AVG(`Services`),1) AS 'Services', ROUND(AVG(`Updates`),1) AS 'Updates', ROUND(AVG(`Event Log`),1) AS 'Events', ROUND(((ROUND(AVG(`Antivirus`),1)+ROUND(AVG(`Disk`),1)+ROUND(AVG(`Intrusion`),1)+ROUND(AVG(`Usability`),1)+ROUND(AVG(`Services`),1)+ROUND(AVG(`Updates`),1)+ROUND(AVG(`Event Log`),1))/7),1) AS 'Overall Score' ";
-$sql.=" FROM hc_scores GROUP BY `Team Assignment`";
+$sql = "SELECT `Client Name` as Client,
+Antivirus,
+`Disk`, 
+Intrusion, 
+Usability,
+Services,
+Updates,
+`Event Log`,
+ROUND(((`Antivirus`+`Disk`+`Intrusion`+`Usability`+`Services`+`Updates`+`Event Log`)/7),1) AS 'Overall Score' ";
+$sql.=" FROM hc_scores as s JOIN v_extradataclients as V on v.clientid=s.clientid WHERE v.`Client Specialist` = '".$spec."'";
+	
+	
 	if (isset($_REQUEST['order'][0]['column'])) {
 	$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."  LIMIT ".$requestData['start']." ,".$requestData['length']."   "; }
-$query=mysqli_query($conn, $sql) or die("Team List - Failed Query");
+$query=mysqli_query($conn, $sql) or die(mysqli_error());
 $totalData = mysqli_num_rows($query);
 $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
 
@@ -38,13 +52,13 @@ $data = array();
 while( $row=mysqli_fetch_array($query) ) {  // preparing an array
 	$nestedData=array(); 
 
-	$nestedData[] = $row["Team"];
+	$nestedData[] = $row["Client"];
 	$nestedData[] = $row["Antivirus"];
 	$nestedData[] = $row["Disk"];
 	$nestedData[] = $row["Intrusion"];
 	$nestedData[] = $row["Services"];
 	$nestedData[] = $row["Updates"];
-	$nestedData[] = $row["Events"];
+	$nestedData[] = $row["Event Log"];
 	$nestedData[] = $row["Overall Score"];
 	
 	$data[] = $nestedData;
