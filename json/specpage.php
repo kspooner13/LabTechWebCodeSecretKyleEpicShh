@@ -56,6 +56,7 @@ while( $row=mysqli_fetch_array($query) ) {  // preparing an array
 	$nestedData[] = $row["Antivirus"];
 	$nestedData[] = $row["Disk"];
 	$nestedData[] = $row["Intrusion"];
+	$nestedData[] = $row["Usability"];
 	$nestedData[] = $row["Services"];
 	$nestedData[] = $row["Updates"];
 	$nestedData[] = $row["Event Log"];
