@@ -278,15 +278,25 @@ $dbclass = new Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	          <?php  
 		// LETS MAKE SOME THINGS HAPPEN BABY!
 		// 
-		$loggedsql = " SELECT DISTINCT(USER) as `user` FROM INFORMATION_SCHEMA.PROCESSLIST WHERE USER NOT IN ('asp_LabTech', 'root', 'event_scheduler') ";
-		$info = $dbclass->query($loggedsql);
+		$getUsers = "SELECT `name` as user FROM users WHERE `name` NOT IN ('root', 'zAdmin', 'admin', 'GHD', 'LT_Frontend', 'LabTechTech')";
+		$gotUsers = $dbclass->query($getUsers);
 		
-		while ($row = $dbclass->fetch_array($info)) {
-		
-		echo "<li><span class='username'>".$row['user']."</span>";
-		echo "<span class='status online'>&nbsp;</span></li>";
+		while ($userlist = $dbclass->fetch_array($gotUsers)){ 
+			
+			$loggedsql = " SELECT DISTINCT(USER) as `user` FROM INFORMATION_SCHEMA.PROCESSLIST WHERE USER = '".$userlist['user']."' ";
+			$info = $dbclass->query($loggedsql);
+			$num_row = $dbclass->num_rows($info);
+			if ($num_row > 0) {
+			$status = 'online';
+			}
+			else {
+			$status = 'offline';
+			}
+			
+			echo "<li><span class='username'>".$userlist['user']."</span>";
+			echo "<span class='status ".$status."'>&nbsp;</span></li>";
+			
 		}
-		
 		?>
         <li>
 

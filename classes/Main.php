@@ -29,7 +29,7 @@ class Main {
 	}
 	public function loadPage($name) {
 	
-	include('\pages\\' .$name .'.php');
+	include('/pages/' .$name .'.php');
 	
 	}
 	

@@ -2143,7 +2143,7 @@
  }
 
  .weather-widget.big .weather-prediction {
-   background:rgba(0,0,0,1) url('../_demo/images/new-york.png') top left no-repeat;
+   background:rgba(0,0,0,1) url('../images/new-york.png') top left no-repeat;
    background-size: cover;
  }
 
@@ -2865,7 +2865,7 @@
 
  /***** Background Image Profile *****/
  .profile.image .inner {
-   background: url('../_demo/images/profile-background-blurred.png') top left no-repeat transparent;
+   background: url('../images/profile-background-blurred.png') top left no-repeat transparent;
    background-size: cover;
  }
 
@@ -3707,7 +3707,7 @@
  }
 
  body.coming-soon {
-   background:url('../_demo/images/coming-soon.jpg') top left no-repeat;
+   background:url('../images/coming-soon.jpg') top left no-repeat;
    background-size: cover;
    height: 100%;
  }
@@ -4878,7 +4878,7 @@
 
  /***** Register Page *****/
  body.register-page {
-   background:url('../_demo/images/register-background.jpg') top left no-repeat transparent;
+   background:url('../images/register-background.jpg') top left no-repeat transparent;
    background-size: cover;
  }
 

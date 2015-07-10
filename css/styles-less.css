@@ -486,7 +486,7 @@ body.horizontal-menu .responsive-spacer {
 }
 /***** Boxed *****/
 body.boxed-layout {
-  background: url("../_demo/blurred-bg.jpg") top left;
+  background: url("../blurred-bg.jpg") top left;
   background-attachment: fixed;
   background-size: cover;
 }
@@ -1808,7 +1808,7 @@ body.collapsed-sidebar .menu li.active a span {
   background-color: #000000 !important;
 }
 .weather-widget.big .weather-prediction {
-  background: #000000 url('../_demo/images/new-york.png') top left no-repeat;
+  background: #000000 url('../images/new-york.png') top left no-repeat;
   background-size: cover;
 }
 .weather-widget.big .weather-prediction ul {
@@ -2450,7 +2450,7 @@ form.mail-compose textarea {
 }
 /***** Background Image Profile *****/
 .profile.image .inner {
-  background: url('../_demo/images/profile-background-blurred.png') top left no-repeat transparent;
+  background: url('../images/profile-background-blurred.png') top left no-repeat transparent;
   background-size: cover;
 }
 .profile.image .title,
@@ -3149,7 +3149,7 @@ html.coming-soon {
   height: 100%;
 }
 body.coming-soon {
-  background: url('../_demo/images/coming-soon.jpg') top left no-repeat;
+  background: url('../images/coming-soon.jpg') top left no-repeat;
   background-size: cover;
   height: 100%;
 }
@@ -4084,7 +4084,7 @@ table tbody tr.error {
 }
 /***** Login Page *****/
 body.login-page {
-  background: url('../_demo/images/login-background.jpg') top left no-repeat transparent;
+  background: url('../images/login-background.jpg') top left no-repeat transparent;
   background-size: cover;
 }
 body.login-page .login-page-container {
@@ -4153,7 +4153,7 @@ body.login-page p.footer {
 }
 /***** Register Page *****/
 body.register-page {
-  background: url('../_demo/images/register-background.jpg') top left no-repeat transparent;
+  background: url('../images/register-background.jpg') top left no-repeat transparent;
   background-size: cover;
 }
 body.register-page .register-page-container {
