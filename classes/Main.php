@@ -63,7 +63,7 @@ class Main {
 
 					  <!-- Assets -->
 					  <link rel='stylesheet' type='text/css' href='plugins/jquery-ui/jquery-ui-1.10.3.custom.css' />
-					  <link rel='stylesheet' type='text/css' href='plugins/morrischarts/morris.css' />
+					  
 					  <link rel='stylesheet' type='text/css' href='plugins/fullcalendar/fullcalendar.css' />
 					  <link rel='stylesheet' type='text/css' href='plugins/datatables/jquery.datatables.css' />
 					  <link rel='stylesheet' type='text/css' href='plugins/icheck/_all.css' />

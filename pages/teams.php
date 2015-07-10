@@ -104,7 +104,7 @@
 </div>
 
 </section>
-<script src="../plugins/jquery/jquery-2.1.0.min.js"></script>
+<script src="plugins/jquery/jquery-2.1.0.min.js"></script>
 
 <script>
 $(document).ready( function () {
@@ -114,7 +114,7 @@ $(document).ready( function () {
 		"searching": false,
 		
 		"ajax" : {
-			url: "/pages/json/mainpage.php?type=getTeam",
+			url: "pages/json/mainpage.php?type=getTeam",
 			type: "post" },
 		"aoColumnDefs": [
 		{
