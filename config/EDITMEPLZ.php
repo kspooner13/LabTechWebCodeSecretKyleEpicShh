@@ -14,6 +14,7 @@ define("DB_HOST", "");
 define("DB_NAME", "");
 define("DB_USER", "");
 define("DB_PASS", "");
+define("APP_TITLE", "EPiCenter");
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
