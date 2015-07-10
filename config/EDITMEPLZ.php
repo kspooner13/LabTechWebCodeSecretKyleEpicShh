@@ -14,6 +14,7 @@ define("DB_HOST", "");
 define("DB_NAME", "");
 define("DB_USER", "");
 define("DB_PASS", "");
+define("APP_TITLE", "EPiCenter");
 
 //Edit this line please,  good WOEID to find your weather location ID
 define("WOEID", "123456");
