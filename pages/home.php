@@ -329,6 +329,9 @@ $dbclass = new Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 <!-- Footer Line Start -->
 <div class='footer-line'>
   &#169; All rights reserved by EPiCenter (Kyle Spooner / Brandon Zylka)
+  				<button class='button' data-toggle='modal' data-target='#myModal'>
+				<img src='img/tug.png' width='25px'></button>
+			
 </div>
 
 </div>

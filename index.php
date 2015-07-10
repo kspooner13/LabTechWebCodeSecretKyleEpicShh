@@ -84,7 +84,7 @@ if (USE_LOGIN === 'YES' ){
 <script>
 $(document).ready(function() {
   $.simpleWeather({
-    location: 'Greenville, SC',
+    location: '<?php echo CITYSTATE; ?>',
     woeid: '<?php echo WOEID; ?>',
     unit: 'f',
     success: function(weather) {

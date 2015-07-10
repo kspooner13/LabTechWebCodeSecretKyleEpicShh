@@ -14,10 +14,10 @@ define("DB_HOST", "");
 define("DB_NAME", "");
 define("DB_USER", "");
 define("DB_PASS", "");
-define("APP_TITLE", "EPiCenter");
 
 //Edit this line please,  good WOEID to find your weather location ID
 define("WOEID", "123456");
+define("CITYSTATE", "New York, NY");
 
 //Edit this line for your Lat/Longitude  for google maps
 define("LAT", "125");
