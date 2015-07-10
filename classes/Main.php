@@ -97,7 +97,7 @@ class Main {
 				  <!-- Logo Start -->
 				  <a href='index.html'>
 					<div class='logo-container' id='step1'>
-					  <h1>EPiCenter</h1>
+					  <img src='img/testimg.png' width='225'>
 					</div>
 				  </a>
 				  <!-- Logo End -->

@@ -2,7 +2,7 @@
 
 //home.php  mainpage
 
-
+$dbclass = new Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 ?>
 
 <div class='content-liquid-full'>
@@ -278,7 +278,14 @@
 	          <?php  
 		// LETS MAKE SOME THINGS HAPPEN BABY!
 		// 
+		$loggedsql = " SELECT DISTINCT(USER) as `user` FROM INFORMATION_SCHEMA.PROCESSLIST WHERE USER NOT IN ('asp_LabTech', 'root', 'event_scheduler') ";
+		$info = $dbclass->query($loggedsql);
 		
+		while ($row = $dbclass->fetch_array($info)) {
+		
+		echo "<li><span class='username'>".$row['user']."</span>";
+		echo "<span class='status online'>&nbsp;</span></li>";
+		}
 		
 		?>
         <li>
@@ -293,7 +300,6 @@
     </div>
 
   </div>
-
  
 
 
