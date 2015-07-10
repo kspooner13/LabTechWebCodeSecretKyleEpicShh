@@ -278,7 +278,7 @@ $dbclass = new Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	          <?php  
 		// LETS MAKE SOME THINGS HAPPEN BABY!
 		// 
-		$getUsers = "SELECT `name` as user FROM users WHERE `name` NOT IN ('root', 'zAdmin', 'admin', 'GHD', 'LT_Frontend', 'LabTechTech')";
+		$getUsers = "SELECT `name` as user FROM users WHERE `name` NOT IN ('root', 'zAdmin', 'admin', 'GHD', 'LT_Frontend', 'LabTechTech', 'asp_LabTech', 'event_scheduler')";
 		$gotUsers = $dbclass->query($getUsers);
 		
 		while ($userlist = $dbclass->fetch_array($gotUsers)){ 
@@ -335,3 +335,93 @@ $dbclass = new Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 </div>
 
 </section>
+
+<script>
+/*** Google Maps ***/
+var map4;
+function initialize4() {
+  var mapOptions4 = {
+    zoom: 10,
+    center: new google.maps.LatLng(<?php echo LAT; ?>, <?php echo LON; ?>),
+    styles: [
+      {
+        "featureType": "water",
+        "stylers": [
+          {
+            "color": "#46bcec"
+          },
+          {
+            "visibility": "on"
+          }
+        ]
+      },
+      {
+        "featureType": "landscape",
+        "stylers": [
+          {
+            "color": "#f2f2f2"
+          }
+        ]
+      },
+      {
+        "featureType": "road",
+        "stylers": [
+          {
+            "saturation": -100
+          },
+          {
+            "lightness": 45
+          }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "stylers": [
+          {
+            "visibility": "simplified"
+          }
+        ]
+      },
+      {
+        "featureType": "road.arterial",
+        "elementType": "labels.icon",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#444444"
+          }
+        ]
+      },
+      {
+        "featureType": "transit",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "poi",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      }
+    ]
+  };
+  map4 = new google.maps.Map(document.getElementById('map-canvas-4'), mapOptions4);
+    var trafficLayer = new google.maps.TrafficLayer();
+  trafficLayer.setMap(map4);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize4);
+</script>

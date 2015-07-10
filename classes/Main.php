@@ -29,7 +29,7 @@ class Main {
 	}
 	public function loadPage($name) {
 	
-	include('/pages/' .$name .'.php');
+	include('pages/' .$name .'.php');
 	
 	}
 	
@@ -95,7 +95,7 @@ class Main {
 				  <div class='sidebar'>
 
 				  <!-- Logo Start -->
-				  <a href='index.html'>
+				  <a href='index.php'>
 					<div class='logo-container' id='step1'>
 					  <img src='img/testimg.png' width='225'>
 					</div>

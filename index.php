@@ -14,11 +14,11 @@ and autoload the classes
 ************************************************************/
 
 spl_autoload_register('autoloader');
-require('/config/dbconnect.php');
+require('config/dbconnect.php');
 
 function autoloader($classname) {
 
-include_once '/classes/' . $classname . '.php';
+include_once 'classes/' . $classname . '.php';
 
 
 }
@@ -85,7 +85,7 @@ if (USE_LOGIN === 'YES' ){
 $(document).ready(function() {
   $.simpleWeather({
     location: 'Greenville, SC',
-    woeid: '2414583',
+    woeid: '<?php echo WOEID; ?>',
     unit: 'f',
     success: function(weather) {
       html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';

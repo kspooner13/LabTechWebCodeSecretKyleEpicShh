@@ -16,6 +16,13 @@ define("DB_USER", "");
 define("DB_PASS", "");
 define("APP_TITLE", "EPiCenter");
 
+//Edit this line please,  good WOEID to find your weather location ID
+define("WOEID", "123456");
+
+//Edit this line for your Lat/Longitude  for google maps
+define("LAT", "125");
+define("LON", "-125");
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
