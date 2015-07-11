@@ -1913,6 +1913,20 @@ body.collapsed-sidebar .menu li.active a span {
 .social-box.projects .text-container .inner span {
   color: #9f90e4;
 }
+
+/***** Other *****/
+.social-box.overall .icon-container {
+  background-color: #01DF3A;
+}
+.social-box.overall .text-container .inner span {
+  color: #01DF3A;
+}
+.social-box.services .icon-container {
+  background-color: #6E7075;
+}
+.social-box.services .text-container .inner span {
+ color: #6E7075;
+}
 /***** Tasks *****/
 .social-box.tasks .icon-container {
   background-color: #6c7681;
