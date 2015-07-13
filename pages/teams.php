@@ -226,7 +226,7 @@ $dbclass = new Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
         <div class='icon-container'>
           <div class='inner'>
-            <i class='fa fa-wrench'></i>
+            <i class='fa fa-signal'></i>
           </div>
         </div>
 
