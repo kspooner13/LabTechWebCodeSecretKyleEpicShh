@@ -1,4 +1,7 @@
 <?php
+
+
+
 class Main {
  	
 	
@@ -185,6 +188,16 @@ class Main {
 					</ul>
 					<ul class='menu'>
 					<li class='parent green'>
+						";
+						include("$_SERVER[DOCUMENT_ROOT]/lt/modules/modconfig.php");
+						foreach ($module as $i => $value) {
+							echo " <a href='#'>
+						<span class='menu-icon'><i class='fa fa-windows'></i></span>
+						<span class='menu-text'>" .$module[0]['Name']."</span></a>";
+						}
+						
+						
+						echo"
 					  <a href=''>
 						<span class='menu-icon'><i class='fa fa-rocket'></i></span>
 						<span class='menu-text'>Health Check</span>

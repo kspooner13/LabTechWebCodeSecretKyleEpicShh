@@ -26,6 +26,8 @@ include_once 'classes/' . $classname . '.php';
 $dbclass = new Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $mainClass = new Main();
 $login = new Login();
+include ('modules/modconfig.php');
+
 
 define('USE_LOGIN', 'YES');
 
@@ -80,7 +82,6 @@ if (USE_LOGIN === 'YES' ){
 
 
 
-
 <script>
 $(document).ready(function() {
   $.simpleWeather({
@@ -100,6 +101,8 @@ $(document).ready(function() {
     }
   });
 });
+
+
 
 
 </script>
