@@ -129,9 +129,9 @@
 					IF(`Ignore Usability`=1,'<img src=../images/check.png>','') 'Ignore Usability',
 					IF(`Ignore Services`=1,'<img src=../images/check.png>','') 'Ignore Services',
 					IF(`Ignore Updates`=1,'<img src=../images/check.png>','') 'Ignore Updates',
-					IF(`Ignore Event Logs`=1,'<img src=../images/check.png>','') 'Ignore Events',
+					IF(`Ignore Event Logs`=1,'<img src=../images/check.png>','') 'Ignore Event Logs',
 					`Exclusion Comments`
-					 FROM marco_hc_computer_exclusion";
+					 FROM marco_hc_computer_exclusion WHERE `client name` not like '~%' ORDER BY `client name` ASC";
 	$exclude_client = "SELECT clientid, `Client Name`,`Team Assignment`,
 					if((`Exclude Reporting`=1),'<img src=../images/check.png>','') 'Exclude Reporting',
 					IF(`Ignore Antivirus`=1,'<img src=../images/check.png>','') 'Ignore Antivirus',
@@ -142,7 +142,7 @@
 					IF(`Ignore Updates`=1,'<img src=../images/check.png>','') 'Ignore Updates',
 					IF(`Ignore Event Log`=1,'<img src=../images/check.png>','') 'Ignore Event Log',
 					`Go Live Date`,`Exclusion Comments` 
-					FROM `marco_hc_client_exclusions`";
+					FROM `marco_hc_client_exclusions` WHERE `client name` not like '~%' ORDER BY `client name` ASC;
 
 // These are the navigation list population queries.
 	$list_spec = "SELECT distinct `Client Specialist` as netsp FROM v_extradataclients WHERE `Client Specialist` != 'None' order by netsp asc";
