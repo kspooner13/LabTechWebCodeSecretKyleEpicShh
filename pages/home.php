@@ -45,7 +45,8 @@ $dbclass = new Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
         <div class='text-container'>
           <div class='inner'>
-            <span>1,594</span> Computers
+            <span><?php $compcnt = $dbclass->query("select format(count(*), 0) as compcnt from computers;");
+                        while ($row = $dbclass->fetch_array($compcnt)) {echo $row['compcnt'];};?></span> Computers
           </div>
         </div>
       </div>
@@ -65,7 +66,8 @@ $dbclass = new Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
         <div class='text-container'>
           <div class='inner'>
-            <span>3,120</span> Servers
+            <span><?php $srvcnt = $dbclass->query("select format(count(*), 0) as srvcnt from computers where os like '%server%';");
+                        while ($row = $dbclass->fetch_array($srvcnt)) {echo $row['srvcnt'];};?></span> Servers
           </div>
         </div>
       </div>
@@ -85,7 +87,8 @@ $dbclass = new Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
         <div class='text-container'>
           <div class='inner'>
-            <span>180</span> Specialists
+            <span><?php $speccnt = $dbclass->query("SELECT FORMAT(COUNT(DISTINCT `Client Specialist`), 0) AS speccnt FROM v_extradataclients;");
+                        while ($row = $dbclass->fetch_array($speccnt)) {echo $row['speccnt'];};?></span> Specialists
           </div>
         </div>
       </div>
@@ -125,7 +128,8 @@ $dbclass = new Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
         <div class='text-container'>
           <div class='inner'>
-            <span>84</span> Open Tickets
+            <span><?php $tixcnt = $dbclass->query("SELECT FORMAT(COUNT(*), 0) AS tixcnt FROM tickets WHERE STATUS != 4;");
+                        while ($row = $dbclass->fetch_array($tixcnt)) {echo $row['tixcnt'];};?></span> Open Tickets
           </div>
         </div>
       </div>
@@ -145,7 +149,8 @@ $dbclass = new Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
         <div class='text-container'>
           <div class='inner'>
-            <span>645</span> Scripts
+            <span><?php $scriptcnt = $dbclass->query("SELECT FORMAT(COUNT(*), 0) AS scriptcnt FROM RunningScripts JOIN lt_Scripts ON lt_Scripts.ScriptID=RunningScripts.ScriptID LEFT JOIN Clients ON Clients.ClientID=Runningscripts.Clientid LEFT JOIN computers ON computers.computerid=runningscripts.computerid LEFT JOIN Clients c2 ON c2.ClientID=Computers.Clientid ORDER BY RunningScripts.Running DESC,RunningScripts.`Start`;");
+                        while ($row = $dbclass->fetch_array($scriptcnt)) {echo $row['scriptcnt'];};?></span> Scripts
           </div>
         </div>
       </div>
