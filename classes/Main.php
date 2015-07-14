@@ -187,17 +187,41 @@ class Main {
 					</li>
 					</ul>
 					<ul class='menu'>
-					<li class='parent green'>
+					
 						";
 						include("$_SERVER[DOCUMENT_ROOT]/lt/modules/modconfig.php");
+						
+						
+						
 						foreach ($module as $i => $value) {
-							echo " <a href='#'>
-						<span class='menu-icon'><i class='fa fa-windows'></i></span>
-						<span class='menu-text'>" .$module[0]['Name']."</span></a>";
+						include("$_SERVER[DOCUMENT_ROOT]/lt/modules/".$module[$i]['Folder']."/config.php");
+						
+						
+						if (MOD_USE_CHILD_LINKS === 'TRUE') {
+						$submenu = 'parent';
+						}
+						else {
+						$submenu = ' ';
+						}
+							echo "<li class='".$submenu." green'> <a href='#'>
+						<span class='menu-icon'><i class='fa ".$icon_type."'></i></span>
+						<span class='menu-text'>" .$module[$i]['Name']."</span></a>";
+						if (MOD_USE_CHILD_LINKS != 'TRUE') {
+						echo "</li>";
+						}
+						else {
+						
+						if (MOD_USE_CHILD_LINKS === 'TRUE') {
+						echo "<ul class='child'>";
+						create_menu();
+						echo "</ul>";
+						
 						}
 						
 						
-						echo"
+						}
+						}
+						echo"<li class='parent green'>
 					  <a href=''>
 						<span class='menu-icon'><i class='fa fa-rocket'></i></span>
 						<span class='menu-text'>Health Check</span>
