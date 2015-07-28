@@ -28,6 +28,7 @@ echo $this->element('sidebar');
         <li><a href='#'><i class='fa fa-home'></i></a></li>
         <li><a href='#'>Dashboard</a></li>
 		<?php echo $this->Html->link( "Logout" , array('controller' => 'users', 'action' => 'logout') ) ; ?>
+                <?php echo $this->Html->link( "Clients", array('controller' => 'Clients')); ?>
       </ul>
     </div>
   </div>
@@ -61,7 +62,7 @@ App::uses('Debugger', 'Utility');
 
         <div class='text-container'>
           <div class='inner'>
-            <span><?php ?></span> Computers
+            <span><?php echo $this->element('computercount', array(), array('cache' => true)); ?></span> Computers
           </div>
         </div>
       </div>

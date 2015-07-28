@@ -654,6 +654,14 @@
    width: 250px;
    position: absolute;
  }
+  .sidebar2 {
+   background-color: #2c3e50;
+   height: 100%;
+   min-height:600px;
+   padding: 0px !important;
+   width: 250px;
+   position: absolute;
+ }
 
  .sidebar .responsive-menu {
    display: none;
@@ -726,7 +734,7 @@
    color: #8e99a2;
    height:45px;
    overflow: hidden;
-   position: relative;
+
  }
 
  .sidebar .menu li a:hover {
@@ -823,7 +831,7 @@
    margin-left: 20px;
    vertical-align: top;
    overflow: hidden;
-   position: relative;
+
  }
 
  .sidebar .menu li a .menu-icon i {
@@ -2138,8 +2146,7 @@
  }
 
  .weather-widget.dark .weather-prediction {
-   background-color: rgba(0, 0, 0, 1
-   ,) !important;
+   background-color: rgba(0, 0, 0, 1) !important;
  }
 
  .weather-widget.big .weather-prediction {
