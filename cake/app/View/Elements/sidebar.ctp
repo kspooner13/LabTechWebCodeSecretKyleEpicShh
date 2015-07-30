@@ -1,62 +1,84 @@
-<?php
-?><!-- Sidebar Start -->
-<div class='sidebar'>
-
-    <!-- Logo Start -->
-    <a href='index.php'>
-        <div class='logo-container' id='step1'>
-<?php $this->Html->image('testimg.png'); ?>
+<div class="header">
+        <div class="logo">
+            <a href="dashboard.html"><?php echo $this->Html->image('aitlogo.png'); ?></a>
         </div>
-    </a>
-    <!-- Logo End -->
-
-    <!-- Sidebar User Profile Start -->
-    <div class='sidebar-profile'>
-        <div class='user-avatar'>
-            <i class='fa fa-user fa-4x'></i>
-        </div>
-        <div class='user-info'>
-            <a href='#'><?php echo $this->Session->read('Username'); ?></a>
+        <div class="headerinner">
+            <ul class="headmenu">
+                <li class="odd">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="count">1</span>
+                        <span class="head-icon head-message"></span>
+                        <span class="headmenu-label">Messages</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-header">Messages</li>
+                        <li><a href=""><span class="icon-envelope"></span> New message from <strong>Spooner</strong> <small class="muted"> - 19 hours ago</small></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+                    <span class="count">1</span>
+                    <span class="head-icon head-users"></span>
+                    <span class="headmenu-label">New Users</span>
+                    </a>
+                    <ul class="dropdown-menu newusers">
+                        <li class="nav-header">New Users</li>
+                        <li>
+                            <a href="">
+                                <strong>Kyle Spooner</strong>
+                                <small>April 20, 2013</small>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="odd">
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+                    <span class="count">1</span>
+                    <span class="head-icon head-bar"></span>
+                    <span class="headmenu-label">Statistics</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-header">Statistics</li>
+                        <li><a href=""><span class="icon-align-left"></span> New Reports from <strong>Workstations</strong> <small class="muted"> - 19 hours ago</small></a></li>
+                        <li><a href=""><span class="icon-align-left"></span> New Statistics from <strong>Users</strong> <small class="muted"> - 2 days ago</small></a></li>
+                        <li class="viewmore"><a href="">View More Statistics</a></li>
+                    </ul>
+                </li>
+                <li class="right">
+                    <div class="userloggedinfo">
+                            <?php echo $this->Html->image('014.jpg'); ?>
+                        <div class="userinfo">
+                            <h5><?php echo $this->Session->read('Username'); ?><small>- <?php echo $this->Session->read('Email'); ?></small></h5>
+                            <ul>
+                                <li><a href="">Edit Profile</a></li>
+                                <li><a href="">Account Settings</a></li>
+                                <li><?php echo $this->Html->link("Logout", array('controller' => 'Users', 'action' => 'logout') );?></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul><!--headmenu-->
         </div>
     </div>
+    
+    <div class="leftpanel">
+        
+        <div class="leftmenu">        
+            <ul class="nav nav-tabs nav-stacked">
+            	<li class="nav-header">Navigation</li>
+                <li><?php echo $this->Html->link("Dashboard", array('controller' => 'dashboard', 'action' => 'index') ); ?></li>
+                <li><a href=""><span class="iconfa-hand-up"></span> Tickets</a></li>
+                <li class="dropdown"><a href=""><span class="iconfa-pencil"></span> Clients</a>
+                </li>
+                <li class="dropdown"><a href=""><span class="iconfa-briefcase"></span> Computers</a>
 
-    <div class='responsive-menu'>
-        <a href='#'><i class='fa fa-bars'> test</i></a>
-    </div>
-    <!-- Sidebar User Profile End -->
+                </li>
+                <li class="dropdown"><a href=""><span class="iconfa-th-list"></span> Health Scores</a>
 
-    <!-- Menu Start -->
-    <ul class='menu' style='text-align: center; font: #fff;'>
-        <li><span class='menu-ucon'></span>
-            <a href='#'><span class='menu-text'>Core</span></a>
-        </li>
-    </ul>
-    <ul class='menu'>
-        <li class='lightblue'>
-            <a href='index.php'>
-                <span class='menu-icon'><i class='fa fa-home'></i></span>
-                <span class='menu-text'>Dashboard</span>
-            </a>
-        </li>
-        <li class='parent lightyellow'>
-            <a href='support.html'>
-                <span class='menu-icon'><i class='fa fa-users'></i></span>
-                <span class='menu-text'>Support Center</span>
-            </a>
-            <ul class='child'>
-                <li><a href='index.php?page=tickets'>Ticket Archive</a></li>
-                <li><a href='tickets.php'>Ticket Response</a></li>
+                </li>
+
+
             </ul>
-        </li>
-    </ul>
-    <ul class='menu' style='text-align: center; font: #fff;'>
-        <li><span class='menu-ucon'></span>
-            <a href='#'><span class='menu-text'>Modules</span></a>
-        </li>
-    </ul>
-    <ul class='menu'>
-        <li><?php echo $this->Html->link("Logout", array('action' => 'logout')); ?> </li>
-        <li>                    <?php echo $this->Html->link("Logout", array('controller' => 'users', 'action' => 'logout')); ?></li>
-        <li>  <?php echo $this->Html->link("Clients", array('controller' => 'Clients')); ?></li>
-    </ul>
-</div>
+        </div><!--leftmenu-->
+        
+    </div><!-- leftpanel -->

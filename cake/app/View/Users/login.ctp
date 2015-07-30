@@ -17,16 +17,16 @@
 
         <div class="login-page-container">
 
-          <div class="boxed animated flipInY">
+          <div class="boxed animated flipInY login-box">
             <div class="inner">
-			<?php echo $this->Session->flash('auth'); ?>
+			
 			<?php echo $this->Form->create('user', array('inputDefaults' => array('label' => false))); ?>
 	<fieldset>
               <div class="login-title text-center">
                 <h4>Login to your account</h4>
                 
               </div>
-
+            <center> <DIV class="notification-error"><?php echo $this->Session->flash(); ?></div> </center><br>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                 <?php echo $this->Form->input('username', array('class' => 'form-control')); ?>

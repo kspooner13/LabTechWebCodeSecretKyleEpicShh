@@ -14,10 +14,10 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 echo $this->Html->script('jquery-2.1.0.min.js');
-    echo $this->Html->script('jquery-ui.min.js');
-    echo $this->Html->script('all-pages.js');
-    echo $this->Html->script('bootstrap/bootstrap.min.js');
-    echo $this->Html->script('dashboard.js');
+echo $this->Html->script('jquery-ui.min.js');
+echo $this->Html->script('all-pages.js');
+echo $this->Html->script('bootstrap/bootstrap.min.js');
+echo $this->Html->script('dashboard.js');
 echo $this->Html->script('https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true');
 $cakeDescription = __d('cake_dev', 'EPIC: Enterprise Productivity Information Center');
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
@@ -36,10 +36,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         echo $this->Html->css('bootstrap.css');
 
 
-        echo $this->Html->css('font-awesome.min.css');
+        echo $this->Html->css('font-awesome.new.css');
 
-        echo $this->Html->css('style.min.css');
-        echo $this->Html->css('responsive.css');
+        echo $this->Html->css('style.default.css');
+        echo $this->Html->css('style-responsive.css');
         echo $this->Html->css('animate.css');
         echo $this->Html->css('demo.css');
 
@@ -50,24 +50,21 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         echo $this->fetch('script');
         ?>
     </head>
-    <body>
-        <?php if ($this->Session->check('Auth.user')) {
+    <body>        <?php
+        if ($this->Session->check('Username')) { ?>
+        <div id="mainwrapper" class="mainwrapper">
+
+<?php
             echo $this->element('sidebar');
         }
         ?>
-        <section class='content'>
-            <div id="container">
                 <?php echo $this->Session->flash(); ?>
 
-<?php echo $this->fetch('content'); ?>
+                <?php echo $this->fetch('content'); ?>
 
-            </div>		
-        </section>
-
+        </div>
     </body>
     <?php
-
-
     echo $this->Html->script('jquery.simpleWeather.js');
     ?>
 </html>
