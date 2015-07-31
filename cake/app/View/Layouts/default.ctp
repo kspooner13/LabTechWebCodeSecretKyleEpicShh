@@ -40,6 +40,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
         echo $this->Html->css('style.default.css');
         echo $this->Html->css('style-responsive.css');
+        echo $this->Html->css('responsive-tables.css');
+        echo $this->Html->css('prettify.css');
         echo $this->Html->css('animate.css');
         echo $this->Html->css('demo.css');
 

@@ -16,63 +16,84 @@
             <h1>Health Check</h1>
         </div>
     </div><!--pageheader-->
-    
-   <div class="maincontent">
+
+    <div class="maincontent">
         <div class="maincontentinner">
-            <div class="row-fluid">
-                <div class="page-content">
-                    <div class="container-fluid">
 
-                        <div class="row">
-                            <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-12">
 
+
+                    <div class="panel panel-info panel-square panel-no-border text-center">
+
+                        <h4 class="widgettitle">Health Check By Client</h4>
+                           
+                        <div class="panel-body">
+                                                        <div class='col-sm-6'>
+                           
+ <?php echo $this->Paginator->counter(array('format'=> __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}'))); ?>
+                            </div>
+                            <div class='col-sm-6'>
+                                <div class='btn btn-info' style='color: white;'><?php echo $this->Paginator->prev(__('< Previous'), array(), null, array('class' => 'disabled')); ?></div>
+                                <?php echo $this->Paginator->numbers(array('separator' => ' | ')); ?>
+                                <div class='btn btn-info'><?php echo $this->Paginator->next(__('Next >'), array(), null, array('class' => 'btn-primary')); ?></div>
                             
-                                <div class="panel panel-info panel-square panel-no-border text-center">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Health Check - By Client</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <table class='table responsive table-bordered table-striped'>
-                                            <thead>
-                                            <tr>
-                                                <td>Client Name</td>
-                                                <td>Team Assignment</td>
-                                                <td>AntiVirus</td>
-                                                <td>Disk</td>
-                                                <td>Intrusion</td>
-                                                <td>Usability</td>
-                                                <td>Services</td>
-                                                <td>Updates</td>
-                                                <td>Event Log</td>
-                                                <td>Average Score</td>
-                                            </tr>
-                                            </thead>
-                                            <?php foreach ($clientScores as $cscore): ?>
-                                            <tr>
-                                                <td><?php echo $cscore['HealthCheck']['Client Name']; ?> </td>
-                                                <td><?php echo $cscore['HealthCheck']['Team Assignment']; ?> </td>
-                                                <td><?php echo $cscore['HealthCheck']['Antivirus'];?> </td>
-                                                <td><?php echo $cscore['HealthCheck']['Disk']; ?> </td>
-                                                <td><?php echo $cscore['HealthCheck']['Intrusion'];?> </td>
-                                                <td><?php echo $cscore['HealthCheck']['Usability'];?></td>
-                                                <td><?php echo $cscore['HealthCheck']['Services'];?></td>
-                                                <td><?php echo $cscore['HealthCheck']['Updates'];?></td>
-                                                <td><?php echo $cscore['HealthCheck']['Event Log'];?></td>
-                                                <td><?php echo $cscore['HealthCheck']['Avg Score'];?></td>
-                                                
-                                            </tr>
-                                            <?php endforeach; ?>
-                                        </table>
-                                    </div>
-                                </div>
-                                
+                            
+                            
+                            </div>
+                            <table class='table responsive table-striped table-bordered'>
+                                <thead>
+                                    <tr>
+                                        <th><?php echo $this->Paginator->sort('`Client Name`'); ?></th>
+                                        <th><?php echo $this->Paginator->sort('`Team Assignment`'); ?></th>
+                                        <th>Anti-Virus</th>
+                                        <th>Disk</th>
+                                        <th>Intrusion</th>
+                                        <th>Usability</th>
+                                        <th>Services</th>
+                                        <th>Updates</th>
+                                        <th>Event Log</th>
+                                        <th>Average Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($clientScores as $cscore): ?>
+                                        <tr>
+                                            <td><?php echo $cscore['HealthCheck']['Client Name']; ?> </td>
+                                            <td><?php echo $cscore['HealthCheck']['Team Assignment']; ?> </td>
+                                            <td><?php echo $cscore['HealthCheck']['Antivirus']; ?> </td>
+                                            <td><?php echo $cscore['HealthCheck']['Disk']; ?> </td>
+                                            <td><?php echo $cscore['HealthCheck']['Intrusion']; ?> </td>
+                                            <td><?php echo $cscore['HealthCheck']['Usability']; ?></td>
+                                            <td><?php echo $cscore['HealthCheck']['Services']; ?></td>
+                                            <td><?php echo $cscore['HealthCheck']['Updates']; ?></td>
+                                            <td><?php echo $cscore['HealthCheck']['Event Log']; ?></td>
+                                            <td><?php echo $cscore['HealthCheck']['Avg Score']; ?></td>
 
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                                
+                            </table><br>
+                            <div class='col-sm-6'>
+                           
+ <?php echo $this->Paginator->counter(array('format'=> __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}'))); ?>
+                            </div>
+                            <div class='col-sm-6'>
+                                <div class='btn btn-info' style='color: white;'><?php echo $this->Paginator->prev(__('< Previous'), array(), null, array('class' => 'disabled')); ?></div>
+                                <?php echo $this->Paginator->numbers(array('separator' => ' | ')); ?>
+                                <div class='btn btn-info'><?php echo $this->Paginator->next(__('Next >'), array(), null, array('class' => 'btn-primary')); ?></div>
+                            
+                            
+                            
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
-   </div>
-    
+    </div>
+
 </div>
