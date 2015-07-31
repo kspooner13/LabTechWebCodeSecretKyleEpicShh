@@ -73,7 +73,7 @@
                 <li class="dropdown"><a href=""><span class="iconfa-briefcase"></span> Computers</a>
 
                 </li>
-                <li class="dropdown"><a href=""><span class="iconfa-th-list"></span> Health Scores</a>
+                <li> <?php echo $this->Html->link("Health Check", array('controller' => 'HealthCheck', 'action' => 'index') ) ; ?>
 
                 </li>
 

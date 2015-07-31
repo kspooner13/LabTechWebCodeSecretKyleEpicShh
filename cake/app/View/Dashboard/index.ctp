@@ -114,8 +114,9 @@
 							  <div class="panel-heading">
 								<h3 class="panel-title">Agent Downloads</h3>
 							  </div>
+                                                            
 							  <div class="panel-body">
-								<div id="visitors-chart" style="padding: 10px;">
+								<div id="col-sm-4" style="padding: 10px;">
                                                                     <ul>
                                                                         <li>LabTech Control Center</li>
                                                                         <li>Default Agent</li>
@@ -124,7 +125,26 @@
                                                                         <li>Default MSI Installer</li>
                                                                     </ul>
 								</div>
+
 							  </div>
+                                                            <div class="panel-body">
+                                                                
+                                                                                                                                <div class="col-sm-4">
+                                                                    <select>
+                                                                        <option>-- Client -- </option>
+                                                                      
+                                                                    </select>
+                                                                            
+                                                                    <select>
+                                                                        <option>-- Location -- </option>
+                                                                      
+                                                                    </select>
+                                                                    <select>
+                                                                        <option>-- Type -- </option>
+                                                                      
+                                                                    </select>
+                                                                </div>
+                                                            </div>
 							</div>
 							
 							
