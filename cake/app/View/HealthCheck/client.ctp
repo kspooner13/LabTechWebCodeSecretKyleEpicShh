@@ -4,8 +4,8 @@
 
 //Lets render?
 
-$client =  $clientScores[0]['plugin_lthc_scores_computers']['Client Name']; 
-$team = $clientScores[0]['plugin_lthc_scores_computers']['Team Assignment'];
+$client =  $clientScores[0]['plugin_lthc_scores_computers']['Client_Name']; 
+$team = $clientScores[0]['plugin_lthc_scores_computers']['Team_Assignment'];
 ?>
 
 <div class="rightpanel">
@@ -24,7 +24,7 @@ $team = $clientScores[0]['plugin_lthc_scores_computers']['Team Assignment'];
         </form>
         <div class="pageicon"><span class="iconfa-hospital"></span></div>
         <div class="pagetitle">
-            <h5>LabTech Health Check Plugin - Client Listing </h5>  <h5>Team: <?php echo $this->Html->link($clientScores[0]['plugin_lthc_scores_computers']['Team Assignment'], array('controller' => 'HealthCheck', 'action' => 'team', $clientScores[0]['plugin_lthc_scores_computers']['Team Assignment'])); ?></h5>
+            <h5>LabTech Health Check Plugin - Client Listing </h5>  <h5>Team: <?php echo $this->Html->link($clientScores[0]['plugin_lthc_scores_computers']['Team_Assignment'], array('controller' => 'HealthCheck', 'action' => 'team', $clientScores[0]['plugin_lthc_scores_computers']['Team_Assignment'])); ?></h5>
             <h1><?php echo $client; ?></h1>
         </div>
     </div><!--pageheader-->
@@ -51,7 +51,7 @@ $team = $clientScores[0]['plugin_lthc_scores_computers']['Team Assignment'];
                             <table class='table responsive table-striped table-bordered'>
                                 <thead>
                                     <tr>
-                                        <th><?php echo $this->Paginator->sort('`Computer Name`'); ?></th>
+                                        <th><?php echo $this->Paginator->sort('Computer_Name'); ?></th>
                                         <th>Anti-Virus</th>
                                         <th>Disk</th>
                                         <th>Intrusion</th>
@@ -65,15 +65,15 @@ $team = $clientScores[0]['plugin_lthc_scores_computers']['Team Assignment'];
                                 <tbody>
                                     <?php foreach ($clientScores as $cscore): ?>
                                         <tr>
-                                            <td><?php echo $this->Html->link($cscore['plugin_lthc_scores_computers']['Computer Name'], array('controller' => 'HealthCheck', 'action' => 'client', $cscore['plugin_lthc_scores_computers']['ClientID'])); ?> </td>
+                                            <td><?php echo $this->Html->link($cscore['plugin_lthc_scores_computers']['Computer_Name'], array('controller' => 'HealthCheck', 'action' => 'client', $cscore['plugin_lthc_scores_computers']['ClientID'])); ?> </td>
                                             <td><?php echo $cscore['plugin_lthc_scores_computers']['Antivirus']; ?> </td>
                                             <td><?php echo $cscore['plugin_lthc_scores_computers']['Disk']; ?> </td>
                                             <td><?php echo $cscore['plugin_lthc_scores_computers']['Intrusion']; ?> </td>
                                             <td><?php echo $cscore['plugin_lthc_scores_computers']['Usability']; ?></td>
                                             <td><?php echo $cscore['plugin_lthc_scores_computers']['Services']; ?></td>
                                             <td><?php echo $cscore['plugin_lthc_scores_computers']['Updates']; ?></td>
-                                            <td><?php echo $cscore['plugin_lthc_scores_computers']['Event Log']; ?></td>
-                                            <td><?php echo $cscore['plugin_lthc_scores_computers']['Avg Score']; ?></td>
+                                            <td><?php echo $cscore['plugin_lthc_scores_computers']['Event_Log']; ?></td>
+                                            <td><?php echo $cscore['plugin_lthc_scores_computers']['Avg_Score']; ?></td>
 
                                         </tr>
                                     <?php endforeach; ?>

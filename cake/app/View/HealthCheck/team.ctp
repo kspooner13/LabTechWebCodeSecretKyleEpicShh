@@ -4,7 +4,7 @@
 
 //Lets render?
 
-$teamGroup =  $teamScores[0]['HealthCheck']['Team Assignment']; 
+$teamGroup =  $teamScores[0]['HealthCheck']['Team_Assignment']; 
 ?>
 
 <div class="rightpanel">
@@ -13,7 +13,7 @@ $teamGroup =  $teamScores[0]['HealthCheck']['Team Assignment'];
         <li><a href="dashboard.html"></a> <span class="separator"></span></li>
         <li>Dashboard ></li>
         <li>Health Check ></li>
-        <li><?php echo $teamScores[0]['HealthCheck']['Team Assignment']; ?></li>
+        <li><?php echo $teamScores[0]['HealthCheck']['Team_Assignment']; ?></li>
     </ul>
 
     <div class="pageheader">
@@ -49,7 +49,7 @@ $teamGroup =  $teamScores[0]['HealthCheck']['Team Assignment'];
                             <table class='table responsive table-striped table-bordered'>
                                 <thead>
                                     <tr>
-                                        <th><?php echo $this->Paginator->sort('`Client Name`'); ?></th>
+                                        <th><?php echo $this->Paginator->sort('Client_Name'); ?></th>
                                         <th>Anti-Virus</th>
                                         <th>Disk</th>
                                         <th>Intrusion</th>
@@ -63,15 +63,15 @@ $teamGroup =  $teamScores[0]['HealthCheck']['Team Assignment'];
                                 <tbody>
                                     <?php foreach ($teamScores as $cscore): ?>
                                         <tr>
-                                            <td><?php echo $this->Html->link($cscore['HealthCheck']['Client Name'], array('controller' => 'HealthCheck', 'action' => 'client', $cscore['HealthCheck']['ClientID'])); ?> </td>
+                                            <td><?php echo $this->Html->link($cscore['HealthCheck']['Client_Name'], array('controller' => 'HealthCheck', 'action' => 'client', $cscore['HealthCheck']['ClientID'])); ?> </td>
                                             <td><?php echo $cscore['HealthCheck']['Antivirus']; ?> </td>
                                             <td><?php echo $cscore['HealthCheck']['Disk']; ?> </td>
                                             <td><?php echo $cscore['HealthCheck']['Intrusion']; ?> </td>
                                             <td><?php echo $cscore['HealthCheck']['Usability']; ?></td>
                                             <td><?php echo $cscore['HealthCheck']['Services']; ?></td>
                                             <td><?php echo $cscore['HealthCheck']['Updates']; ?></td>
-                                            <td><?php echo $cscore['HealthCheck']['Event Log']; ?></td>
-                                            <td><?php echo $cscore['HealthCheck']['Avg Score']; ?></td>
+                                            <td><?php echo $cscore['HealthCheck']['Event_Log']; ?></td>
+                                            <td><?php echo $cscore['HealthCheck']['Avg_Score']; ?></td>
 
                                         </tr>
                                     <?php endforeach; ?>

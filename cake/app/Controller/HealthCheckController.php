@@ -28,7 +28,7 @@ class HealthCheckController extends AppController {
         );
 
     public function index() {
-
+        
         $this->Paginator->settings = array('limit' => 25, 'order' => array('HealthCheck.ClientID' => 'desc'));
         $this->paginate = array('limit'=>10);
         $clientScores = $this->paginate('HealthCheck');
@@ -47,7 +47,7 @@ class HealthCheckController extends AppController {
         $team = urldecode($assignment);
         $team = '%'.$team.'%';
         
-        if (!($team2 = $this->HealthCheck->find('all', array('conditions' => array('`Team Assignment` LIKE' => $team))))) {
+        if (!($team2 = $this->HealthCheck->find('all', array('conditions' => array('`Team_Assignment` LIKE' => $team))))) {
             throw new NotFoundException(__('Team not found ERROR CODE: LT_HC_ET01'));
             }
             
