@@ -36,12 +36,36 @@ class HealthCheckController extends AppController {
         
         
         
-     /*  $data = $this->HealthCheck->find('all', array('order' => '`Client Name`'));
-        $this->paginate = array('limit' => 25);
-      //  $paginate = array('limit' => 25);
-        $pagData = $this->paginate('HealthCheck');
-        $this->set('clientScores', $pagData);
+
        // $this->helpers['Paginator'] = array('ajax' => 'Ajax'); */
+        
+    }
+    
+    //This controls the base for the "per team" group
+    
+    public function team($assignment) {
+        $team = urldecode($assignment);
+        $team = '%'.$team.'%';
+        
+        if (!($team2 = $this->HealthCheck->find('all', array('conditions' => array('`Team Assignment` LIKE' => $team))))) {
+            throw new NotFoundException(__('Team not found ERROR CODE: LT_HC_ET01'));
+            }
+            
+            $this->set('teamScores', $team2);
+            
+    }
+    
+    public function client($clientid) {
+    
+                if (!
+                        ($client = $this->HealthCheck->query("SELECT * FROM plugin_lthc_scores_computers WHERE ClientID = ".$clientid.""))
+                        
+                        ) {
+            throw new NotFoundException(__('Team not found ERROR CODE: LT_HC_ET01'));
+            }
+            
+            $this->set('clientScores', $client);
+        
         
     }
 

@@ -1,9 +1,19 @@
+<?php
+
+//This is the team render for HealthCheck
+
+//Lets render?
+
+$teamGroup =  $teamScores[0]['HealthCheck']['Team Assignment']; 
+?>
+
 <div class="rightpanel">
 
     <ul class="breadcrumbs">
         <li><a href="dashboard.html"></a> <span class="separator"></span></li>
         <li>Dashboard ></li>
-        <li>Health Check</li>
+        <li>Health Check ></li>
+        <li><?php echo $teamScores[0]['HealthCheck']['Team Assignment']; ?></li>
     </ul>
 
     <div class="pageheader">
@@ -12,8 +22,8 @@
         </form>
         <div class="pageicon"><span class="iconfa-hospital"></span></div>
         <div class="pagetitle">
-            <h5>LabTech Health Check Plugin</h5>
-            <h1>Health Check</h1>
+            <h5>LabTech Health Check Plugin - Team Listing</h5>
+            <h1><?php echo $teamGroup; ?></h1>
         </div>
     </div><!--pageheader-->
 
@@ -26,17 +36,12 @@
 
                     <div class="panel panel-info panel-square panel-no-border text-center">
 
-                        <h4 class="widgettitle">Health Check By Client</h4>
+                        <h4 class="widgettitle">Health Check By Team</h4>
                            
                         <div class="panel-body">
                                                         <div class='col-sm-6'>
-                           
- <?php echo $this->Paginator->counter(array('format'=> __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}'))); ?>
-                            </div>
+                               </div>
                             <div class='col-sm-6'>
-                                <div class='btn btn-info' style='color: white;'><?php echo $this->Paginator->prev(__('< Previous'), array(), null, array('class' => 'disabled')); ?></div>
-                                <?php echo $this->Paginator->numbers(array('separator' => ' | ')); ?>
-                                <div class='btn btn-info'><?php echo $this->Paginator->next(__('Next >'), array(), null, array('class' => 'btn-primary')); ?></div>
                             
                             
                             
@@ -45,7 +50,6 @@
                                 <thead>
                                     <tr>
                                         <th><?php echo $this->Paginator->sort('`Client Name`'); ?></th>
-                                        <th><?php echo $this->Paginator->sort('`Team Assignment`'); ?></th>
                                         <th>Anti-Virus</th>
                                         <th>Disk</th>
                                         <th>Intrusion</th>
@@ -57,10 +61,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($clientScores as $cscore): ?>
+                                    <?php foreach ($teamScores as $cscore): ?>
                                         <tr>
                                             <td><?php echo $this->Html->link($cscore['HealthCheck']['Client Name'], array('controller' => 'HealthCheck', 'action' => 'client', $cscore['HealthCheck']['ClientID'])); ?> </td>
-                                            <td><?php echo $this->Html->link($cscore['HealthCheck']['Team Assignment'], array('controller' => 'HealthCheck', 'action' => 'team', $cscore['HealthCheck']['Team Assignment'])); ?> </td>
                                             <td><?php echo $cscore['HealthCheck']['Antivirus']; ?> </td>
                                             <td><?php echo $cscore['HealthCheck']['Disk']; ?> </td>
                                             <td><?php echo $cscore['HealthCheck']['Intrusion']; ?> </td>
@@ -76,14 +79,9 @@
                                 
                             </table><br>
                             <div class='col-sm-6'>
-                           
- <?php echo $this->Paginator->counter(array('format'=> __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}'))); ?>
-                            </div>
+                          </div>
                             <div class='col-sm-6'>
-                                <div class='btn btn-info' style='color: white;'><?php echo $this->Paginator->prev(__('< Previous'), array(), null, array('class' => 'disabled')); ?></div>
-                                <?php echo $this->Paginator->numbers(array('separator' => ' | ')); ?>
-                                <div class='btn btn-info'><?php echo $this->Paginator->next(__('Next >'), array(), null, array('class' => 'btn-primary')); ?></div>
-                            
+                           
                             
                             
                             </div>
