@@ -48,7 +48,7 @@ $team = $clientScores[0]['plugin_lthc_scores_computers']['Team_Assignment'];
                             
                             
                             </div>
-                            <table class='table responsive table-striped table-bordered'>
+                            <table id='teamTable' class='table responsive table-striped table-bordered'>
                                 <thead>
                                     <tr>
                                         <th><?php echo $this->Paginator->sort('Computer_Name'); ?></th>

@@ -39,11 +39,19 @@ $teamGroup =  $teamScores[0]['HealthCheck']['Team_Assignment'];
                         <h4 class="widgettitle">Health Check By Team</h4>
                            
                         <div class="panel-body">
-                                                        <div class='col-sm-6'>
-                               </div>
                             <div class='col-sm-6'>
                             
+                           
+ <?php echo $this->Paginator->counter(array('format'=> __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}'))); ?>
+                            </div>
+                            <div class='col-sm-6'>
+                                <div class='btn btn-info' style='color: white;'><?php echo $this->Paginator->prev(__('< Previous'), array(), null, array('class' => '')); ?></div>
+                                <?php echo $this->Paginator->numbers(array('separator' => ' | ')); ?>
+                                <div class='btn btn-info'><?php echo $this->Paginator->next(__('Next >'), array(), null, array('class' => 'btn-primary')); ?></div>
                             
+                            
+                            
+                            </div>
                             
                             </div>
                             <table class='table responsive table-striped table-bordered'>
@@ -79,8 +87,18 @@ $teamGroup =  $teamScores[0]['HealthCheck']['Team_Assignment'];
                                 
                             </table><br>
                             <div class='col-sm-6'>
-                          </div>
+                            
+                           
+ <?php echo $this->Paginator->counter(array('format'=> __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}'))); ?>
+                            </div>
                             <div class='col-sm-6'>
+                                <div class='btn btn-info' style='color: white;'><?php echo $this->Paginator->prev(__('< Previous'), array(), null, array('class' => '')); ?></div>
+                                <?php echo $this->Paginator->numbers(array('separator' => ' | ')); ?>
+                                <div class='btn btn-info'><?php echo $this->Paginator->next(__('Next >'), array(), null, array('class' => 'btn-primary')); ?></div>
+                            
+                            
+                            
+                            </div>
                            
                             
                             
@@ -91,7 +109,7 @@ $teamGroup =  $teamScores[0]['HealthCheck']['Team_Assignment'];
 
                 </div>
             </div>
-        </div>
+        </div><?php echo $this->Js->writeBuffer(); ?>
     </div>
 
 </div>

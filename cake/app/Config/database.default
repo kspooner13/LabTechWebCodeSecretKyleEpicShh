@@ -66,6 +66,11 @@
  * flags =>
  * A key/value array of driver specific connection options.
  */
+
+// CONFIGURATION INFORMATION
+
+
+
 class DATABASE_CONFIG {
 
 	public $default = array(
@@ -89,4 +94,5 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
+
 }

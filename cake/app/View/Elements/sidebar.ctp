@@ -1,6 +1,6 @@
 <div class="header">
         <div class="logo">
-            <a href="dashboard.html"><?php echo $this->Html->image('aitlogo.png'); ?></a>
+            <a href=""><?php echo $this->Html->image('aitlogo.png'); ?></a>
         </div>
         <div class="headerinner">
             <ul class="headmenu">
