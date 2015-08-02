@@ -16,7 +16,14 @@
 @import url('fullcalendar.css');
 @import url('lato.css');
 @import url('font-awesome.min.css');
+ /***** Google Maps *****/
+ .google-maps-container {
+   height: 286px;
+ }
 
+ .google-maps-container>div {
+   height: 100%;
+ }
 
 /***** RESET BROWSER STYLE *****/
 /*******************************/

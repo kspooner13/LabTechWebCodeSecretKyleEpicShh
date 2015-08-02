@@ -127,7 +127,7 @@ $CoName = Configure::read('Location'); ?>
                                             </div>
                                             <div style="float: right;">
                                                 <div class="panel form-control">
-                                                    <form>
+                                                    <form >
                                             <?php echo $this->Form->select('Client.ClientID', $clientDrop, array('class' => 'select input-sm')); ?>
                                                         <br>
                                                         <select class="select input-sm">
@@ -162,8 +162,10 @@ $CoName = Configure::read('Location'); ?>
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Traffic Map</h3>
                                     </div>
+                                    <div class='panel-body'>
                                     <div class='google-maps-container'>
                                         <div id='map-canvas-4'></div>
+                                    </div>
                                     </div>
                                 </div><!-- /.panel panel-default panel-square panel-no-border -->
                                 <!-- END CURRENCY RATES -->
@@ -251,9 +253,9 @@ $CoName = Configure::read('Location'); ?>
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Current Weather</h3>
                                     </div>
-                                    <ul class="list-group currency-rates widget-currency-ticker">
-
-                                    </ul>
+                                    <div class='panel-body' style='background: #44447f;'>
+                                        <div class='panel-primary' id='weather'></div>
+                                    </div>
                                 </div><!-- /.panel panel-default panel-square panel-no-border -->
                                 <!-- END CURRENCY RATES -->
 
@@ -285,7 +287,7 @@ $CoName = Configure::read('Location'); ?>
                     function initialize4() {
                         var mapOptions4 = {
                             zoom: 10,
-                            center: new google.maps.LatLng(123, -456),
+                            center: new google.maps.LatLng(<?php echo Configure::read('Lat'); ?>, <?php echo Configure::read('Lon');?>),
                             styles: [
                                 {
                                     "featureType": "water",
@@ -367,4 +369,26 @@ $CoName = Configure::read('Location'); ?>
                     }
 
                     google.maps.event.addDomListener(window, 'load', initialize4);
+                    
+                    
                 </script>
+                
+                <script>
+                    $(document).ready(function() {
+  $.simpleWeather({
+    location: '<?php echo Configure::read('CityState'); ?>',
+    woeid: '<?php echo Configure::read('WOEID'); ?>',
+    unit: 'f',
+    success: function(weather) {
+      html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+      html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+      html += '<li class="currently">'+weather.currently+'</li>';
+      html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
+  
+      $("#weather").html(html);
+    },
+    error: function(error) {
+      $("#weather").html('<p>'+error+'</p>');
+    }
+  });
+});</script>

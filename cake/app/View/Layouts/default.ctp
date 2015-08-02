@@ -19,6 +19,7 @@ echo $this->Html->script('all-pages.js');
 echo $this->Html->script('bootstrap/bootstrap.min.js');
 echo $this->Html->script('dashboard.js');
 echo $this->Html->script('https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true');
+echo $this->Html->script('jquery.simpleWeather.js');
 $cakeDescription = __d('cake_dev', 'EPIC: Enterprise Productivity Information Center');
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
@@ -67,7 +68,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         </div>
     </body>
     <?php
-    echo $this->Html->script('jquery.simpleWeather.js');
+
     ?>
 </html>
 
