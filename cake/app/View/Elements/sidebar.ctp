@@ -66,7 +66,7 @@
         <div class="leftmenu">        
             <ul class="nav nav-tabs nav-stacked">
             	<li class="nav-header">Navigation</li>
-                <li><?php echo $this->Html->link("Dashboard", array('controller' => 'dashboard', 'action' => 'index') ); ?></li>
+                <li><?php echo $this->Html->link("Dashboard", array('controller' => 'dashboards', 'action' => 'index') ); ?></li>
                 <li><a href=""><span class="iconfa-hand-up"></span> Tickets</a></li>
                 <li class="dropdown"><a href=""><span class="iconfa-pencil"></span> Clients</a>
                 </li>

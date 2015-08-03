@@ -15,12 +15,13 @@ App::uses('AppController', 'Controller');
 class LocationController extends AppController {
 
 
-public function getClientLocations() {
+public function getloc() {
 
-$clientid = $this->request->data['Post']['ClientID'];
+$clientid = $this->request->data['Client']['ClientID'];
 
-$locations = $this->Subcategory->find('list', array(
-'conditions' => array('Locations.ClientID' => $clientid),
+$locations = $this->Location->find('list', array(
+'conditions' => array('Location.ClientID' => $clientid),
+ 'fields' =>array('Location.LocationID', 'Location.Name'),
  'recursive' => -1
 ));
 

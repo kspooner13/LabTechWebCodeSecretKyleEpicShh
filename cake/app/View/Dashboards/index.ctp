@@ -127,16 +127,18 @@ $CoName = Configure::read('Location'); ?>
                                             </div>
                                             <div style="float: right;">
                                                 <div class="panel form-control">
-                                                    <form >
+                                                    <?php echo $this->Form->create('Dashboard', array('action' => 'downloadAgent'));?>
                                             <?php echo $this->Form->select('Client.ClientID', $clientDrop, array('class' => 'select input-sm')); ?>
                                                         <br><br>
-                                                        <select class="select input-sm">
-                                                            <option>-- Location -- </option>
-
-                                                        </select>
+                                                         <?php // echo $this->Form->input('location_id');?>
+                                                        <?php echo $this->Form->select('Location.LocationID', 'location_id', array('class' => 'select input-sm')); ?>
                                                         <br><br>
-                                                        <select class="select input-sm">
+                                                        <select name='type' class="select input-sm">
                                                             <option>-- Type -- </option>
+                                                            <option value='EXE'>Windows EXE</option>
+                                                            <option value='msi'>Windows MSI</option>
+                                                            <option value='linux'>Linux</option>
+                                                            <option value='mac'>MAC</option>
 
                                                         </select>
                                                         <br><br>
@@ -394,3 +396,21 @@ $CoName = Configure::read('Location'); ?>
     }
   });
 });</script>
+                
+                <?php
+$this->Js->get('#ClientClientID')->event('change', 
+$this->Js->request(array(
+'controller'=>'Location',
+'action'=>'getloc'
+), array(
+'update'=>'#LocationLocationID',
+'async' => true,
+'method' => 'post',
+'dataExpression'=>true,
+'data'=> $this->Js->serializeForm(array(
+'isForm' => true,
+'inline' => true
+))
+))
+);
+?>
