@@ -111,15 +111,15 @@ $CoName = Configure::read('Location'); ?>
 
 
 
-                                        <div style="padding: 10px;">
+                                        <div style="padding: 10px;" class="google-maps-container">
                                             <div style="float: left;"
                                                  <ul>
                                                     <li><?php 
                                                 $loc = Configure::read('Location');
                                                 echo $this->Html->link('LabTech Control Center', 'http://'.$loc.'/Labtech/Updates/ControlCenterInstaller.exe'); ?> </li>
-                                                    <li>Default Agent</li>
-                                                    <li>Default Linux Agent</li>
-                                                    <li>Default MAC Agent</li>
+                                                    <li><?php echo $this->Html->link('Default Win Agent', 'http://'.$loc.'/Labtech/Deployment.aspx?probe=1');?></li>
+                                                    <li><?php echo $this->Html->link('Default Linux Agent', 'http://'.$loc.'/Labtech/Deployment.aspx?probe=1&MSILocations=1&InstallType=linux');?></li>
+                                                    <li><?php echo $this->Html->link('Default MAC Agent', 'http://'.$loc.'/Labtech/Deployment.aspx?probe=1&MSILocations=1&InstallType=mac'); ?></li>
                                                     <li>Default MSI Installer</li>
                                                 </ul>
 
@@ -129,16 +129,18 @@ $CoName = Configure::read('Location'); ?>
                                                 <div class="panel form-control">
                                                     <form >
                                             <?php echo $this->Form->select('Client.ClientID', $clientDrop, array('class' => 'select input-sm')); ?>
-                                                        <br>
+                                                        <br><br>
                                                         <select class="select input-sm">
                                                             <option>-- Location -- </option>
 
                                                         </select>
-                                                        <br>
+                                                        <br><br>
                                                         <select class="select input-sm">
                                                             <option>-- Type -- </option>
 
                                                         </select>
+                                                        <br><br>
+                                                        <?php echo $this->Form->submit();?>
                                                     </form>
                                                 </div>
                                             </div>
