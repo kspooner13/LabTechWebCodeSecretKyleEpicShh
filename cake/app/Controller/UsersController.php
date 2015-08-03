@@ -17,7 +17,7 @@ class UsersController extends AppController {
 
         //if already logged-in, redirect
         if ($this->Session->check('Auth.user')) {
-            $this->redirect(array('contoller' => 'dashboard', 'action' => 'index'));
+            $this->redirect(array('contoller' => 'dashboards', 'action' => 'index'));
         }
 
         // if we get the post information, try to authenticate

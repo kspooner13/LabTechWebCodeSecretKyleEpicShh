@@ -54,9 +54,12 @@ class DashboardsController extends AppController {
                 $ticketCount = $this->Ticket->query("SELECT count(*) FROM TICKETS WHERE `status`='1' OR `status`='2' AND externalid != NULL");
                 $this->set('ticketCount', $ticketCount);
                 
-                $clientDrop = $this->Client->find('list', array('fields' => array('Client.ClientID', 'Client.Company')));
+                $clientDrop = $this->Client->find('list', array('fields' => array('Client.ClientID', 'Client.Company'), 'order' =>array('Client.Company ASC')));
                 $this->set('clientDrop', $clientDrop);
                         
+                $labtechServer = $this->Computer->query('SELECT * FROM vxr_computers WHERE computerid = 1');
+                    $this->set('ltserver', $labtechServer);
+                
                        
                 
 	}

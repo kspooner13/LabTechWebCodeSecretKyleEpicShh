@@ -15,8 +15,7 @@
         <div class="pagetitle">
             <h5>All Features Summary</h5>
             <h1>Dashboard</h1>
-                        <?php
-$CoName = Configure::read('Location'); ?>
+            <?php $CoName = Configure::read('Location'); ?>
         </div>
     </div><!--pageheader-->
     <div class="maincontent">
@@ -43,7 +42,7 @@ $CoName = Configure::read('Location'); ?>
                                         <h3 class="panel-title">Total Managed Computers</h3>
                                     </div>
                                     <div class="panel-body">
-                                        <h1 class="bolded tiles-number text-danger"><?php echo $this->Number->format($compCount[0][0]['count(*)'], array('places' => '0', 'before' => '', 'thousands' => ',') ); ?></h1>
+                                        <h1 class="bolded tiles-number text-danger"><?php echo $this->Number->format($compCount[0][0]['count(*)'], array('places' => '0', 'before' => '', 'thousands' => ',')); ?></h1>
                                         <p class="text-muted"><small>TOTAL REACH <strong>25%</strong></small></p>
                                     </div><!-- /.panel-body -->
                                 </div><!-- /.panel panel-success panel-block-color -->
@@ -58,7 +57,7 @@ $CoName = Configure::read('Location'); ?>
                                         <h3 class="panel-title">Total Managed Clients</h3>
                                     </div>
                                     <div class="panel-body">
-                                        <h1 class="bolded tiles-number text-warning"><?php echo $this->Number->format($clientCount[0][0]['count(*)'], array('places' => '0', 'before' => '', 'thousands' => ',') ); ?></h1>
+                                        <h1 class="bolded tiles-number text-warning"><?php echo $this->Number->format($clientCount[0][0]['count(*)'], array('places' => '0', 'before' => '', 'thousands' => ',')); ?></h1>
                                         <p class="text-muted"><small>Last List <strong>221</strong></small></p>
                                     </div><!-- /.panel-body -->
                                 </div><!-- /.panel panel-success panel-block-color -->
@@ -73,7 +72,7 @@ $CoName = Configure::read('Location'); ?>
                                         <h3 class="panel-title">Total Open Tickets</h3>
                                     </div>
                                     <div class="panel-body">
-                                        <h1 class="bolded tiles-number text-success"><?php echo $this->Number->format($ticketCount[0][0]['count(*)'], array('places' => '0', 'before' => '', 'thousands' => ',') ); ?></h1>
+                                        <h1 class="bolded tiles-number text-success"><?php echo $this->Number->format($ticketCount[0][0]['count(*)'], array('places' => '0', 'before' => '', 'thousands' => ',')); ?></h1>
                                         <p class="text-muted"><small>Last Count <strong>221,202</strong></small></p>
                                     </div><!-- /.panel-body -->
                                 </div><!-- /.panel panel-success panel-block-color -->
@@ -114,12 +113,13 @@ $CoName = Configure::read('Location'); ?>
                                         <div style="padding: 10px;" class="google-maps-container">
                                             <div style="float: left;"
                                                  <ul>
-                                                    <li><?php 
-                                                $loc = Configure::read('Location');
-                                                echo $this->Html->link('LabTech Control Center', 'http://'.$loc.'/Labtech/Updates/ControlCenterInstaller.exe'); ?> </li>
-                                                    <li><?php echo $this->Html->link('Default Win Agent', 'http://'.$loc.'/Labtech/Deployment.aspx?probe=1');?></li>
-                                                    <li><?php echo $this->Html->link('Default Linux Agent', 'http://'.$loc.'/Labtech/Deployment.aspx?probe=1&MSILocations=1&InstallType=linux');?></li>
-                                                    <li><?php echo $this->Html->link('Default MAC Agent', 'http://'.$loc.'/Labtech/Deployment.aspx?probe=1&MSILocations=1&InstallType=mac'); ?></li>
+                                                    <li><?php
+            $loc = Configure::read('Location');
+            echo $this->Html->link('LabTech Control Center', 'http://' . $loc . '/Labtech/Updates/ControlCenterInstaller.exe');
+            ?> </li>
+                                                    <li><?php echo $this->Html->link('Default Win Agent', 'http://' . $loc . '/Labtech/Deployment.aspx?probe=1'); ?></li>
+                                                    <li><?php echo $this->Html->link('Default Linux Agent', 'http://' . $loc . '/Labtech/Deployment.aspx?probe=1&MSILocations=1&InstallType=linux'); ?></li>
+                                                    <li><?php echo $this->Html->link('Default MAC Agent', 'http://' . $loc . '/Labtech/Deployment.aspx?probe=1&MSILocations=1&InstallType=mac'); ?></li>
                                                     <li>Default MSI Installer</li>
                                                 </ul>
 
@@ -127,22 +127,22 @@ $CoName = Configure::read('Location'); ?>
                                             </div>
                                             <div style="float: right;">
                                                 <div class="panel form-control">
-                                                    <?php echo $this->Form->create('Dashboard', array('action' => 'downloadAgent'));?>
-                                            <?php echo $this->Form->select('Client.ClientID', $clientDrop, array('class' => 'select input-sm')); ?>
-                                                        <br><br>
-                                                         <?php // echo $this->Form->input('location_id');?>
-                                                        <?php echo $this->Form->select('Location.LocationID', 'location_id', array('class' => 'select input-sm')); ?>
-                                                        <br><br>
-                                                        <select name='type' class="select input-sm">
-                                                            <option>-- Type -- </option>
-                                                            <option value='EXE'>Windows EXE</option>
-                                                            <option value='msi'>Windows MSI</option>
-                                                            <option value='linux'>Linux</option>
-                                                            <option value='mac'>MAC</option>
+                                                    <?php echo $this->Form->create('Dashboard', array('action' => 'downloadAgent')); ?>
+                                                    <?php echo $this->Form->select('Client.ClientID', $clientDrop, array('class' => 'select input-sm', 'empty' => ' --- SELECT CLIENT ---')); ?>
+                                                    <br><br>
 
-                                                        </select>
-                                                        <br><br>
-                                                        <?php echo $this->Form->submit();?>
+                                                    <?php echo $this->Form->select('Location.LocationID', 'location_id', array('class' => 'select input-sm', 'empty' => ' --- SELECT LOCATION ---')); ?>
+                                                    <br><br>
+                                                    <select name='type' class="select input-sm">
+                                                        <option>-- SELECT TYPE -- </option>
+                                                        <option value='EXE'>Windows EXE</option>
+                                                        <option value='msi'>Windows MSI</option>
+                                                        <option value='linux'>Linux</option>
+                                                        <option value='mac'>MAC</option>
+
+                                                    </select>
+                                                    <br><br>
+                                                    <?php echo $this->Form->submit(); ?>
                                                     </form>
                                                 </div>
                                             </div>
@@ -167,9 +167,9 @@ $CoName = Configure::read('Location'); ?>
                                         <h3 class="panel-title">Traffic Map</h3>
                                     </div>
                                     <div class='panel-body'>
-                                    <div class='google-maps-container'>
-                                        <div id='map-canvas-4'></div>
-                                    </div>
+                                        <div class='google-maps-container'>
+                                            <div id='map-canvas-4'></div>
+                                        </div>
                                     </div>
                                 </div><!-- /.panel panel-default panel-square panel-no-border -->
                                 <!-- END CURRENCY RATES -->
@@ -183,14 +183,26 @@ $CoName = Configure::read('Location'); ?>
 
 
                         </div>
+                        <?php
+                        
+                        // LT Server Calculations
+                        $totalMem = $ltserver[0]['vxr_computers']['ComputerRAMSize'];
+                        $totalFree = $ltserver[0]['vxr_computers']['ComputerRAMFree'];
+                        $cpuUsage   = $ltserver[0]['vxr_computers']['ComputerCPUUsage'];
+                        $driveFree = $ltserver[0]['vxr_computers']['ComputerDriveFree'];
+                        $driveSize = $ltserver[0]['vxr_computers']['ComputerDriveSize'];
+                        
+                        $drive = (($driveSize - $driveFree) / $driveSize) * 100;
 
+                        $mem = (($totalMem - $totalFree) / $totalMem) * 100;
+                        ?>
                         <div class="row">
                             <div class="col-lg-6">
 
                                 <!-- BEGIN SERVER STATUS WIDGET -->
                                 <div class="panel panel-success panel-square panel-no-border">
                                     <div class="panel-heading lg">
-                                        <h3 class="panel-title"><strong>LabTech Server Status</strong></h3>
+                                        <h3 class="panel-title"><strong>LabTech Server Status - <?php echo $ltserver[0]['vxr_computers']['ComputerName']; ?></strong></h3>
                                     </div>
                                     <div id="panel-chart-widget-1" style="padding: 10px;" class="collapse in">
                                         <div class="the-box no-border full bg-success no-margin">
@@ -198,47 +210,44 @@ $CoName = Configure::read('Location'); ?>
                                                 <div id="realtime-chart-container-widget"></div>
                                             </div><!-- /.realtime-chart -->
                                         </div><!-- /.the-box .no-border -->
-                                        <div class="the-box no-border">
-                                            <div class="row">
+                                        <div class="the-box no-border" style="padding-left: 25px;">
+                                            <div class="row" >
                                                 <div class="col-sm-6">
                                                     <div class="row">
                                                         <div class="col-xs-6 text-center">
-                                                            <h4 class="small-heading">Kernel memory</h4>
-                                                            <span class="chart chart-widget-pie widget-easy-pie-1" data-percent="45">
-                                                                <span class="percent"></span>
-                                                            </span>
+                                                            <h4 class="small-heading">Total Memory</h4>
+                                                            
                                                         </div><!-- /.col-xs-6 -->
                                                         <div class="col-xs-6 text-center">
-                                                            <h4 class="small-heading">Physical memory</h4>
+                                                            <h4 class="small-heading"></h4>
                                                             <span class="chart chart-widget-pie widget-easy-pie-2" data-percent="85">
                                                                 <span class="percent"></span>
                                                             </span>
                                                         </div><!-- /.col-xs-6 -->
                                                     </div><!-- /.row -->
                                                     <hr />
-                                                    <button class="btn btn-block btn-danger"><i class="fa fa-cogs"></i> Resource monitor</button>
+                                                    <div class="row" style="padding-left: 45px;">
+                                                        <h3 ><?php echo $totalMem; ?> GB</h3>
+                                                        
+                                                    </div>
+
                                                 </div><!-- /.col-sm-6 -->
                                                 <div class="col-sm-6">
                                                     <h4 class="small-heading">System status</h4>
-                                                    <p class="small">Handles - <span class="text-danger">80%</span></p>
+                                                    <p class="small">Handles - <span class="text-danger"><?php echo $this->Number->toPercentage($mem); ?></span></p>
                                                     <div class="progress no-rounded progress-xs">
-                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?php echo $this->Number->toPercentage($mem); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $this->Number->toPercentage($mem); ?>">
                                                         </div><!-- /.progress-bar .progress-bar-danger -->
                                                     </div><!-- /.progress .no-rounded -->
-                                                    <p class="small">Threads - <span class="text-warning">65%</span></p>
+                                                    <p class="small">CPU Usage - <span class="text-warning"><?php echo $this->Number->toPercentage($cpuUsage); ?></span></p>
                                                     <div class="progress no-rounded progress-xs">
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $this->Number->toPercentage($cpuUsage); ?>">
                                                         </div><!-- /.progress-bar .progress-bar-warning -->
                                                     </div><!-- /.progress .no-rounded -->
-                                                    <p class="small">Proccess - <span class="text-success">40%</span></p>
+                                                    <p class="small">C: Drive - <span class="text-success"><?php echo $this->Number->toPercentage($drive); ?> Used</span></p>
                                                     <div class="progress no-rounded progress-xs">
-                                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $this->Number->toPercentage($mem); ?>">
                                                         </div><!-- /.progress-bar .progress-bar-success -->
-                                                    </div><!-- /.progress .no-rounded -->
-                                                    <p class="small">Cached - <span class="text-info">70%</span></p>
-                                                    <div class="progress no-rounded progress-xs">
-                                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
-                                                        </div><!-- /.progress-bar .progress-bar-info -->
                                                     </div><!-- /.progress .no-rounded -->
                                                 </div><!-- /.col-sm-6 -->
                                             </div><!-- /.row -->
@@ -291,7 +300,7 @@ $CoName = Configure::read('Location'); ?>
                     function initialize4() {
                         var mapOptions4 = {
                             zoom: 10,
-                            center: new google.maps.LatLng(<?php echo Configure::read('Lat'); ?>, <?php echo Configure::read('Lon');?>),
+                            center: new google.maps.LatLng(<?php echo Configure::read('Lat'); ?>, <?php echo Configure::read('Lon'); ?>),
                             styles: [
                                 {
                                     "featureType": "water",
@@ -373,44 +382,43 @@ $CoName = Configure::read('Location'); ?>
                     }
 
                     google.maps.event.addDomListener(window, 'load', initialize4);
-                    
-                    
+
+
                 </script>
-                
+
                 <script>
-                    $(document).ready(function() {
-  $.simpleWeather({
-    location: '<?php echo Configure::read('CityState'); ?>',
-    woeid: '<?php echo Configure::read('WOEID'); ?>',
-    unit: 'f',
-    success: function(weather) {
-      html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-      html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
-      html += '<li class="currently">'+weather.currently+'</li>';
-      html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
-  
-      $("#weather").html(html);
-    },
-    error: function(error) {
-      $("#weather").html('<p>'+error+'</p>');
-    }
-  });
-});</script>
-                
+                    $(document).ready(function () {
+                        $.simpleWeather({
+                            location: '<?php echo Configure::read('CityState'); ?>',
+                            woeid: '<?php echo Configure::read('WOEID'); ?>',
+                            unit: 'f',
+                            success: function (weather) {
+                                html = '<h2><i class="icon-' + weather.code + '"></i> ' + weather.temp + '&deg;' + weather.units.temp + '</h2>';
+                                html += '<ul><li>' + weather.city + ', ' + weather.region + '</li>';
+                                html += '<li class="currently">' + weather.currently + '</li>';
+                                html += '<li>' + weather.wind.direction + ' ' + weather.wind.speed + ' ' + weather.units.speed + '</li></ul>';
+
+                                $("#weather").html(html);
+                            },
+                            error: function (error) {
+                                $("#weather").html('<p>' + error + '</p>');
+                            }
+                        });
+                    });</script>
+
                 <?php
-$this->Js->get('#ClientClientID')->event('change', 
-$this->Js->request(array(
-'controller'=>'Location',
-'action'=>'getloc'
-), array(
-'update'=>'#LocationLocationID',
-'async' => true,
-'method' => 'post',
-'dataExpression'=>true,
-'data'=> $this->Js->serializeForm(array(
-'isForm' => true,
-'inline' => true
-))
-))
-);
-?>
+                $this->Js->get('#ClientClientID')->event('change', $this->Js->request(array(
+                            'controller' => 'Location',
+                            'action' => 'getloc'
+                                ), array(
+                            'update' => '#LocationLocationID',
+                            'async' => true,
+                            'method' => 'post',
+                            'dataExpression' => true,
+                            'data' => $this->Js->serializeForm(array(
+                                'isForm' => true,
+                                'inline' => true
+                            ))
+                        ))
+                );
+                ?>
