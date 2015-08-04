@@ -193,7 +193,7 @@
                         $driveSize = $ltserver[0]['vxr_computers']['ComputerDriveSize'];
                         
                         $drive = (($driveSize - $driveFree) / $driveSize) * 100;
-
+                        $memUsed = $totalMem - $totalFree;
                         $mem = (($totalMem - $totalFree) / $totalMem) * 100;
                         ?>
                         <div class="row">
@@ -227,14 +227,14 @@
                                                     </div><!-- /.row -->
                                                     <hr />
                                                     <div class="row" style="padding-left: 45px;">
-                                                        <h3 ><?php echo $totalMem; ?> GB</h3>
+                                                        <h3 ><?php echo $memUsed; ?> / <?php echo $totalMem; ?> GB</h3>
                                                         
                                                     </div>
 
                                                 </div><!-- /.col-sm-6 -->
                                                 <div class="col-sm-6">
                                                     <h4 class="small-heading">System status</h4>
-                                                    <p class="small">Handles - <span class="text-danger"><?php echo $this->Number->toPercentage($mem); ?></span></p>
+                                                    <p class="small">Memory Usage - <span class="text-danger"><?php echo $this->Number->toPercentage($mem); ?></span></p>
                                                     <div class="progress no-rounded progress-xs">
                                                         <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?php echo $this->Number->toPercentage($mem); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $this->Number->toPercentage($mem); ?>">
                                                         </div><!-- /.progress-bar .progress-bar-danger -->

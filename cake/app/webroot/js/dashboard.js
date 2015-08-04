@@ -1,6 +1,56 @@
 (function($)
 {
-
+	jQuery('.leftmenu .dropdown > a').click(function(){
+		if(!jQuery(this).next().is(':visible'))
+			jQuery(this).next().slideDown('fast');
+		else
+			jQuery(this).next().slideUp('fast');	
+		return false;
+	});
+	
+	
+	if(jQuery.uniform) 
+	   jQuery('input:checkbox, input:radio, .uniform-file').uniform();
+		
+	if(jQuery('.widgettitle .close').length > 0) {
+		  jQuery('.widgettitle .close').click(function(){
+					 jQuery(this).parents('.widgetbox').fadeOut(function(){
+								jQuery(this).remove();
+					 });
+		  });
+	}
+        jQuery('<div class="topbar"><a class="barmenu">'+
+		    '</a><div class="chatmenu"></a></div>').insertBefore('.mainwrapper');
+	
+	jQuery('.topbar .barmenu').click(function() {
+		  
+		  var lwidth = '260px';
+		  if(jQuery(window).width() < 340) {
+					 lwidth = '240px';
+		  }
+		  
+		  if(!jQuery(this).hasClass('open')) {
+					 jQuery('.rightpanel, .headerinner, .topbar').css({marginLeft: lwidth},'fast');
+					 jQuery('.logo, .leftpanel').css({marginLeft: 0},'fast');
+					 jQuery(this).addClass('open');
+					 jQuery('body').addClass('showLeftMenu');
+		  } else {
+					 jQuery('.rightpanel, .headerinner, .topbar').css({marginLeft: 0},'fast');
+					 jQuery('.logo, .leftpanel').css({marginLeft: '-'+lwidth},'fast');
+					 jQuery(this).removeClass('open');
+					 jQuery('body').removeClass('showLeftMenu');
+		  }
+	});
+	
+	jQuery('.topbar .chatmenu').click(function(){
+		if(!jQuery('.onlineuserpanel').is(':visible')) {
+			jQuery('.onlineuserpanel,#chatwindows').show();
+			jQuery('.topbar .chatmenu').css({right: '210px'});
+		} else {
+			jQuery('.onlineuserpanel, #chatwindows').hide();
+			jQuery('.topbar .chatmenu').css({right: '10px'});
+		}
+	});
   if (typeof charts == 'undefined')
     return;
 

@@ -21,7 +21,7 @@
         <span class="animate3 bounceIn">4</span>
         <div class="errorbtns animate4 fadeInUp">
             <a onclick="history.back()" class="btn btn-primary btn-large">Go to Previous Page</a>
-            <a href="/dashboards/" class="btn btn-large">Go to Dashboard</a>
+            <a href="dashboard.html" class="btn btn-large">Go to Dashboard</a>
         </div><br><br><div>
             
             

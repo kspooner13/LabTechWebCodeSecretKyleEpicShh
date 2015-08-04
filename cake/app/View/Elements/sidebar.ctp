@@ -60,21 +60,42 @@
             </ul><!--headmenu-->
         </div>
     </div>
+    <script>
+         jQuery(document).ready(function() {
+        	jQuery('.leftmenu .dropdown > a').click(function(){
+		if(!jQuery(this).next().is(':visible'))
+			jQuery(this).next().slideDown('fast');
+		else
+			jQuery(this).next().slideUp('fast');	
+		return false;
+	});
+         });</script>
     
+    
+    <?php
+    $active = $this->params['controller'];
+    ?>
     <div class="leftpanel">
         
         <div class="leftmenu">        
             <ul class="nav nav-tabs nav-stacked">
             	<li class="nav-header">Navigation</li>
-                <li><?php echo $this->Html->link("Dashboard", array('controller' => 'dashboards', 'action' => 'index') ); ?></li>
-                <li><a href=""><span class="iconfa-hand-up"></span> Tickets</a></li>
-                <li class="dropdown"><a href=""><span class="iconfa-pencil"></span> Clients</a>
+                <li <?php if ($active === 'dashboards') { echo "class='active'"; } ?>><?php echo $this->Html->link("Dashboard", array('controller' => 'dashboards', 'action' => 'index') ); ?></li>
+                <li><a href="" ><span class="iconfa-hand-up"></span> Tickets</a></li>
+                <li class="dropdown"><a href='#'><span class="iconfa-pencil"></span> Clients</a>
+                    <ul>
+                        <li><a href='#'>test</a></li>
+                        <li><a>test2</a></li>
+                    </ul>
                 </li>
                 <li class="dropdown"><a href=""><span class="iconfa-briefcase"></span> Computers</a>
 
                 </li>
-                <li> <?php echo $this->Html->link("Health Check", array('controller' => 'HealthCheck', 'action' => 'index') ) ; ?>
-
+                <li class='dropdown <?php if ($active === 'HealthCheck') { echo "active"; } ?>'><a href='#'>HealthCheck</a> <?php //echo $this->Html->link("Health Check", array('controller' => 'HealthCheck', 'action' => 'index') ) ; ?>
+                    <ul <?php if ($active === 'HealthCheck') { echo "style='display: block;'"; } ?>>
+                        <li <?php if ($this->params['action'] === 'index') { echo "class='active'"; } ?>><?php echo $this->Html->link("Home", array('controller' => 'HealthCheck', 'action' => 'index')); ?> </li>
+                        <li <?php if ($this->params['action'] === 'groupTeam') { echo "class='active'"; } ?>><?php echo $this->Html->link("Teams", array('controller' => 'HealthCheck', 'action' => 'groupTeam')); ?> </li>
+                    </ul>
                 </li>
 
 

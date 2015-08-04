@@ -33,7 +33,7 @@ class UsersController extends AppController {
                 $this->Session->write('Username', $user);
                 $this->Session->write('Email', $email);
                 $event = new CakeEvent('Auth.afterIdentify', $this, array('user' => $user));
-                $this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+                $this->redirect(array('controller' => 'dashboards', 'action' => 'index'));
             } else {
                 $this->Session->setFlash(__('Invalid username or password'));
             }
