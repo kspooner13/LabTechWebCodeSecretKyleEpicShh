@@ -18,19 +18,7 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-/**
- * 
- * EPiC Configuration Details
- *
- * Edit the details to suite your buisness
- */
 
-Configure::write('CompanyName', 'TugBoats and Goats INC');
-Configure::write('Location', 'labtech.acumenit.com');
-configure::write('Lat', '34.8444');
-configure::write('Lon', '-82.3856');
-configure::write('WOEID', '2414583');
-configure::write('CityState', 'Greenville, SC');
 
 
 /**

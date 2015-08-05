@@ -67,6 +67,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
         </div>
     </body>
+    <script>
+        var version = '0.3.10';
+        function checkVersion() {alert('Version: ' + version); }
+        
+            </script>
 
     <?php
 if (class_exists('JsHelper') && method_exists($this->Js, 'writeBuffer')){ echo $this->Js->writeBuffer(); }

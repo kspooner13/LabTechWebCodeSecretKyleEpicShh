@@ -36,6 +36,10 @@
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                 <?php echo $this->Form->input('password', array('class' => 'form-control')); ?>
               </div>
+            
+            <div class='input-group'>
+             Select Labtech Server (DO NOT USE YET - KS):   <?php //echo $this->Form->dropdown('config'); ?>
+            </div>
 
               <input type="submit" class="btn btn-lg btn-success" value="Login to your account" name="login" id="submit" />
 
