@@ -69,19 +69,6 @@
 
 // CONFIGURATION INFORMATION
 
-/**
- * 
- * EPiC Configuration Details
- *
- * Edit the details to suite your buisness
- */
-
-Configure::write('CompanyName', 'TugBoats and Goats INC');
-Configure::write('Location', 'mylabtech.fqdn.com'); //webloaction of you LabTech installation
-configure::write('Lat', '25.265');
-configure::write('Lon', '-25.265');
-configure::write('WOEID', '2414583'); // google MYCITY WOEID
-configure::write('CityState', 'TugLand, GoatCountry');
 
 
 class DATABASE_CONFIG {

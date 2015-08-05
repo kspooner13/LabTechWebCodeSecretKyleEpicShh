@@ -37,8 +37,8 @@
                 <?php echo $this->Form->input('password', array('class' => 'form-control')); ?>
               </div>
             
-            <div class='input-group'>
-             Select Labtech Server (DO NOT USE YET - KS):   <?php //echo $this->Form->dropdown('config'); ?>
+            <div class='input-group' style='padding-left: 40px; padding-right: 40px;'>
+                    Select Server:   <?php echo $this->Form->select('database', $dblist, array('class' => 'select input-sm', 'empty' => false)); ?>
             </div>
 
               <input type="submit" class="btn btn-lg btn-success" value="Login to your account" name="login" id="submit" />

@@ -19,7 +19,16 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-
+Configure::write('CompanyName', 'TugBoats and Goats INC');
+Configure::write('Location', 'labtech.acumenit.com');
+Configure::write('Lat', '34.8444');
+Configure::write('Lon', '-82.3856');
+Configure::write('WOEID', '2414583');
+Configure::write('CityState', 'Greenville, SC');
+// add a line at the end, make sure you include a comma after the last one.
+// 'variable' => 'Visable Name'
+//make sure your settings and variable name is in /app/config/database.php
+Configure::write('database', array('default' => 'Default', 'cw' => 'ConnectWise', 'dev' => 'Development' ));
 
 /**
  * CakePHP Debug Level:
