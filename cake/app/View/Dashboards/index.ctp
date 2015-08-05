@@ -183,26 +183,34 @@
 
 
                         </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
                         <?php
-                        
+                        if (!isset($ltserver[0]['vxr_computers']['ComputerRAMSize'])) {
+                            $missing = true;
+                            $serverName = 'DEFAULT SERVER COMPUTER ID IS MISSING';
+                        }
+                        else {
                         // LT Server Calculations
                         $totalMem = $ltserver[0]['vxr_computers']['ComputerRAMSize'];
                         $totalFree = $ltserver[0]['vxr_computers']['ComputerRAMFree'];
                         $cpuUsage   = $ltserver[0]['vxr_computers']['ComputerCPUUsage'];
                         $driveFree = $ltserver[0]['vxr_computers']['ComputerDriveFree'];
                         $driveSize = $ltserver[0]['vxr_computers']['ComputerDriveSize'];
+                        $serverName = $ltserver[0]['vxr_computers']['ComputerName'];
+                        $missing = false;
                         
                         $drive = (($driveSize - $driveFree) / $driveSize) * 100;
                         $memUsed = $totalMem - $totalFree;
                         $mem = (($totalMem - $totalFree) / $totalMem) * 100;
+                        
+                        }
                         ?>
-                        <div class="row">
-                            <div class="col-lg-6">
-
                                 <!-- BEGIN SERVER STATUS WIDGET -->
                                 <div class="panel panel-success panel-square panel-no-border">
                                     <div class="panel-heading lg">
-                                        <h3 class="panel-title"><strong>LabTech Server Status - <?php echo $ltserver[0]['vxr_computers']['ComputerName']; ?></strong></h3>
+                                        <h3 class="panel-title"><strong>LabTech Server Status - <?php echo $serverName; ?></strong></h3>
                                     </div>
                                     <div id="panel-chart-widget-1" style="padding: 10px;" class="collapse in">
                                         <div class="the-box no-border full bg-success no-margin">
@@ -212,43 +220,57 @@
                                         </div><!-- /.the-box .no-border -->
                                         <div class="the-box no-border" style="padding-left: 25px;">
                                             <div class="row" >
-                                                <div class="col-sm-6">
-                                                    <div class="row">
-                                                        <div class="col-xs-6 text-center">
-                                                            <h4 class="small-heading">Total Memory</h4>
+                                                
+                                                <?php if ($missing === true) {
+                                                    
+                                                    echo "<div class='col-sm-6'> <div class='btn btn-danger'><h3> DEFAULT LABTECH SERVER IS MISSING</h3></div>"
+                                                    . "<br> <div> Error Code: LTSVR - 10001<br>Fix: Missing proper ID for the Labtech Server</div>"
+                                                            . "</div>";
+                                                            
+                                                }
+                                                else { 
+                                                    echo "
+                                                <div class='col-sm-6'>
+                                                    <div class='row'>
+                                                        <div class='col-xs-6 text-center'>
+                                                            <h4 class='small-heading'>Total Memory</h4>
                                                             
                                                         </div><!-- /.col-xs-6 -->
-                                                        <div class="col-xs-6 text-center">
-                                                            <h4 class="small-heading"></h4>
-                                                            <span class="chart chart-widget-pie widget-easy-pie-2" data-percent="85">
-                                                                <span class="percent"></span>
+                                                        <div class='col-xs-6 text-center'>
+                                                            <h4 class='small-heading'></h4>
+                                                            <span class='chart chart-widget-pie widget-easy-pie-2' data-percent='85'>
+                                                                <span class='percent'></span>
                                                             </span>
                                                         </div><!-- /.col-xs-6 -->
                                                     </div><!-- /.row -->
                                                     <hr />
-                                                    <div class="row" style="padding-left: 45px;">
-                                                        <h3 ><?php echo $memUsed; ?> / <?php echo $totalMem; ?> GB</h3>
-                                                        
+                                                    <div class='row' style='padding-left: 45px;'>
+                                                        <h3 >".$memUsed." / ". $totalMem."  GB</h3>
+                                                        ";
+                                              echo "
                                                     </div>
 
                                                 </div><!-- /.col-sm-6 -->
-                                                <div class="col-sm-6">
-                                                    <h4 class="small-heading">System status</h4>
-                                                    <p class="small">Memory Usage - <span class="text-danger"><?php echo $this->Number->toPercentage($mem); ?></span></p>
-                                                    <div class="progress no-rounded progress-xs">
-                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?php echo $this->Number->toPercentage($mem); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $this->Number->toPercentage($mem); ?>">
+                                                <div class='col-sm-6'>
+                                                    <h4 class='small-heading'>System status</h4>
+                                                    <p class='small'>Memory Usage - <span class='text-danger'>".$this->Number->toPercentage($mem)."</span></p>
+                                                    <div class='progress no-rounded progress-xs'>
+                                                        <div class='progress-bar progress-bar-danger' role='progressbar' aria-valuenow='".$this->Number->toPercentage($mem)."' aria-valuemin='0' aria-valuemax='100' style='width: ". $this->Number->toPercentage($mem)."'>
                                                         </div><!-- /.progress-bar .progress-bar-danger -->
                                                     </div><!-- /.progress .no-rounded -->
-                                                    <p class="small">CPU Usage - <span class="text-warning"><?php echo $this->Number->toPercentage($cpuUsage); ?></span></p>
-                                                    <div class="progress no-rounded progress-xs">
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $this->Number->toPercentage($cpuUsage); ?>">
+                                                    <p class='small'>CPU Usage - <span class='text-warning'>". $this->Number->toPercentage($cpuUsage)."</span></p>
+                                                    <div class='progress no-rounded progress-xs'>
+                                                        <div class='progress-bar progress-bar-warning' role='progressbar' aria-valuenow='65' aria-valuemin='0' aria-valuemax='100' style='width: ". $this->Number->toPercentage($cpuUsage)."'>
                                                         </div><!-- /.progress-bar .progress-bar-warning -->
                                                     </div><!-- /.progress .no-rounded -->
-                                                    <p class="small">C: Drive - <span class="text-success"><?php echo $this->Number->toPercentage($drive); ?> Used</span></p>
-                                                    <div class="progress no-rounded progress-xs">
-                                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $this->Number->toPercentage($mem); ?>">
+                                                    <p class='small'>C: Drive - <span class='text-success'>". $this->Number->toPercentage($drive)." Used</span></p>
+                                                    <div class='progress no-rounded progress-xs'>
+                                                        <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width: ". $this->Number->toPercentage($mem)."'>
                                                         </div><!-- /.progress-bar .progress-bar-success -->
                                                     </div><!-- /.progress .no-rounded -->
+                                                    ";
+                                                      }
+                                                ?>
                                                 </div><!-- /.col-sm-6 -->
                                             </div><!-- /.row -->
                                         </div><!-- /.the-box .no-border -->
