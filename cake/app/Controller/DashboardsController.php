@@ -41,6 +41,16 @@ class DashboardsController extends AppController {
 	
 	//This is the default page when loading this controller/model/view
 	public function index() {
+            
+            
+                    if (!empty($this->Session->read('database') || !empty($this->request->data['user']['database']))) { 
+            $this->User->setDataSource($this->Session->read('database') );
+            $this->User->setDataSource($this->request->data['user']['database']);
+            }
+        else {
+            $this->User->setDataSource('default');
+        }
+            
                 $compCount = $this->Computer->query("SELECT count(*) FROM computers");
 		$this->set('compCount', $compCount);
                 
