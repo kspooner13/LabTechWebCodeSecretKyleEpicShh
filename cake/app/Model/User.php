@@ -2,6 +2,8 @@
  
 class User extends AppModel {
      
+    
+    
     public $avatarUploadDir = 'img/avatars';
      
     public $validate = array(

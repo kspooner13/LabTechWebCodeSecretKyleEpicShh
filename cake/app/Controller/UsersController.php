@@ -19,7 +19,16 @@ class UsersController extends AppController {
    
 
     public function login() {
-
+        //
+        // Let's set the DataSource shall we?
+        if (!empty($this->Session->read('database') || !empty($this->request->data['user']['database']))) { 
+            $this->User->setDataSource($this->Session->read('database') );
+            $this->User->setDataSource($this->request->data['user']['database']);
+            }
+        else {
+            $this->User->setDataSource('default');
+        }
+        
         //if already logged-in, redirect
         if ($this->Session->check('Auth.user')) {
             $this->redirect(array('contoller' => 'dashboards', 'action' => 'index'));
@@ -30,8 +39,7 @@ class UsersController extends AppController {
 
         // if we get the post information, try to authenticate
         if ($this->request->is('post')) {
-            $check = array();
-            $database = $this->request['user']['database'];
+            $database = $this->request->data['user']['database'];
             $this->Session->write('Database', $database);
             $check = $this->User->query("SELECT `name`, email, last_date, AES_DECRYPT(password, UserID) as hash FROM Users WHERE `name` = '" . $this->request->data['user']['username'] . "'");
             $hash = $check[0][0]['hash'];
