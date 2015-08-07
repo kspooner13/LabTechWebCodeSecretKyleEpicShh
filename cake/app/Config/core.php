@@ -28,6 +28,7 @@ Configure::write('CityState', 'Greenville, SC');
 // add a line at the end, make sure you include a comma after the last one.
 // 'variable' => 'Visable Name'
 //make sure your settings and variable name is in /app/config/database.php
+// DO NOT DELETE THE ONES LISTED, ONLY ADD
 Configure::write('database', array('default' => 'Default', 'cw' => 'ConnectWise', 'dev' => 'Development' ));
 
 /**

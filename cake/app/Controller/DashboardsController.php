@@ -44,11 +44,11 @@ class DashboardsController extends AppController {
             
             
                     if (!empty($this->Session->read('database') || !empty($this->request->data['user']['database']))) { 
-            $this->User->setDataSource($this->Session->read('database') );
-            $this->User->setDataSource($this->request->data['user']['database']);
+            $this->Dashboard->setDataSource($this->Session->read('database') );
+          //  $this->User->setDataSource($this->request->data['user']['database']);
             }
         else {
-            $this->User->setDataSource('default');
+            $this->Dashboard->setDataSource('default');
         }
             
                 $compCount = $this->Computer->query("SELECT count(*) FROM computers");
@@ -64,7 +64,7 @@ class DashboardsController extends AppController {
                 $ticketCount = $this->Ticket->query("SELECT count(*) FROM TICKETS WHERE `status`='1' OR `status`='2' AND externalid != NULL");
                 $this->set('ticketCount', $ticketCount);
                 
-                $clientDrop = $this->Client->find('list', array('fields' => array('Client.ClientID', 'Client.Company'), 'order' =>array('Client.Company ASC')));
+                $clientDrop = $this->Client->find('list', array('fields' => array('Client.ClientID', 'Client.Name'), 'order' =>array('Client.Name ASC')));
                 $this->set('clientDrop', $clientDrop);
                         
                 $labtechServer = $this->Computer->query('SELECT * FROM vxr_computers WHERE computerid = 1');
