@@ -63,6 +63,7 @@ class ClientsController extends AppController {
             'conditions' => array('Client.ClientID' => $clientid))))) {
             throw new NotFoundException(__('Client not found'));
         }
+        $this->set(compact('client'));
         
         
         

@@ -14,10 +14,10 @@
         <form action="results.html" method="post" class="searchbar">
             <input type="text" name="keyword" placeholder="To search type and hit enter..." />
         </form>
-        <div class="pageicon"><span class="iconfa-hospital"></span></div>
+        <div class="pageicon"><span class="fa fa-university"></span></div>
         <div class="pagetitle">
             <h5>LabTech</h5>
-            <h1>Client Listing</h1>
+            <h1><?php echo $client['Client']['Name']; ?></h1>
         </div>
     </div><!--pageheader-->
 
@@ -78,6 +78,9 @@
 
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <?php print_r($client); ?>
                         </div>
 
 

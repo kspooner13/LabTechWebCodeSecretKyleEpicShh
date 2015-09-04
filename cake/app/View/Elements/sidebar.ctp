@@ -84,7 +84,7 @@
                 <li><a href="" ><span class="iconfa-hand-up"></span> Tickets</a></li>
                 <li class="dropdown"><a href='#'><span class="iconfa-pencil"></span> Clients</a>
                     <ul>
-                        <li><a href='#'>test</a></li>
+                        <li><?php echo $this->Html->link("Client List", array('controller' => 'clients', 'action' => 'index')); ?> </li>
                         <li><a>test2</a></li>
                     </ul>
                 </li>
