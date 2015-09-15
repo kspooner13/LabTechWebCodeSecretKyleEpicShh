@@ -27,14 +27,14 @@
                 <div class="page-content">
                     <div class="container-fluid">
 
-
+                        <?php ?>
                         <div class='row'>
 
                             <div class="col-lg-2">
 
                                 <div class="widgetbox">
                                     <h4 class="widgettitle">Overall Health</h4>
-                                    <div class="widgetcontent">NUMBER HERE</div>
+                                    <div class="widgetcontent"><?php echo $clientScores[0]['plugin_lthc_scores_client']['Overall Health']; ?></div>
 
                                 </div>
                             </div>
@@ -79,6 +79,7 @@
                                 </div>
                             </div>
                         </div>
+                        <?php  ?>
                         <div class="row">
                             <?php print_r($client); ?>
                         </div>

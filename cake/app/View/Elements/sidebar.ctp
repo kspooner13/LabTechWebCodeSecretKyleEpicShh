@@ -79,19 +79,31 @@
         
         <div class="leftmenu">        
             <ul class="nav nav-tabs nav-stacked">
+                <?php $dash = $this->Html->url(
+    array(
+        'controller' => 'dashboards',
+        'action' => 'index',
+        'full_base' => true
+    )
+); ?>
             	<li class="nav-header">Navigation</li>
-                <li <?php if ($active === 'dashboards') { echo "class='active'"; } ?>><?php echo $this->Html->link("Dashboard", array('controller' => 'dashboards', 'action' => 'index') ); ?></li>
-                <li><a href="" ><span class="iconfa-hand-up"></span> Tickets</a></li>
-                <li class="dropdown"><a href='#'><span class="iconfa-pencil"></span> Clients</a>
-                    <ul>
+                <li <?php if ($active === 'dashboards') { echo "class='active'"; } ?>><a href="<?php echo $dash; ?>"><span class="fa fa-dashboard"></span> Dashboard </a><?php //echo $this->Html->link($this->Html->tag('span', ' Dashboard', array('class' => 'fa fa-dashboard')), array('controller' => 'dashboards', 'action' => 'index'), array('escape' => false) ); ?></li>
+                <li><a href="" ><span class="fa fa-ticket"></span> Tickets</a></li>
+                <li class="dropdown <?php if ($active === 'clients') { echo "active"; } ?>"><a href='#'><span class="fa fa-building-o"></span> Clients</a>
+                    <ul <?php if ($active === 'clients') { echo "style='display: block;'"; } ?>>
                         <li><?php echo $this->Html->link("Client List", array('controller' => 'clients', 'action' => 'index')); ?> </li>
-                        <li><a>test2</a></li>
+                        
                     </ul>
                 </li>
-                <li class="dropdown"><a href=""><span class="iconfa-briefcase"></span> Computers</a>
+                <li class="dropdown"><a href='#'><span class="fa fa-file-o"></span> Reporting</a>
+                    <ul>
+                        <li><a href=''>By Client</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href=""><span class="fa fa-desktop"></span> Computers</a>
 
                 </li>
-                <li class='dropdown <?php if ($active === 'HealthCheck') { echo "active"; } ?>'><a href='#'>HealthCheck</a> <?php //echo $this->Html->link("Health Check", array('controller' => 'HealthCheck', 'action' => 'index') ) ; ?>
+                <li class='dropdown <?php if ($active === 'HealthCheck') { echo "active"; } ?>'><a href='#'> <span class="fa fa-hospital-o"></span> HealthCheck</a> <?php //echo $this->Html->link("Health Check", array('controller' => 'HealthCheck', 'action' => 'index') ) ; ?>
                     <ul <?php if ($active === 'HealthCheck') { echo "style='display: block;'"; } ?>>
                         <li <?php if ($this->params['action'] === 'index') { echo "class='active'"; } ?>><?php echo $this->Html->link("Home", array('controller' => 'HealthCheck', 'action' => 'index')); ?> </li>
                         <li <?php if ($this->params['action'] === 'groupTeam') { echo "class='active'"; } ?>><?php echo $this->Html->link("Teams", array('controller' => 'HealthCheck', 'action' => 'groupTeam')); ?> </li>

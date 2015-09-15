@@ -276,6 +276,17 @@ h1,h2,h3,h4,h5 { font-weight: normal; line-height: normal; }
 .wt1 { background: #333; color: #fff; }
 .wc1 { border-color: #333; }
 
+//## This is the errorcode stop for the HealthCheck ##//
+
+//Who's getting fired?
+.errorc {border: 2px solid red; border-top: 0;}
+//Something needs to be fixed!
+.warnt { background: yellow; color: #fff; }
+.warnc { background: #fff; border: 2px solid yellow; border-top: 0; }
+//Great job!
+.goodt { background: green; color: #fff; }
+.goodc { background: #fff; border: 2px solid green; border-top: 0; }
+
 
 /*** DASHBOARD ***/
 
