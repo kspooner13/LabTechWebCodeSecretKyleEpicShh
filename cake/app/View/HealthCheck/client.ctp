@@ -33,7 +33,7 @@ $team = $computerScores[0]['plugin_lthc_scores_computers']['Team_Assignment'];
         <div class="maincontentinner">
 
 <!-- Insert Tiles Here -->
-            
+
               <?php
 
               //define some variables
@@ -66,8 +66,8 @@ $team = $computerScores[0]['plugin_lthc_scores_computers']['Team_Assignment'];
                 </div>
                 <div class="col-lg-3">
 
-                    <div class="widgetbox">
-                        <h4 class="widgettitle <?php if ($clientScores[0][0]['Services'] > '80') { echo $suc; } elseif ($clientScores[0][0]['Services'] > '60' && $clientScores[0][0]['Services'] < '80') { echo $war; } else { echo $dng; } ?>">Services Health</h4>
+                    <div class="widgetbox <?php if ($clientScores[0][0]['Services'] > '80') { echo $suc; } elseif ($clientScores[0][0]['Services'] > '60' && $clientScores[0][0]['Services'] < '80') { echo $war; } else { echo $dng; } ?>">
+                        <h4 class="widgettitle">Services Health</h4>
                         <div class="widgetcontent"><h2><span class='fa fa-ambulance'></span>  <?php echo $clientScores[0][0]['Services'];?> %</h2></div>
 
                     </div>
