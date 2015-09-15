@@ -81,26 +81,9 @@
                           <div class='row'>
                             <div class="col-lg-3">
 
-                                <div class="widgetbox <?php if ($clientScores[0][0]['EL'] > '80') { echo $suc; } elseif ($clientScores[0][0]['EL'] > '60' && $clientScores[0][0]['EL'] < '80') { echo $war; } else { echo $dng; } ?>">
-                                    <h4 class="widgettitle">Event Log Health</h4>
-                                    <div class="widgetcontent"><h2><span class='fa fa-ambulance'></span>  <?php echo $clientScores[0][0]['EL'];?> %</h2></div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-
                                 <div class="widgetbox <?php if ($clientScores[0][0]['Usability'] > '80') { echo $suc; } elseif ($clientScores[0][0]['Usability'] > '60' && $clientScores[0][0]['Usability'] < '80') { echo $war; } else { echo $dng; } ?>">
                                     <h4 class="widgettitle">Usability Health</h4>
                                     <div class="widgetcontent"><h2><span class='fa fa-ambulance'></span>  <?php echo $clientScores[0][0]['Usability'];?> %</h2></div>
-
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3">
-
-                                <div class="widgetbox <?php if ($clientScores[0][0]['AV'] > '80') { echo $suc; } elseif ($clientScores[0][0]['AV'] > '60' && $clientScores[0][0]['AV'] < '80') { echo $war; } else { echo $dng; } ?>">
-                                    <h4 class="widgettitle">Antivirus Health</h4>
-                                    <div class="widgetcontent"><h2><span class='fa fa-ambulance'></span>  <?php echo $clientScores[0][0]['AV'];?> %</h2></div>
 
                                 </div>
                             </div>
@@ -113,6 +96,25 @@
 
                                 </div>
                             </div>
+
+                            <div class="col-lg-3">
+
+                                <div class="widgetbox <?php if ($clientScores[0][0]['AV'] > '80') { echo $suc; } elseif ($clientScores[0][0]['AV'] > '60' && $clientScores[0][0]['AV'] < '80') { echo $war; } else { echo $dng; } ?>">
+                                    <h4 class="widgettitle">Antivirus Health</h4>
+                                    <div class="widgetcontent"><h2><span class='fa fa-ambulance'></span>  <?php echo $clientScores[0][0]['AV'];?> %</h2></div>
+
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-3">
+
+                                <div class="widgetbox <?php if ($clientScores[0][0]['EL'] > '80') { echo $suc; } elseif ($clientScores[0][0]['EL'] > '60' && $clientScores[0][0]['EL'] < '80') { echo $war; } else { echo $dng; } ?>">
+                                    <h4 class="widgettitle">Event Log Health</h4>
+                                    <div class="widgetcontent"><h2><span class='fa fa-ambulance'></span>  <?php echo $clientScores[0][0]['EL'];?> %</h2></div>
+
+                                </div>
+                            </div>
+
                         </div>
                         <?php  ?>
                         <div class="row">
