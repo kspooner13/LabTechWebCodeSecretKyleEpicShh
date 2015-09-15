@@ -39,7 +39,7 @@ class ClientsController extends AppController {
      */
     public $helpers = array('Html', 'Form', 'Js');
     public $components = array('Session', 'Paginator', 'RequestHandler');
-    public $uses = array('Computer', 'Dashboard', 'Client', 'Ticket');
+    public $uses = array('Computer', 'Dashboard', 'Client', 'Ticket', 'HealthCheck');
 
     //This is the default page when loading this controller/model/view
     public function index() {
@@ -63,6 +63,19 @@ class ClientsController extends AppController {
             'conditions' => array('Client.ClientID' => $clientid))))) {
             throw new NotFoundException(__('Client not found'));
         }
+        
+        
+        if (!
+                ($clientScore = $this->HealthCheck->query("SELECT * FROM plugin_lthc_scores_client WHERE ClientID = " . $clientid . ""))
+        ) {
+            throw new NotFoundException(__('Team not found ERROR CODE: LT_HC_ET01'));
+        }
+
+        $this->set('clientScores', $clientScore); 
+        
+        $this->set(compact('client'));
+        
+        
         
         
         

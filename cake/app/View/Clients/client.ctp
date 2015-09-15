@@ -14,10 +14,10 @@
         <form action="results.html" method="post" class="searchbar">
             <input type="text" name="keyword" placeholder="To search type and hit enter..." />
         </form>
-        <div class="pageicon"><span class="iconfa-hospital"></span></div>
+        <div class="pageicon"><span class="fa fa-university"></span></div>
         <div class="pagetitle">
             <h5>LabTech</h5>
-            <h1>Client Listing</h1>
+            <h1><?php echo $client['Client']['Name']; ?></h1>
         </div>
     </div><!--pageheader-->
 
@@ -27,14 +27,14 @@
                 <div class="page-content">
                     <div class="container-fluid">
 
-
+                        <?php ?>
                         <div class='row'>
 
                             <div class="col-lg-2">
 
                                 <div class="widgetbox">
                                     <h4 class="widgettitle">Overall Health</h4>
-                                    <div class="widgetcontent">NUMBER HERE</div>
+                                    <div class="widgetcontent"><?php echo $clientScores[0]['plugin_lthc_scores_client']['Overall Health']; ?></div>
 
                                 </div>
                             </div>
@@ -78,6 +78,10 @@
 
                                 </div>
                             </div>
+                        </div>
+                        <?php  ?>
+                        <div class="row">
+                            <?php print_r($client); ?>
                         </div>
 
 

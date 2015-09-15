@@ -17,9 +17,94 @@
         </div>
     </div><!--pageheader-->
 
-    <div class="maincontent">
-        <div class="maincontentinner">
+    
+    <?php
+    
+    //define some variables
+    $dng = "box-danger";
+    $war = "box-warning";
+    $suc = "box-success";
+    
+    $score = $avg[0][0]['score'];
+    $av = $avg[0][0]['AV'];
+    $int = $avg[0][0]['INT'];
+    
 
+    
+    
+    
+    ?>
+    <div class="maincontent">
+        <div class="maincontentinner" style="padding-left: 40px;">
+            <div class='row'>
+                   
+                <div class="col-lg-3">
+
+                    <div class="widgetbox <?php if ($avg[0][0]['score'] > '80') { echo $suc; } elseif ($avg[0][0]['score'] > '60' && $avg[0][0]['score'] < '80') { echo $war; } else { echo $dng; } ?>">
+                        <h4 class="widgettitle">Overall Health</h4>
+                        <div class="widgetcontent"><h2><span class='fa fa-ambulance'></span>  <?php echo $avg[0][0]['score'];?> %</h2></div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3">
+
+                    <div class="widgetbox <?php if ($avg[0][0]['Disk'] > '80') { echo $suc; } elseif ($avg[0][0]['Disk'] > '60' && $avg[0][0]['Disk'] < '80') { echo $war; } else { echo $dng; } ?>">
+                        <h4 class="widgettitle">Disk Health</h4>
+                        <div class="widgetcontent"><h2><span class='fa fa-ambulance'></span>  <?php echo $avg[0][0]['Disk'];?> %</h2></div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3">
+
+                    <div class="widgetbox <?php if ($avg[0][0]['Services'] > '80') { echo $suc; } elseif ($avg[0][0]['Services'] > '60' && $avg[0][0]['Services'] < '80') { echo $war; } else { echo $dng; } ?>">
+                        <h4 class="widgettitle goodt">Services Health</h4>
+                       <div class="widgetcontent"><h2><span class='fa fa-ambulance'></span>  <?php echo $avg[0][0]['Services'];?> %</h2></div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+
+                    <div class="widgetbox <?php if ($avg[0][0]['Updates'] > '80') { echo $suc; } elseif ($avg[0][0]['Updates'] > '60' && $avg[0][0]['Updates'] < '80') { echo $war; } else { echo $dng; } ?>">
+                        <h4 class="widgettitle">Patch Health</h4>
+                        <div class="widgetcontent"><h2><span class='fa fa-ambulance'></span>  <?php echo $avg[0][0]['Updates'];?> %</h2></div>
+
+                    </div>
+                </div>
+            </div>
+                        <div class='row'>
+
+                <div class="col-lg-3">
+
+                    <div class="widgetbox <?php if ($avg[0][0]['Usability'] > '80') { echo $suc; } elseif ($avg[0][0]['Usability'] > '60' && $avg[0][0]['Usability'] < '80') { echo $war; } else { echo $dng; } ?>">
+                        <h4 class="widgettitle">Usability</h4>
+                        <div class="widgetcontent"><h2><span class='fa fa-ambulance'></span>  <?php echo $avg[0][0]['Usability'];?> %</h2></div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3">
+
+                    <div class="widgetbox <?php if ($avg[0][0]['INT'] > '80') { echo $suc; } elseif ($avg[0][0]['INT'] > '60' && $avg[0][0]['INT'] < '80') { echo $war; } else { echo $dng; } ?>">
+                        <h4 class="widgettitle">Intrusion</h4>
+                        <div class="widgetcontent"><h2><span class='fa fa-ambulance'></span>  <?php echo $avg[0][0]['INT'];?> %</h2></div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3">
+
+                    <div class="widgetbox <?php if ($avg[0][0]['AV'] > '80') { echo $suc; } elseif ($avg[0][0]['AV'] > '60' && $avg[0][0]['AV'] < '80') { echo $war; } else { echo $dng; } ?>">
+                        <h4 class="widgettitle">Antivirus</h4>
+                        <div class="widgetcontent"><h2><span class='fa fa-ambulance'></span>  <?php echo $avg[0][0]['AV'];?> %</h2></div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3">
+
+                    <div class="widgetbox <?php if ($avg[0][0]['EL'] > '80') { echo $suc; } elseif ($avg[0][0]['EL'] > '60' && $avg[0][0]['EL'] < '80') { echo $war; } else { echo $dng; } ?>">
+                        <h4 class="widgettitle">Event Logs</h4>
+                        <div class="widgetcontent"><h2><span class='fa fa-ambulance'></span>  <?php echo $avg[0][0]['EL'];?> %</h2></div>
+
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-12">
 
@@ -27,19 +112,19 @@
                     <div class="panel panel-info panel-square panel-no-border text-center">
 
                         <h4 class="widgettitle">Health Check By Client</h4>
-                           
+
                         <div class="panel-body ">
-                                                        <div class='col-sm-6'>
-                           
- <?php echo $this->Paginator->counter(array('format'=> __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}'))); ?>
+                            <div class='col-sm-6'>
+
+                                <?php echo $this->Paginator->counter(array('format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}'))); ?>
                             </div>
                             <div class='col-sm-6'>
                                 <div class='btn btn-info' style='color: white;'><?php echo $this->Paginator->prev(__('< Previous'), array(), null, array('class' => 'disabled')); ?></div>
                                 <?php echo $this->Paginator->numbers(array('separator' => ' | ')); ?>
                                 <div class='btn btn-info'><?php echo $this->Paginator->next(__('Next >'), array(), null, array('class' => 'btn-primary')); ?></div>
-                            
-                            
-                            
+
+
+
                             </div>
                             <table class='table responsive table-striped table-bordered'>
                                 <thead>
@@ -73,19 +158,19 @@
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
-                                
+
                             </table><br>
                             <div class='col-sm-6'>
-                           
- <?php echo $this->Paginator->counter(array('format'=> __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}'))); ?>
+
+                                <?php echo $this->Paginator->counter(array('format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}'))); ?>
                             </div>
                             <div class='col-sm-6'>
                                 <div class='btn btn-info' style='color: white;'><?php echo $this->Paginator->prev(__('< Previous'), array(), null, array('class' => 'disabled')); ?></div>
                                 <?php echo $this->Paginator->numbers(array('separator' => ' | ')); ?>
                                 <div class='btn btn-info'><?php echo $this->Paginator->next(__('Next >'), array(), null, array('class' => 'btn-primary')); ?></div>
-                            
-                            
-                            
+
+
+
                             </div>
                         </div>
                     </div>

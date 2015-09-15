@@ -22,7 +22,20 @@ class HealthCheckController extends AppController {
         $this->Paginator->settings = array('limit' => 25, 'order' => array('HealthCheck.ClientID' => 'desc'));
         $clientScores = $this->paginate('HealthCheck');
         $this->set(compact('clientScores', $clientScores));
-
+        
+        
+        $avg = $this->HealthCheck->query("SELECT FORMAT(AVG(`Avg_Score`),2) AS score,"
+                . " FORMAT(AVG(`Antivirus`),2) AS AV,"
+                . " FORMAT(AVG(`Intrusion`),2) AS `INT`,"
+                . " FORMAT(AVG(`Usability`),2) AS Usability,"
+                . " FORMAT(AVG(`Event_Log`),2) AS EL,"
+                . " FORMAT(AVG(`Disk`),2) AS `Disk`, "
+                . "FORMAT(AVG(`Services`),2) AS Services,"
+                . " FORMAT(AVG(`Updates`),2) AS Updates"
+                . " FROM plugin_lthc_scores");
+        
+        $this->set(compact('avg', $avg));
+        
 
 
 

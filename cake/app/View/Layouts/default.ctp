@@ -39,6 +39,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 
         echo $this->Html->css('font-awesome.new.css');
+        echo $this->Html->css('font-awesome.min.css');
 
         echo $this->Html->css('style.default.css');
         echo $this->Html->css('style-responsive.css');

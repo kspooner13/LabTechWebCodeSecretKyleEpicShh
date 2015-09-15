@@ -58,8 +58,8 @@
                                 <tbody>
                                     <?php foreach ($client as $cscore): ?>
                                         <tr>
-                                            <td><?php echo $this->Html->link($cscore['Client']['ClientID'], array('controller' => 'Client', 'action' => 'client', $cscore['Client']['ClientID'])); ?> </td>
-                                            <td><?php echo $this->Html->link($cscore['Client']['Name'], array('controller' => 'Client', 'action' => 'client', $cscore['Client']['Name'])); ?> </td>
+                                            <td><?php echo $this->Html->link($cscore['Client']['ClientID'], array('controller' => 'Clients', 'action' => 'client', $cscore['Client']['ClientID'])); ?> </td>
+                                            <td><?php echo $this->Html->link($cscore['Client']['Name'], array('controller' => 'Clients', 'action' => 'client', $cscore['Client']['ClientID'])); ?> </td>
                                             <td><?php echo $cscore['Client']['Address1']; ?> <?php echo $cscore['Client']['Address2']; ?> - <?php echo $cscore['Client']['City']; ?> , <?php echo $cscore['Client']['State']; ?> </td>
                                             <td> I DONT KNOW HOW TO DO THIS YET </td>
                                             <td> OR THIS ONE </td>
