@@ -126,7 +126,7 @@ $team = $computerScores[0]['plugin_lthc_scores_computers']['Team_Assignment'];
 
                     <div class="panel panel-info panel-square panel-no-border text-center">
 
-                        <h4 class="widgettitle">Health Check By Client</h4>
+                        <h4 class="widgettitle">Health Check By Computer</h4>
 
                         <div class="panel-body">
                                                         <div class='col-sm-6'>
