@@ -187,21 +187,21 @@
                         <div class="row">
                             <div class="col-lg-6">
                         <?php
-                        if (!isset($ltserver[0]['vxr_computers']['ComputerRAMSize'])) {
+                        if (!isset($ltserver[0]['computers']['TotalMemory'])) {
                             $missing = true;
                             $serverName = 'DEFAULT SERVER COMPUTER ID IS MISSING';
                         }
                         else {
                         // LT Server Calculations
-                        $totalMem = $ltserver[0]['vxr_computers']['ComputerRAMSize'];
-                        $totalFree = $ltserver[0]['vxr_computers']['ComputerRAMFree'];
-                        $cpuUsage   = $ltserver[0]['vxr_computers']['ComputerCPUUsage'];
-                        $driveFree = $ltserver[0]['vxr_computers']['ComputerDriveFree'];
-                        $driveSize = $ltserver[0]['vxr_computers']['ComputerDriveSize'];
-                        $serverName = $ltserver[0]['vxr_computers']['ComputerName'];
+                        $totalMem = $ltserver[0]['computers']['TotalMemory'];
+                        $totalFree = $ltserver[0]['computers']['MemoryAvail'];
+                        $cpuUsage   = $ltserver[0]['computers']['CPUUsage'];
+                        //$driveFree = $ltserver[0]['computers']['ComputerDriveFree'];
+                        //$driveSize = $ltserver[0]['computers']['ComputerDriveSize'];
+                        $serverName = $ltserver[0]['computers']['Name'];
                         $missing = false;
                         
-                        $drive = (($driveSize - $driveFree) / $driveSize) * 100;
+                      // $drive = (($driveSize - $driveFree) / $driveSize) * 100;
                         $memUsed = $totalMem - $totalFree;
                         $mem = (($totalMem - $totalFree) / $totalMem) * 100;
                         
@@ -263,9 +263,9 @@
                                                         <div class='progress-bar progress-bar-warning' role='progressbar' aria-valuenow='65' aria-valuemin='0' aria-valuemax='100' style='width: ". $this->Number->toPercentage($cpuUsage)."'>
                                                         </div><!-- /.progress-bar .progress-bar-warning -->
                                                     </div><!-- /.progress .no-rounded -->
-                                                    <p class='small'>C: Drive - <span class='text-success'>". $this->Number->toPercentage($drive)." Used</span></p>
+                                                    <p class='small'>C: Drive - <span class='text-success'> Used</span></p>
                                                     <div class='progress no-rounded progress-xs'>
-                                                        <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width: ". $this->Number->toPercentage($mem)."'>
+                                                        <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width: '>
                                                         </div><!-- /.progress-bar .progress-bar-success -->
                                                     </div><!-- /.progress .no-rounded -->
                                                     ";

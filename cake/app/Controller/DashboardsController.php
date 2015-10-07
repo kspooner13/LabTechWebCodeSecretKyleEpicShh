@@ -67,7 +67,7 @@ class DashboardsController extends AppController {
                 $clientDrop = $this->Client->find('list', array('fields' => array('Client.ClientID', 'Client.Name'), 'order' =>array('Client.Name ASC')));
                 $this->set('clientDrop', $clientDrop);
                         
-                $labtechServer = $this->Computer->query('SELECT * FROM vxr_computers WHERE computerid = 1');
+                $labtechServer = $this->Computer->query('SELECT * FROM computers WHERE computerid = 1');
                     $this->set('ltserver', $labtechServer);
                 
                        
