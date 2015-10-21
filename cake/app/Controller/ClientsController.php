@@ -53,14 +53,56 @@ class ClientsController extends AppController {
         }
 
 
-        $this->Paginator->settings = array('limit' => 25, 'order' => array('Client.ClientID' => 'asc'));
+        $this->Paginator->settings = array('limit' => 15,
+            'joins' => array(
+                array(
+                    'table' => 'usersec',
+                    'alias' => 'usersec',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'usersec.clientid = client.clientid AND usersec.computerid =\'0\''
+                    )
+                ),
+                array(
+                    'table' => 'users',
+                    'alias' => 'users',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'users.userid = usersec.userid '
+                    )
+                )
+               
+            ) ,
+            'conditions' => array('users.name' => $_SESSION['Username']),
+            'order' => array('Client.ClientID' => 'asc'));
         $client = $this->paginate('Client');
         $this->set(compact('client', $client));
     }
 
     public function client($clientid) {
         if (!($client = $this->Client->find('first', array(
-            'conditions' => array('Client.ClientID' => $clientid))))) {
+            'joins' => array(
+                array(
+                    'table' => 'usersec',
+                    'alias' => 'usersec',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'usersec.clientid = client.clientid'
+                    )
+                ),
+                array(
+                    'table' => 'users',
+                    'alias' => 'users',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'users.userid = usersec.userid'
+                    )
+                )
+               
+            ) ,
+            'conditions' => array('Client.ClientID' => $clientid),
+            'order' => array('Client.Name' => 'Asc')
+            )))) {
             throw new NotFoundException(__('Client not found'));
         }
 

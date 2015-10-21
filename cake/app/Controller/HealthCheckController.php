@@ -19,7 +19,28 @@ class HealthCheckController extends AppController {
 
     public function index() {
 
-        $this->Paginator->settings = array('limit' => 25, 'order' => array('HealthCheck.ClientID' => 'desc'));
+        $this->Paginator->settings = array('limit' => 15,
+                        'joins' => array(
+                array(
+                    'table' => 'usersec',
+                    'alias' => 'usersec',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'usersec.clientid = HealthCheck.clientid AND usersec.computerid =\'0\''
+                    )
+                ),
+                array(
+                    'table' => 'users',
+                    'alias' => 'users',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'users.userid = usersec.userid '
+                    )
+                )
+               
+            ) ,
+            'conditions' => array('users.name' => $_SESSION['Username']),
+            'order' => array('HealthCheck.ClientID' => 'desc'));
         $clientScores = $this->paginate('HealthCheck');
         $this->set(compact('clientScores', $clientScores));
 

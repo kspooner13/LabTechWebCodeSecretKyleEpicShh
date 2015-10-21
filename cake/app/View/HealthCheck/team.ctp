@@ -34,38 +34,29 @@ $teamGroup =  $teamScores[0]['HealthCheck']['Team_Assignment'];
                 <div class="col-lg-12">
 
 
-                    <div class="panel panel-info panel-square panel-no-border text-center">
+                    <div class="panel panel-info panel-square panel-no-border">
 
                         <h4 class="widgettitle">Health Check By Team</h4>
                            
-                        <div class="panel-body">
-                            <div class='col-sm-6'>
-                            
-                           
- <?php echo $this->Paginator->counter(array('format'=> __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}'))); ?>
-                            </div>
-                            <div class='col-sm-6'>
-                                <div class='btn btn-info' style='color: white;'><?php echo $this->Paginator->prev(__('< Previous'), array(), null, array('class' => '')); ?></div>
-                                <?php echo $this->Paginator->numbers(array('separator' => ' | ')); ?>
-                                <div class='btn btn-info'><?php echo $this->Paginator->next(__('Next >'), array(), null, array('class' => 'btn-primary')); ?></div>
-                            
-                            
+                                    <div class=' dataTables_wrapper'
+                                         <div class="panel-body ">
+                                            <div id="dyntable_length" class="dataTables_length"><label>Show <select size="1" name="dyntable_length" aria-controls="dyntable"><option value="10" selected="selected">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div>
+                                            <div class="dataTables_filter" id="dyntable_filter"><label>Search: <input type="text" aria-controls="dyntable"></label></div>
+
                             
                             </div>
-                            
-                            </div>
-                            <table class='table responsive table-striped table-bordered'>
+                            <table class='table responsive table-striped table-bordered dataTable'>
                                 <thead>
                                     <tr>
                                         <th><?php echo $this->Paginator->sort('Client_Name'); ?></th>
-                                        <th>Anti-Virus</th>
-                                        <th>Disk</th>
-                                        <th>Intrusion</th>
-                                        <th>Usability</th>
-                                        <th>Services</th>
-                                        <th>Updates</th>
-                                        <th>Event Log</th>
-                                        <th>Average Score</th>
+                                        <th><?php echo $this->Paginator->sort('Antivirus'); ?></th>
+                                        <th><?php echo $this->Paginator->sort('Disk'); ?></th>
+                                        <th><?php echo $this->Paginator->sort('Intrusion'); ?></th>
+                                        <th><?php echo $this->Paginator->sort('Usability'); ?></th>
+                                        <th><?php echo $this->Paginator->sort('Services'); ?></th>
+                                        <th><?php echo $this->Paginator->sort('Updates'); ?></th>
+                                        <th><?php echo $this->Paginator->sort('Event_Log'); ?></th>
+                                        <th><?php echo $this->Paginator->sort('Avg_Score'); ?></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -85,26 +76,25 @@ $teamGroup =  $teamScores[0]['HealthCheck']['Team_Assignment'];
                                     <?php endforeach; ?>
                                 </tbody>
                                 
-                            </table><br>
-                            <div class='col-sm-6'>
-                            
-                           
- <?php echo $this->Paginator->counter(array('format'=> __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}'))); ?>
-                            </div>
-                            <div class='col-sm-6'>
-                                <div class='btn btn-info' style='color: white;'><?php echo $this->Paginator->prev(__('< Previous'), array(), null, array('class' => '')); ?></div>
-                                <?php echo $this->Paginator->numbers(array('separator' => ' | ')); ?>
-                                <div class='btn btn-info'><?php echo $this->Paginator->next(__('Next >'), array(), null, array('class' => 'btn-primary')); ?></div>
-                            
-                            
-                            
-                            </div>
+                            </table>                                            <div class='dataTables_length'>
+
+                                                <?php echo $this->Paginator->counter(array('format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}'))); ?>
+                                            </div>
+                                            <div class='dataTables_paginate paging_full_buttons'>
+                                                <a tabindex='0' class='previous paginate_button'><?php echo $this->Paginator->prev(__('Previous'), array(), null, array('class' => 'paginate_button_disabled')); ?></a>
+                                                <?php echo $this->Paginator->numbers(array('separator' => '', 'currentClass' => 'pageinate_active', 'class' => 'paginate_button')); ?>
+                                                <a tabindex='0' class='next paginate_button'><?php echo $this->Paginator->next(__('Next'), array(), null, array('class' => '')); ?></a>
+
+
+
+                                            </div>
                            
                             
                             
                             </div>
                         </div>
                     </div>
+            </div>
 
 
                 </div>
