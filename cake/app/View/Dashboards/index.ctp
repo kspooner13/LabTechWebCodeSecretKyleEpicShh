@@ -57,7 +57,7 @@
                                         <h3 class="panel-title">Total Managed Clients</h3>
                                     </div>
                                     <div class="panel-body">
-                                        <h1 class="bolded tiles-number text-warning"><?php echo $this->Number->format($clientCount[0][0]['count(*)'], array('places' => '0', 'before' => '', 'thousands' => ',')); ?></h1>
+                                        <h1 class="bolded tiles-number text-warning"><?php echo $this->Number->format($clientCount[0][0]['count(Clients.clientid)'], array('places' => '0', 'before' => '', 'thousands' => ',')); ?></h1>
                                         <p class="text-muted"><small>Last List <strong>221</strong></small></p>
                                     </div><!-- /.panel-body -->
                                 </div><!-- /.panel panel-success panel-block-color -->
@@ -87,7 +87,7 @@
                                         <h3 class="panel-title">Total Offline Machines</h3>
                                     </div>
                                     <div class="panel-body">
-                                        <h1 class="bolded tiles-number text-warning"><?php echo $offlineCount[0][0]['count(*)']; ?></h1>
+                                        <h1 class="bolded tiles-number text-warning"><?php echo $offlineCount[0][0]['count']; ?></h1>
                                         <p class="text-muted"><small>Last Check <strong>2 HOURS AGO</strong></small></p>
                                     </div><!-- /.panel-body -->
                                 </div><!-- /.panel panel-success panel-block-color -->

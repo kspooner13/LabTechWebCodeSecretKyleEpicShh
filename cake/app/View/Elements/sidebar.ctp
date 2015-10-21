@@ -50,7 +50,7 @@
                         <div class="userinfo">
                             <h5><?php echo $this->Session->read('Username'); ?><small>- <?php echo $this->Session->read('Email'); ?></small></h5>
                             <ul>
-                                <li><a href="">Edit Profile</a></li>
+                                <li><?php echo $this->Html->link("Edit Profile", array('controller' => 'Users', 'action' => 'profile', $_SESSION['Userid']) ); ?></li>
                                 <li><a href="">Account Settings</a></li>
                                 <li><?php echo $this->Html->link("Logout", array('controller' => 'Users', 'action' => 'logout') );?></li>
                             </ul>
