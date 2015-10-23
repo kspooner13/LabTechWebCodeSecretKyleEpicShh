@@ -19,6 +19,9 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+
+
+
 Configure::write('CompanyName', 'TugBoats and Goats INC');
 Configure::write('Location', 'myplace.mydomain.tld');
 Configure::write('Lat', '34.8444');
@@ -34,6 +37,23 @@ Configure::write('database', array('default' => 'Default', 'cw' => 'ConnectWise'
 //PSA Enabled
 // Default = false
 Configure::write('psa', 'false');
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------
+/////////////////////////////////////////////////////////////////////////
+//
+//              DO NOT EDIT BELOW THIS LINE
+//
+/////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------
+/////////////////////////////////////////////////////////////////////////
 
 /**
  * CakePHP Debug Level:
