@@ -31,6 +31,10 @@ Configure::write('CityState', 'Random City, AK');
 // DO NOT DELETE THE ONES LISTED, ONLY ADD
 Configure::write('database', array('default' => 'Default', 'cw' => 'ConnectWise', 'dev' => 'Development' ));
 
+//PSA Enabled
+// Default = false
+Configure::write('psa', 'false');
+
 /**
  * CakePHP Debug Level:
  *

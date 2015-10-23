@@ -103,5 +103,37 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
-
+        //DO NOT CHANGE ANYTHING UNLESS YOU INTEGRATE YOUR PSA
+        //
+        //
+        // If you want to integrate your PSA, please only change
+        // the "host", "login", "password", "database" options
+        // 
+        // ALSO NOTE:
+        // DO NOT SET THIS UP UNLESS YOU HAVE PROPER SETUP OF 
+        // SQLSERVER PHP INTEGRATION
+        // 
+        // 
+        // DO NOT CHANGE ANYTHING ELSE
+        
+        public $cw = array(
+		'datasource' => 'Database/sqlserver',
+		'persistent' => false,
+		'host' => 'cw_server',
+		'login' => 'cwlogin',
+		'password' => 'password',
+		'database' => 'cw_database',
+		'prefix' => '',
+		//'encoding' => 'utf8',
+	);
+        public $at = array(
+		'datasource' => 'Database/sqlserver',
+		'persistent' => false,
+		'host' => 'athost',
+		'login' => 'login',
+		'password' => 'password',
+		'database' => 'at_database',
+		'prefix' => '',
+		//'encoding' => 'utf8',
+	);
 }

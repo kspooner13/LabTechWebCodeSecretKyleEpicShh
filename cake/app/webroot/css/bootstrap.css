@@ -1718,6 +1718,17 @@ th {
 .table-hover > tbody > tr:hover > th {
   background-color: #f5f5f5;
 }
+.missing {
+    background-color: #000;
+    
+}
+.good {
+    background: #1dac46;
+    font: #fff;
+}
+.failed {
+    background: #da2525;
+}
 
 table col[class*="col-"] {
   position: static;
@@ -1802,6 +1813,20 @@ table th[class*="col-"] {
 .table-hover > tbody > .warning:hover > th {
   background-color: #faf2cc;
 }
+
+.table > thead > tr > .miss,
+.table > tbody > tr > .miss,
+.table > tfoot > tr > .miss,
+.table > thead > .miss > td,
+.table > tbody > .miss > td,
+.table > tfoot > .miss > td,
+.table > thead > .miss > th,
+.table > tbody > .miss > th,
+.table > tfoot > .miss > th {
+  background-color: #000;
+}
+
+
 
 @media (max-width: 767px) {
   .table-responsive {

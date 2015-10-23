@@ -1,5 +1,5 @@
 
-@import url('bootstrap.min.css');
+@import url('bootstrap.css');
 @import url('bootstrap-responsive.min.css');
 @import url('jquery.ui.css');
 @import url('animate.min.css');
@@ -928,6 +928,18 @@ h1,h2,h3,h4,h5 { font-weight: normal; line-height: normal; }
 		  position: static; padding: 10px; background: #eee; text-align: right; border-left: 1px solid #ccc;
 		  border-right: 1px solid #ccc; }
 #dyntable2_info { border-top: 1px solid #ddd; }
+
+.missing {
+    background-color: #000;
+    
+}
+.good {
+    background: #1dac46;
+    font: #fff;
+}
+.failed {
+    background: #da2525;
+}
 
 
 /*** GRAPHS & CHARTS ***/
