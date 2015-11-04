@@ -52,5 +52,51 @@ class ComputersController extends AppController {
 		$this->Computer->find('count');
 		$this->set('computer');
 		}
+                
+                
+        public function index() {
+            
+            if (!empty($this->Session->read('database'))) {
+            $this->Computer->setDataSource($this->Session->read('database'));
+            //  $this->User->setDataSource($this->request->data['user']['database']);
+        } else {
+            $this->Computer->setDataSource('default');
+        }
+
+
+        $this->Paginator->settings = array('limit' => 15,
+           
+            'joins' => array(
+                array(
+                    'table' => 'usersec',
+                    'alias' => 'usersec',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'usersec.computerid = computer.computerid '
+                    )
+                ),
+                array(
+                    'table' => 'users',
+                    'alias' => 'users',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'users.userid = usersec.userid '
+                    )
+                ),
+               array(
+                   'table' => 'clients',
+                   'alias' => 'clients',
+                   'type' => 'INNER',
+                   'conditions' => array(
+                       'computer.clientid = clients.clientid'
+                   )
+               )
+            ) ,
+            'conditions' => array('users.name' => $_SESSION['Username']),
+            'order' => array('computers.computerID' => 'asc'));
+        $computer = $this->paginate('Computer');
+        $this->set(compact('computer', $computer));
+            
+        }        
 
 }

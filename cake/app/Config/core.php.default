@@ -19,6 +19,9 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+
+
+
 Configure::write('CompanyName', 'TugBoats and Goats INC');
 Configure::write('Location', 'myplace.mydomain.tld');
 Configure::write('Lat', '34.8444');
@@ -30,6 +33,27 @@ Configure::write('CityState', 'Random City, AK');
 //make sure your settings and variable name is in /app/config/database.php
 // DO NOT DELETE THE ONES LISTED, ONLY ADD
 Configure::write('database', array('default' => 'Default', 'cw' => 'ConnectWise', 'dev' => 'Development' ));
+
+//PSA Enabled
+// Default = false
+Configure::write('psa', 'false');
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------
+/////////////////////////////////////////////////////////////////////////
+//
+//              DO NOT EDIT BELOW THIS LINE
+//
+/////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------
+/////////////////////////////////////////////////////////////////////////
 
 /**
  * CakePHP Debug Level:

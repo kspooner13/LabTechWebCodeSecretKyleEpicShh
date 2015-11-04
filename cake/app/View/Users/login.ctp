@@ -41,7 +41,7 @@
                     Select Server:   <?php echo $this->Form->select('database', $dblist, array('class' => 'select input-sm', 'empty' => false)); ?>
             </div>
 
-              <input type="submit" class="btn btn-lg btn-success" value="Login to your account" name="login" id="submit" />
+            <input type="submit" class="btn btn-success center" value="Login to the System" name="login" style="width: 145px;" id="submit" />
 
               <p class="footer">Please see your LabTech Adminstrator<br/>for any account issues.</p>
 </fieldset>
