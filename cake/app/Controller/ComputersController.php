@@ -65,7 +65,7 @@ class ComputersController extends AppController {
 
 
         $this->Paginator->settings = array('limit' => 15,
-           
+            'fields' => array('computer.ComputerID, computer.ClientID, computer.Name, clients.Name, computer.OS, computer.Username, computer.LocalAddress, computer.BiosName'),
             'joins' => array(
                 array(
                     'table' => 'usersec',
