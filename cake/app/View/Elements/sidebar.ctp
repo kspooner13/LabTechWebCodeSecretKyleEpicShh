@@ -121,7 +121,7 @@ $active = $this->params['controller'];
             </li>
             <li <?php if ($active === 'computers') {
                 echo "class='active'";
-            } ?>><a href="<?php echo $comp; ?>"><span class="fa fa-desktop"></span> Computers</a></li>
+            } ?>><a href="<?php echo $comp; ?>"><span class="fa fa-desktop"></span> <?php echo $this->Html->link("Computers", array('controller' => 'Computers', 'action' => 'index')); ?></a></li>
             <li class='dropdown <?php if ($active === 'HealthCheck') {
                 echo "active";
             } ?>'><a href='#'> <span class="fa fa-hospital-o"></span> HealthCheck</a> <?php //echo $this->Html->link("Health Check", array('controller' => 'HealthCheck', 'action' => 'index') ) ;  ?>

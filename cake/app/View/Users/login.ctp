@@ -45,7 +45,18 @@
 
               <p class="footer">Please see your LabTech Adminstrator<br/>for any account issues.</p>
 </fieldset>
-
+                
+                <p class="footer"></p>
+                <div> 
+                
+                If you are sent here to establish a remote support session, please input your email below.
+                <br><br>
+                    <div class="input-group">
+                        <input type="email" class="form-control" value="me@example.com" style="width: 250px;" />
+                        <input type="submit" class="btn btn-success center" value="Begin" name="email" />
+                    </div>
+                
+                </div>
             </div>
           </div>
 

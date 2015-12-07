@@ -98,5 +98,54 @@ class ComputersController extends AppController {
         $this->set(compact('computer', $computer));
             
         }        
+        
+        
+        
+        public function computer($computerid) {
+        if (!($client = $this->Computer->find('first', array(
+            'joins' => array(
+                array(
+                    'table' => 'usersec',
+                    'alias' => 'usersec',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'usersec.computerid = computer.computerid'
+                    )
+                ),
+                array(
+                    'table' => 'users',
+                    'alias' => 'users',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'users.userid = usersec.userid'
+                    )
+                )
+               
+            ) ,
+            'conditions' => array('Computer.ComputerID' => $computerid),
+            'order' => array('Computer.Name' => 'Asc')
+            )))) {
+            throw new NotFoundException(__('ComputerID is not in the Database'));
+        }
+
+
+      
+
+        $this->set(compact('computer'));
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+        
+        
 
 }
