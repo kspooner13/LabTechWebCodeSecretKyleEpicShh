@@ -40,14 +40,17 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
         echo $this->Html->css('font-awesome.new.css');
         echo $this->Html->css('font-awesome.min.css');
+        echo $this->Html->css('weather-icons.min.css');
+        
 
         echo $this->Html->css('style.default.css');
+        
         echo $this->Html->css('style-responsive.css');
         echo $this->Html->css('responsive-tables.css');
         echo $this->Html->css('animate.css');
         echo $this->Html->css('demo.css');
 		
-
+        echo $this->Html->css('checkbox.new.css');
 
 
         echo $this->fetch('meta');

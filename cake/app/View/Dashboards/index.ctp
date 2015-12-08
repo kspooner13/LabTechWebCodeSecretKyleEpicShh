@@ -24,13 +24,6 @@
                 <div class="page-content">
                     <div class="container-fluid">
 
-                        <!-- BEGIN EXAMPLE ALERT -->
-                        <div class="alert alert-success alert-block square fade in alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <p><strong>Welcome!</strong></p>
-                            <p>SUCCESS!  The new template is working, and you have installed EPiC!</p>
-                        </div>
-                        <!-- END EXAMPLE ALERT -->
 
 
                         <div class="row">
@@ -284,13 +277,31 @@
                             <div class="col-lg-6">
 
 
-                                <div class="panel panel-info panel-square panel-no-border">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Current Weather</h3>
+                                <div class="panel darken success panel-square">
+                                    <div class="panel-heading no-border text-white">
+                                        <a class="pull-right" href="#"><i class="fa fa-map-marker fa-2x text-white"></i></a>
+                                        <span id="weatherheader"></span><br><br><br>
+                                            <div class="text-center inner-all margin top">
+                                                <span class="h1" id="weathertemp"></span>
+                                            </div><br>
                                     </div>
-                                    <div class='panel-body' style='background: #44447f;'>
-                                        <div class='panel-primary' id='weather'></div>
+                                    <div class="panel-body lighten success no-border">
+                                        <div class="row">
+                                            <div class="col-xs-4 text-center darken-border success right">
+                                                <span class="text-white block">Humidity</span><br>
+                                                <span id="weatherhumid"></span>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <span class="text-white block">Last Updated</span><bR>
+                                                <span id="weatherupdated"></span>
+                                            </div>
+                                            <div class="col-xs-4 text-center darken-border success left">
+                                                <span class="text-white block">Winds</span><br>
+                                                <span id="weatherspeed"></span>
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </div><!-- /.panel panel-default panel-square panel-no-border -->
                                 <!-- END CURRENCY RATES -->
 
@@ -415,12 +426,19 @@
                             woeid: '<?php echo Configure::read('WOEID'); ?>',
                             unit: 'f',
                             success: function (weather) {
-                                html = '<h2><i class="icon-' + weather.code + '"></i> ' + weather.temp + '&deg;' + weather.units.temp + '</h2>';
-                                html += '<ul><li>' + weather.city + ', ' + weather.region + '</li>';
-                                html += '<li class="currently">' + weather.currently + '</li>';
-                                html += '<li>' + weather.wind.direction + ' ' + weather.wind.speed + ' ' + weather.units.speed + '</li></ul>';
-
-                                $("#weather").html(html);
+                                header = '<span class="h3">' + weather.city + ', ' + weather.region + '</span>';
+                                temp = '<i class="wi wi-fw wi-' + weather.code + ' text-white animate bounceInDown"></i> ' + weather.temp + '&deg; ';
+                                speed = '<span>' + weather.wind.speed + ' ' + weather.units.speed + '</span>';
+                                humid = '<span>' + weather.humidity + ' %</span>';
+                                update = '<span>' + weather.updated + ' </span>';
+                                $("#weatherheader").html(header);
+                                $("#weathertemp").html(temp);
+                                $("#weatherspeed").html(speed);
+                                $("#weatherhumid").html(humid);
+                                $("#weatherupdated").html(update);
+                               
+                                
+                                
                             },
                             error: function (error) {
                                 $("#weather").html('<p>' + error + '</p>');
