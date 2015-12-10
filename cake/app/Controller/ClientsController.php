@@ -80,6 +80,7 @@ class ClientsController extends AppController {
     }
 
     public function client($clientid) {
+        
         if (!($client = $this->Client->find('first', array(
             'joins' => array(
                 array(
