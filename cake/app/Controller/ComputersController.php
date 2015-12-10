@@ -42,6 +42,8 @@ class ComputersController extends AppController {
 	public $helpers = array('Html', 'Form');
 	
 	public $components = array('Session', 'Paginator');
+        
+        public $uses = array('Drive', 'Computer', 'Client', 'Ticket');
 	
 	public $paginate = array('limit' => 15);
 	
@@ -102,7 +104,7 @@ class ComputersController extends AppController {
         
         
         public function computer($computerid) {
-        if (!($client = $this->Computer->find('first', array(
+        if (!($computer = $this->Computer->find('first', array(
             'joins' => array(
                 array(
                     'table' => 'usersec',
@@ -128,9 +130,9 @@ class ComputersController extends AppController {
             throw new NotFoundException(__('ComputerID is not in the Database'));
         }
 
-
+        $drive = $this->Drive->query("SELECT * FROM drives WHERE computerid ='" . $computerid . "' AND (FileSystem NOT LIKE 'UKNFS' OR FileSystem NOT LIKE 'CDFS' OR FileSystem NOT LIKE 'DVDFS' OR SmartStatus LIKE '%USB%')" );
       
-
+        $this->set(compact('drive'));
         $this->set(compact('computer'));
 
 

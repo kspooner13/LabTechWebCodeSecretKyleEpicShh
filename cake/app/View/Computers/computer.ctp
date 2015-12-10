@@ -1,7 +1,6 @@
 <?php
 //CLIENT PAGE FANCY LIKE
 ?>
-
 <div class="rightpanel">
     <div class="maincontent">
         <div class="maincontentinner">
@@ -12,11 +11,12 @@
                             <div class='panel fleet-panel panel-blockquote panel-border-info right'>
                                 <div class='panel-body'>
                                     <div class="text-center fleet-img">
+                                        
                                         <img width="150" src="http://ams86.co.uk/wpimages/wp627702e8_06.png" alt="" class="img-rounded">
                                     </div>
                                     <br>
                                     <!-- Title/Computer Name -->
-                                    <h3 class="sidebar-title text-center">AITTWLT</h3>
+                                    <h3 class="sidebar-title text-center"><?php echo $computer['Computer']['Name']; ?> (<?php echo $computer['Computer']['ComputerID'];?>)</h3>
 
 
 
@@ -40,7 +40,7 @@
                                         </li>
                                         <li>
                                             <i class="fa fa-television text-info" data-toggle="tooltip" data-placement="top" title="ScreenConnect"></i> 
-                                            <span class="text-muted">ScreenConnect</span> <a href="#">Active</a>
+                                            <span class="text-muted">ScreenConnect</span> <a href="#">Active</a>  <span class="pull-right"><input type="button" value="Launch" name="launch" class="btn btn-success"></span>
                                         </li>
                                     </ul>
                                     <br> <br>
@@ -70,6 +70,10 @@
                                         
                                         <li><a href="#"><span class="pull-right label label-default">6</span>Ignite</a></li>
                                         
+                                        <li><a href="#"><span class="pull-right label label-default">6</span>Agent Alerts</a></li>
+                                        
+                                        <li><a href="#"><span class="pull-right label label-default">6</span>Ticketing</a></li>
+                                        
                                         <li><a href="#"><span class="pull-right label label-default">6</span>Extra Data Fields (Info)</a></li>
 
                                     </ul>
@@ -90,6 +94,8 @@
                         <div class="col-md-9 fleet-content">
                             <!-- Breadcrumb -->
                             <ol class="breadcrumb">
+                                <li><a href="#">Acumen IT</a></li>
+                                <li><a href="#">Main Office</a></li>
                                 <li><a href="#">AITTWLT</a></li>
                                 <li class="active">Dashboard</li>
                             </ol>
@@ -97,7 +103,7 @@
                             <div class="panel fleet-panel panel-blockquote">
                                 <div class="panel-body">
                                     <!-- Fleet title -->
-                                    <h1 id="fleet-car-title"><i class="fa fa-server"></i> AITTWLT</h1>
+                                    <h1 id="fleet-car-title"><i class="fa fa-server"></i> <?php echo $computer['Computer']['Name']; ?></h1> 
                                     <div class="separator bottom"></div>
                                     <br>
 
@@ -108,9 +114,6 @@
                                             <div class="panel panel-blockquote panel-border-success left">
                                                 <div class="panel-heading panel-info clearfix">
                                                     <h3 class="panel-title">Details</h3>
-                                                    <!-- Panel Menu -->
-                                                    
-                                                    <!-- Panel Menu -->
                                                 </div>
                                                 <br>
                                                 <div class="panel-body">
@@ -118,15 +121,15 @@
                                                         <tbody style="font-size: 11px;">
                                                             <tr>
                                                                 <td class="text-muted text-right col-md-3">Type</td>
-                                                                <td>Microsoft Windows Server 2012 R2 Datacenter x64</td>
+                                                                <td><?php echo $computer['Computer']['OS']; ?></td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="text-muted text-right">BIOS</td>
-                                                                <td>VMware Virtual Platform</td>
+                                                                <td class="text-muted text-right">Mfg.</td>
+                                                                <td><?php echo $computer['Computer']['BiosMFG']; ?></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-muted text-right">Virus Scanner</td>
-                                                                <td>Webroot SecureAnywhere 64bit <span class='text-success'><i class="fa fa-thumbs-up"></i> ACTIVE</span></td>
+                                                                <td><?php echo $computer['Computer']['VirusScanner']; ?><span class='text-success'><i class="fa fa-thumbs-up"></i> ACTIVE</span></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-muted text-right">Last Contact</td>
@@ -134,59 +137,85 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-muted text-right">Last Heartbeat</td>
-                                                                <td>12/8/2015 8:56:51 AM</td>
+                                                                <td><?php echo $computer['Computer']['LastContact']; ?></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-muted text-right">Install Date</td>
                                                                 <td>12/1/2011 4:06:24 PM</td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="text-muted text-right">Logged In:</td>
-                                                                <td>
-                                                                    <select>
-                                                        <option>0: MyUser</option>
-                                                        <option>1: UserTwo</option>
-                                                                    </select>
-                                                                </td>
+                                                                <td class="text-muted text-right">Last Logged In:</td>
+                                                                <td><?php echo $computer['Computer']['LastUsername']; ?></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-muted text-right">Uptime</td>
-                                                                <td>12 days 22:19:00</td>
+                                                                <td><?php echo $computer['Computer']['UpTime']; ?></td>
                                                             </tr>
 
                                                             <tr>
                                                                 <td class="text-muted text-right">Domain</td>
-                                                                <td>AIT.LOCAL</td>
+                                                                <td><?php echo $computer['Computer']['Domain']; ?></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-muted text-right">Serial Number</td>
-                                                                <td>VMware-42 32 66 6b 71 cb fb d9-df 1b b2 54 d5 34 6c b4</td>
+                                                                <td><?php echo $computer['Computer']['BiosVer']; ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-muted text-right">Service Plan</td>
+                                                                <td>MISSING</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-muted text-right">Maintenance Mode</td>
-                                                                <td><span class="text-sucess">Not Set</span></td>
+                                                                <td><span class="text-sucess">MISSING</span></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
-
-                                            <!-- Assignment -->
+                                            
                                             <div class="panel panel-blockquote panel-border-success left">
-                                                <div class="panel-heading">
+                                                <div class="panel-heading panel-info clearfix">
+                                                    <h3 class="panel-title">Computer Contact</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <table class="table table-list text-small">
+                                                        <tbody style="font-size: 11px;">
+                                                            <tr>
+                                                                <td class="text-muted text-right col-md-3">Contact Name</td>
+                                                                <td>John Doe</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-muted text-right col-md-3">Phone</td>
+                                                                <td>5555555555</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-muted text-right col-md-3">Email</td>
+                                                                <td>John.Doe@Email.Com</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                            <div class="panel panel-blockquote panel-border-success left">
+                                                <div class="panel-heading panel-info clearfix">
                                                     <h3 class="panel-title">Network</h3>
                                                 </div>
                                                 <div class="panel-body">
                                                     <table class="table table-list">
-                                                        <tbody>
+                                                        <tbody style="font-size: 11px;">
                                                             <tr>
-                                                                <td class="text-muted text-right col-md-3">Location</td>
-                                                                <td>New York, NY, USA</td>
+                                                                <td class="text-muted text-right col-md-3">IP Adress</td>
+                                                                <td><?php echo $computer['Computer']['LocalAddress']; ?></td>
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="2">
-                                                                    Network here
-                                                                </td>
+                                                                <td class="text-muted text-right col-md-3">Router Address</td>
+                                                                <td><?php echo $computer['Computer']['RouterAddress']; ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-muted text-right col-md-3">MAC Address</td>
+                                                                <td><?php echo $computer['Computer']['MAC ']; ?></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -247,6 +276,7 @@
                                                                 <input type="checkbox"> Reboot Needed <br>
                                                                 <input type="checkbox"> FasTalk <br>
                                                                 </fieldset>
+                                                            </div>
                                                             <div class='col-sm-4'>
                                                                 
                                                                 <input type="checkbox"> Virtual Host <br>
@@ -264,7 +294,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            </div>
+                                            
 
                                             <!-- Issues -->
 
@@ -276,6 +306,33 @@
                                                     <div class="row">
                                                         <div class="col-sm-4 text-center">
                                                             <h1 class="success">5</h1>
+                                                            <span class="caption">Open</span>
+                                                        </div>
+                                                        <div class="col-sm-4 text-center">
+                                                            <h1 class="success">0</h1>
+                                                            <span class="caption">Overdue</span>
+                                                        </div>
+                                                        <div class="col-sm-4 text-center">
+                                                            <h1 class="info">3</h1>
+                                                            <span class="caption">Resolved</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-square">
+                                                <div class="panel-heading panel-info clearfix">
+                                                    <h3 class="panel-title">Drives</h3>
+                                                </div>
+                                                <div class="panel-body fleet-issues">
+                                                    <div class="row">
+                                                        <div class="col-sm-4 text-center">
+                                                            <?php print_r($drive); ?>
+                                                            <?php
+                                                            $free = $drive[0]['drives']['Size'] / $drive['0']['drives']['Free']; 
+                                                            ?>
+                                                            <h1 class="success">
+                                                               <?php echo $free; ?>
+                                                            </h1>
                                                             <span class="caption">Open</span>
                                                         </div>
                                                         <div class="col-sm-4 text-center">
