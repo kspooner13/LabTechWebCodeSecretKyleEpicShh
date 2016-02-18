@@ -38,6 +38,15 @@
                                         <li>
                                             <i class="fa fa-users text-info" data-toggle="tooltip" data-placement="top" title="Location"></i> <a href="3">64 Contacts</a>
                                         </li>
+                                        <?php 
+                                        if (Configure::read('PSA') == True){
+                                        echo " <li> "
+                                            . "<i class='fa fa-file-powerpoint-o text-info' data-toggle='tooltip' data-placement='top' title='Location'></i> <a href='3'>";
+                                        echo $psa['GetCompanyResult']['Id'] ." ". $psa['GetCompanyResult']['CompanyName'];
+                                        echo "</a><i class='fa fa-file-powerpoint-o float-right'></i><span class='btn btn-success btn-small' style='float: right;' >ConnectWise</span>"
+                                            . "</li>";
+                                        }
+                                        ?>
  
                                     </ul>
                                     <br> <br>
@@ -451,7 +460,7 @@
 
 
 
-
+                        <?php print_r($psa); ?>
 
                     </div>
 

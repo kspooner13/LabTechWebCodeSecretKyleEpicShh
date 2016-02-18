@@ -19,22 +19,72 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+
+
+
+
+///////////////////////////////////////////////////////
+//Beta Editing (prior to installation code)
+//
+//To edit this file, only edit the second set of ''
+//IE 'One', 'Two'
+//
+//
+//////////////////////////////////////////////////////
+
+
+//
+//This is your company name edit to your liking
+//
 Configure::write('CompanyName', 'TugBoats and Goats INC');
+
+//
+//This is your LabTech's server's location (lt.site.com)
+//
 Configure::write('Location', 'labtech.acumenit.com');
+
+//
+//This is your cities latitude
+//
 Configure::write('Lat', '34.8444');
+
+//
+//This is your cities longitude
+//
 Configure::write('Lon', '-82.3856');
+
+//
+//This is your cities WOEID, just google 'city here WOEID' 
+//Used for weather
+//
 Configure::write('WOEID', '2414583');
+
+//
+//This is your city and state
+//
 Configure::write('CityState', 'Greenville, SC');
+
+//
+//Enable your PSA integration (v0.1 only supports ConnectWise at this time)
+//Default to false for reasons.
+//
+Configure::write('PSA', 'true');
+
+
+
+
+
+
 // add a line at the end, make sure you include a comma after the last one.
 // 'variable' => 'Visable Name'
 //make sure your settings and variable name is in /app/config/database.php
 // DO NOT DELETE THE ONES LISTED, ONLY ADD
+
+
 Configure::write('database', array('default' => 'Default', 'cw' => 'ConnectWise', 'dev' => 'Development' ));
 
 
-//PSA Enabled
-// Default = false
-Configure::write('psa', 'false');
+
 
 
 

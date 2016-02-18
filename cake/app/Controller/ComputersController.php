@@ -130,8 +130,13 @@ class ComputersController extends AppController {
             throw new NotFoundException(__('ComputerID is not in the Database'));
         }
 
-        $drive = $this->Drive->query("SELECT * FROM drives WHERE computerid ='" . $computerid . "' AND (FileSystem NOT LIKE 'UKNFS' OR FileSystem NOT LIKE 'CDFS' OR FileSystem NOT LIKE 'DVDFS' OR SmartStatus LIKE '%USB%')" );
-      
+        $drive = $this->Drive->query("SELECT * FROM drives WHERE computerid ='" . $computerid . "' AND FileSystem != 'UKNFS' AND FileSystem != 'CDFS' AND FileSystem != 'DVDFS' AND SmartStatus !='%USB%' AND Letter = 'C'" );
+        $ticketOpen = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status' => '1')));
+        $ticketClosed = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status >=' => '4')));
+        $ticketStalled = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status' => '3')));
+        $this->set(compact('ticketStalled'));
+        $this->set(compact('ticketClosed'));
+        $this->set(compact('ticketOpen'));
         $this->set(compact('drive'));
         $this->set(compact('computer'));
 

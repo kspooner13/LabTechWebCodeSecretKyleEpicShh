@@ -11,8 +11,60 @@
                             <div class='panel fleet-panel panel-blockquote panel-border-info right'>
                                 <div class='panel-body'>
                                     <div class="text-center fleet-img">
+                                        <?php 
                                         
-                                        <img width="150" src="http://ams86.co.uk/wpimages/wp627702e8_06.png" alt="" class="img-rounded">
+                                        //OS TYPE SELECTOR
+                                        if (strpos($computer['Computer']['OS'],'2012 R2') !== False ) {
+                                       echo " <img width='150' src='http://ams86.co.uk/wpimages/wp627702e8_06.png' alt='' class='img-rounded'>";
+                                        }
+                                        else if (strpos($computer['Computer']['OS'], '2012')) {
+                                            echo "<img width='150' src='http://www.coretechnologies.com/images/windows-server-2012-certified-283x331.png' alt='2012' class='img-rounded'>";
+                                        }
+                                        else if (strpos($computer['Computer']['OS'], 'Small')){
+                                            echo "<img width='150' src='http://static1.1.sqspcdn.com/static/f/349302/10811313/1298042265980/sbs2011.jpg?token=c9rE%2B%2FrubYXn5M3Bu09yLMEM5oY%3D' class='img-rounded'>";
+                                        }
+                                        else if (strpos($computer['Computer']['OS'], '2008 R2')){
+                                            echo "<img width='150' src='http://www.asphostdirectory.com/Images/lg_winser2008.png' alt='2008 r2' class='img-rounded'>";                                          
+                                        }
+                                        else if (strpos($computer['Computer']['OS'], '2008')) {
+                                           echo "<img width='150' src='https://etienda.soporteti.net/wp-content/uploads/2014/02/w2008logo-e1391757051858.jpg' alt='2008 r2' class='img-rounded'>";   
+                                        }
+                                        else if (strpos($computer['Computer']['OS'], '2003 R2')) {
+                                            echo "<img width='150' src='http://www.trustedcloud.com.au/wp-content/uploads/2014/09/windows2003.png' alt='2008 r2' class='img-rounded'>";    
+                                        }
+                                        else if (strpos($computer['Computer']['OS'], '2003')) {
+                                            echo "<img width='150' src='http://www.trustedcloud.com.au/wp-content/uploads/2014/09/windows2003.png' alt='2008 r2' class='img-rounded'>";   
+                                        }
+                                        else if (strpos($computer['Computer']['OS'], 'Linux')) {
+                                            echo "<img width='150' src='http://www.logospike.com/wp-content/uploads/2015/05/Linux_Logo_07.png' alt='2008 r2' class='img-rounded'>";   
+                                        }
+                                        else if (strpos($computer['Computer']['OS'], '10')) {
+                                            echo "<img width='150' src='http://www.triella.com/wp-content/uploads/2015/06/07668051-photo-windows-10-logo.png' alt='2008 r2' class='img-rounded'>";  
+                                        }
+                                        else if (strpos($computer['Computer']['OS'], '8.1')) {
+                                            echo "<img width='150' src='http://d.ibtimes.co.uk/en/full/1371940/windows-8-1-update-1-features-release-date-revealed.png' alt='2008 r2' class='img-rounded'>";  
+                                        }
+                                        else if (strpos($computer['Computer']['OS'], '8')) {
+                                            echo "<img width='150' src='http://xombit.com/files/2012/09/windows-8-logo.jpg' alt='2008 r2' class='img-rounded'>";  
+                                        }
+                                        else if (strpos($computer['Computer']['OS'], '7')) {
+                                            echo "<img width='150' src='https://s3.amazonaws.com/quicklaptopcash/original_logo__windows_7_badge_by_18cjoj-d76ek5q.png' alt='2008 r2' class='img-rounded'>";  
+                                        }
+                                        else if (strpos($computer['Computer']['OS'], 'Vista')) {
+                                            echo "<img width='150' src='https://dheddy24.files.wordpress.com/2015/10/windows-vista-logo.jpg' alt='2008 r2' class='img-rounded'>";  
+                                        }
+                                        else if (strpos($computer['Computer']['OS'], 'XP')) {
+                                            echo "<img width='150' src='http://www.federaljack.com/wp-content/uploads/2014/03/WINDOWS-XP-LOGO.png' alt='2008 r2' class='img-rounded'>";  
+                                        }
+                                        else if (strpos($computer['Computer']['OS'], '2000')) {
+                                            echo "<img width='150' src='http://www.pageresource.com/clipart/clipart/electronics/computers/logos/windows/windows-2000-logo.png' alt='2008 r2' class='img-rounded'>";  
+                                        }
+                                        else if (strpos($computer['Computer']['OS'], '98 SE')) {
+                                            echo "<img width='150' src='http://www.ministerofcomputers.com/product_images/e/286/windows98SE__39046.jpg' alt='2008 r2' class='img-rounded'>";  
+                                        }
+                                                
+                                                
+                                                ?>
                                     </div>
                                     <br>
                                     <!-- Title/Computer Name -->
@@ -40,7 +92,7 @@
                                         </li>
                                         <li>
                                             <i class="fa fa-television text-info" data-toggle="tooltip" data-placement="top" title="ScreenConnect"></i> 
-                                            <span class="text-muted">ScreenConnect</span> <a href="#">Active</a>  <span class="pull-right"><input type="button" value="Launch" name="launch" class="btn btn-success"></span>
+                                            <span class="text-muted">ScreenConnect</span> <a href="#">Active</a>  <span class="pull-right"><input type="button" value="Launch" name="launch" class="btn btn-success btn-small"></span>
                                         </li>
                                     </ul>
                                     <br> <br>
@@ -215,7 +267,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-muted text-right col-md-3">MAC Address</td>
-                                                                <td><?php echo $computer['Computer']['MAC ']; ?></td>
+                                                                <td><?php echo $computer['Computer']['MAC']; ?></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -272,22 +324,22 @@
                                                             <form role="form">
                                                             <div class='col-sm-4'>
                                                                 <fieldset>
-                                                                <input type="checkbox" id="checkbox1" disabled> <label for="checkbox1"> Virtual Machine </label><br>
-                                                                <input type="checkbox"> Reboot Needed <br>
-                                                                <input type="checkbox"> FasTalk <br>
+                                                                <input type="checkbox" id="checkbox1" disabled checked='true'> <label for="checkbox1"> Virtual Machine </label><br>
+                                                                <input type="checkbox" disabled> Reboot Needed <br>
+                                                                <input type="checkbox" disabled> FasTalk <br>
                                                                 </fieldset>
                                                             </div>
                                                             <div class='col-sm-4'>
                                                                 
-                                                                <input type="checkbox"> Virtual Host <br>
-                                                                <input type="checkbox"> Locked Down <br>
-                                                                <input type="checkbox"> Intel vPRO <br>
+                                                                <input type="checkbox" disabled> Virtual Host <br>
+                                                                <input type="checkbox" disabled> Locked Down <br>
+                                                                <input type="checkbox" disabled> Intel vPRO <br>
                                                                
                                                             </div> 
                                                             <div class='col-sm-4'>
-                                                                <input type="checkbox"> Tunnels Avail <br>
-                                                                <input type="checkbox"> HP iLO <br>
-                                                                <input type="checkbox"> Intel AMT <br>
+                                                                <input type="checkbox" disabled> Tunnels Avail <br>
+                                                                <input type="checkbox" disabled> HP iLO <br>
+                                                                <input type="checkbox" disabled> Intel AMT <br>
                                                             </div>
                                                             </form>
                                                         </div>
@@ -305,15 +357,15 @@
                                                 <div class="panel-body fleet-issues">
                                                     <div class="row">
                                                         <div class="col-sm-4 text-center">
-                                                            <h1 class="success">5</h1>
+                                                            <h1 class="success"><?php echo $ticketOpen; ?></h1>
                                                             <span class="caption">Open</span>
                                                         </div>
                                                         <div class="col-sm-4 text-center">
-                                                            <h1 class="success">0</h1>
+                                                            <h1 class="success"><?php echo $ticketStalled; ?></h1>
                                                             <span class="caption">Overdue</span>
                                                         </div>
                                                         <div class="col-sm-4 text-center">
-                                                            <h1 class="info">3</h1>
+                                                            <h1 class="info"><?php echo $ticketClosed; ?></h1>
                                                             <span class="caption">Resolved</span>
                                                         </div>
                                                     </div>
@@ -326,14 +378,15 @@
                                                 <div class="panel-body fleet-issues">
                                                     <div class="row">
                                                         <div class="col-sm-4 text-center">
-                                                            <?php print_r($drive); ?>
                                                             <?php
-                                                            $free = $drive[0]['drives']['Size'] / $drive['0']['drives']['Free']; 
+                                                            $free = $drive[0]['drives']['Free'] / $drive[0]['drives']['Size']; 
+                                                            $free = round($free * 100, 2);
+                                                            
                                                             ?>
-                                                            <h1 class="success">
-                                                               <?php echo $free; ?>
+                                                            <h1 class="<?php if ($free < 50) { echo 'success'; } else if ($free > 50 && $free < 75) { echo 'warning'; } else { echo 'danger'; } ?>">
+                                                               <?php echo $free; ?> % 
                                                             </h1>
-                                                            <span class="caption">Open</span>
+                                                            <span class="caption"><?php echo 'Drive '; echo $drive[0]['drives']['Letter']; ?>:</span>
                                                         </div>
                                                         <div class="col-sm-4 text-center">
                                                             <h1 class="success">0</h1>
