@@ -465,42 +465,14 @@
                                                         <div class="panel-body">
                                                         <table class="table table-list text-small">
                                                         <tbody style="font-size: 11px;">
+														<?php foreach ($command as $compCommands): ?>
                                                             <tr>
-                                                                <td class="text-muted text-right col-md-3">kspooner</td>
+                                                                <td class="text-muted text-right col-md-3"><?php echo $command['h_commands']['User']; ?></td>
                                                                 <td>Install Webroot</td>
                                                                 <td class="text-success">Success!</td>
                                                                 <td>12/12/15 8:03 PM </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td class="text-muted text-right col-md-3">kspooner</td>
-                                                                <td>Install Webroot</td>
-                                                                <td class="text-danger">Failed</td>
-                                                                <td>12/12/15 8:03 PM </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-muted text-right col-md-3">root</td>
-                                                                <td>Install Monitor Alpha Bravo Charlie Delta</td>
-                                                                <td class="text-success">Success!</td>
-                                                                <td>12/12/15 8:03 PM </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-muted text-right col-md-3">root</td>
-                                                                <td>Remove Monitor Alpha Bravo Charlie Delta</td>
-                                                                <td class="text-success">Success!</td>
-                                                                <td>12/12/15 8:03 PM </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-muted text-right col-md-3">root</td>
-                                                                <td>Install Monitor Alpha Bravo Charlie Delta</td>
-                                                                <td class="text-success">Success!</td>
-                                                                <td>12/12/15 8:03 PM </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-muted text-right col-md-3">root</td>
-                                                                <td>Remove Monitor Alpha Bravo Charlie Delta</td>
-                                                                <td class="text-success">Success!</td>
-                                                                <td>12/12/15 8:03 PM </td>
-                                                            </tr>
+															<?php endforeach; ?>
                                                             
                                                             
                                                         </tbody>

@@ -382,15 +382,15 @@ Configure::write('Acl.database', 'default');
  * 	));
  *
  * APC (http://pecl.php.net/package/APC)
- *
- * 	 Cache::config('default', array(
- * 		'engine' => 'Apc', //[required]
- * 		'duration' => 3600, //[optional]
- * 		'probability' => 100, //[optional]
- * 		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
- * 	));
- *
- * Xcache (http://xcache.lighttpd.net/)
+ */
+ 	 Cache::config('default', array(
+ 		'engine' => 'Apc', //[required]
+ 		'duration' => 3600, //[optional]
+ 		'probability' => 100, //[optional]
+ 		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
+ 	));
+
+ /* Xcache (http://xcache.lighttpd.net/)
  *
  * 	 Cache::config('default', array(
  * 		'engine' => 'Xcache', //[required]

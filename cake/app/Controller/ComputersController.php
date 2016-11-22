@@ -43,7 +43,7 @@ class ComputersController extends AppController {
 	
 	public $components = array('Session', 'Paginator');
         
-        public $uses = array('Drive', 'Computer', 'Client', 'Ticket');
+    public $uses = array('Drive', 'Computer', 'Client', 'Ticket');
 	
 	public $paginate = array('limit' => 15);
 	
@@ -60,7 +60,7 @@ class ComputersController extends AppController {
             
             if (!empty($this->Session->read('database'))) {
             $this->Computer->setDataSource($this->Session->read('database'));
-            //  $this->User->setDataSource($this->request->data['user']['database']);
+            
         } else {
             $this->Computer->setDataSource('default');
         }
@@ -134,6 +134,10 @@ class ComputersController extends AppController {
         $ticketOpen = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status' => '1')));
         $ticketClosed = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status >=' => '4')));
         $ticketStalled = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status' => '3')));
+		$compCommands = $this->Computer->query('SELECT h.status, h.user, r.name, h.DateFinished  FROM h_commands h
+												INNER JOIN remotecommands r ON h.command = r.id
+												WHERE computerid = '.$computerid.' LIMIT 5');
+		$this->set(compact('compCommands',$compCommands));
         $this->set(compact('ticketStalled'));
         $this->set(compact('ticketClosed'));
         $this->set(compact('ticketOpen'));
