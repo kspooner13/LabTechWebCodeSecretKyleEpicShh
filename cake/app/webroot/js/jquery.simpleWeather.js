@@ -19,7 +19,7 @@
         success: function(weather){},
         error: function(message){}
       }, options);
-
+      
       var now = new Date();
       var weatherUrl = 'https://query.yahooapis.com/v1/public/yql?format=json&rnd='+now.getFullYear()+now.getMonth()+now.getDay()+now.getHours()+'&diagnostics=true&callback=?&q=';
       if(options.location !== '') {
@@ -61,6 +61,7 @@
             weather.region = result.location.region;
             weather.updated = result.item.pubDate;
             weather.link = result.item.link;
+            weather.speed = result.wind.speed;
             weather.units = {temp: result.units.temperature, distance: result.units.distance, pressure: result.units.pressure, speed: result.units.speed};
             weather.wind = {chill: result.wind.chill, direction: compass[Math.round(result.wind.direction / 22.5)], speed: result.wind.speed};
 

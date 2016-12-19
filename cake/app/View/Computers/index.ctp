@@ -51,9 +51,9 @@
                                                 <tbody>
                                                     <?php foreach ($computer as $cscore): ?>
                                                         <tr>
-                                                            <td><?php echo $this->Html->link($cscore['Computer']['ClientID'], array('controller' => 'Computer', 'action' => 'computer', $cscore['Computer']['ComputerID'])); ?> </td>
+                                                            <td><?php echo $this->Html->link($cscore['Computer']['ComputerID'], array('controller' => 'Computers', 'action' => 'computer', $cscore['Computer']['ComputerID'])); ?> </td>
                                                             <td><?php echo $cscore['Computer']['Name']; ?> </td>
-                                                            <td><?php echo $cscore['Computer']['ClientID']; ?> </td>
+                                                            <td><?php echo $cscore['clients']['Name']; ?> </td>
                                                             <td><?php echo $cscore['Computer']['Username']; ?> </td>
                                                             <td><?php echo $cscore['Computer']['OS']; ?> </td>
                                                             <td><?php echo $cscore['Computer']['LocalAddress']; ?> </td>

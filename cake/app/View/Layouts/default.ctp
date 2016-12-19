@@ -18,8 +18,10 @@ echo $this->Html->script('jquery-ui.min.js');
 echo $this->Html->script('all-pages.js');
 echo $this->Html->script('bootstrap/bootstrap.min.js');
 echo $this->Html->script('dashboard.js');
+echo $this->Html->script('twitterfetch.js');
+echo $this->Html->script('jquery.feeds.js');
 //echo $this->Html->script('custom.js');
-echo $this->Html->script('https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true');
+echo $this->Html->script('https://maps.googleapis.com/maps/api/js?v=3.exp');
 echo $this->Html->script('jquery.simpleWeather.js');
 $cakeDescription = __d('cake_dev', 'EPIC: Enterprise Productivity Information Center');
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
@@ -40,14 +42,17 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
         echo $this->Html->css('font-awesome.new.css');
         echo $this->Html->css('font-awesome.min.css');
+        echo $this->Html->css('weather-icons.min.css');
+        
 
         echo $this->Html->css('style.default.css');
+        
         echo $this->Html->css('style-responsive.css');
         echo $this->Html->css('responsive-tables.css');
         echo $this->Html->css('animate.css');
         echo $this->Html->css('demo.css');
 		
-
+        echo $this->Html->css('checkbox.new.css');
 
 
         echo $this->fetch('meta');

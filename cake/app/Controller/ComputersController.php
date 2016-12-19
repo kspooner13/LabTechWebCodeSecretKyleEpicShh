@@ -42,6 +42,8 @@ class ComputersController extends AppController {
 	public $helpers = array('Html', 'Form');
 	
 	public $components = array('Session', 'Paginator');
+        
+    public $uses = array('Drive', 'Computer', 'Client', 'Ticket');
 	
 	public $paginate = array('limit' => 15);
 	
@@ -58,14 +60,14 @@ class ComputersController extends AppController {
             
             if (!empty($this->Session->read('database'))) {
             $this->Computer->setDataSource($this->Session->read('database'));
-            //  $this->User->setDataSource($this->request->data['user']['database']);
+            
         } else {
             $this->Computer->setDataSource('default');
         }
 
 
         $this->Paginator->settings = array('limit' => 15,
-           
+            'fields' => array('computer.ComputerID, computer.ClientID, computer.Name, clients.Name, computer.OS, computer.Username, computer.LocalAddress, computer.BiosName'),
             'joins' => array(
                 array(
                     'table' => 'usersec',
@@ -98,5 +100,63 @@ class ComputersController extends AppController {
         $this->set(compact('computer', $computer));
             
         }        
+        
+        
+        
+        public function computer($computerid) {
+        if (!($computer = $this->Computer->find('first', array(
+            'joins' => array(
+                array(
+                    'table' => 'usersec',
+                    'alias' => 'usersec',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'usersec.computerid = computer.computerid'
+                    )
+                ),
+                array(
+                    'table' => 'users',
+                    'alias' => 'users',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'users.userid = usersec.userid'
+                    )
+                )
+               
+            ) ,
+            'conditions' => array('Computer.ComputerID' => $computerid),
+            'order' => array('Computer.Name' => 'Asc')
+            )))) {
+            throw new NotFoundException(__('ComputerID is not in the Database'));
+        }
+
+        $drive = $this->Drive->query("SELECT * FROM drives WHERE computerid ='" . $computerid . "' AND FileSystem != 'UKNFS' AND FileSystem != 'CDFS' AND FileSystem != 'DVDFS' AND SmartStatus !='%USB%' AND Letter = 'C'" );
+        $ticketOpen = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status' => '1')));
+        $ticketClosed = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status >=' => '4')));
+        $ticketStalled = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status' => '3')));
+		$compCommands = $this->Computer->query('SELECT h.status, h.user, r.name, h.DateFinished  FROM h_commands h
+												INNER JOIN remotecommands r ON h.command = r.id
+												WHERE computerid = '.$computerid.' LIMIT 5');
+		$this->set(compact('compCommands',$compCommands));
+        $this->set(compact('ticketStalled'));
+        $this->set(compact('ticketClosed'));
+        $this->set(compact('ticketOpen'));
+        $this->set(compact('drive'));
+        $this->set(compact('computer'));
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+        
+        
 
 }
