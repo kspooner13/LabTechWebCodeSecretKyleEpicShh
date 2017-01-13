@@ -51,7 +51,7 @@ $active = $this->params['controller'];
 			<li <?php if ($active === 'computers') {
                 echo "class='active'";
             } ?>><a href="<?php echo $comp; ?>"><i class="fa fa-desktop"></i> Computers </a></li>
-			<li<?php if ($active === 'clients') {
+			<li <?php if ($active === 'clients') {
                 echo "class='active'";
             } ?>><a href="<?php echo $client; ?>"><i class="fa fa-user"></i> Clients</a></li>
 			<li><a href="#"><i class="fa fa-object-group"></i> Groups</a></li>
