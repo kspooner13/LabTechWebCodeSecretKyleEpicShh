@@ -1,0 +1,100 @@
+<?php
+/**
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
+ * @package       app.View.Layouts
+ * @since         CakePHP(tm) v 0.10.0.1076
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+echo $this->Html->script('jquery-2.1.0.min.js');
+echo $this->Html->script('jquery-ui.min.js');
+echo $this->Html->script('all-pages.js');
+echo $this->Html->script('bootstrap/bootstrap.js');
+echo $this->Html->script('custom.js');
+echo $this->Html->script('dashboard.js');
+echo $this->Html->script('twitterfetch.js');
+echo $this->Html->script('jquery.feeds.js');
+
+echo $this->Html->script('https://maps.googleapis.com/maps/api/js?v=3.exp');
+echo $this->Html->script('jquery.simpleWeather.js');
+$cakeDescription = __d('cake_dev', 'EPIC: Enterprise Productivity Information Center');
+$cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php echo $this->Html->charset(); ?>
+        <title>
+            <?php echo $cakeDescription ?>:
+            <?php echo $this->fetch('title'); ?>
+        </title>
+        <?php
+        echo $this->Html->meta('icon');
+
+        echo $this->Html->css('bootstrap.css');
+        echo $this->Html->css('font-awesome.new.css');
+        echo $this->Html->css('font-awesome.min.css');
+        echo $this->Html->css('weather-icons.min.css');
+        echo $this->Html->css('style.default.css');
+        echo $this->Html->css('style-responsive.css');
+        echo $this->Html->css('responsive-tables.css');
+        echo $this->Html->css('animate.css');		
+        echo $this->Html->css('checkbox.new.css');
+
+echo $this->Html->css('dashboard.css');
+        echo $this->fetch('meta');
+        echo $this->fetch('css');
+        echo $this->fetch('script');
+        ?>
+    </head>
+          <?php
+        if ($this->Session->check('Username')) { ?>
+          <body class="nav-md">  
+    <div class="container body">
+      <div class="main_container">
+
+<?php
+            echo $this->element('sidebar');
+        }
+		else {
+		?><body class="login"> <?php
+		}
+        ?>
+                <?php echo $this->Session->flash(); ?>
+
+                <?php echo $this->fetch('content'); ?>
+
+        </div>
+		</div>
+    </body>
+    <script>
+        var version = '0.3.10';
+        function checkVersion() {alert('Version: ' + version); }
+        
+            </script>
+			<script>
+    jQuery(document).ready(function () {
+        jQuery('.side-menu .dropdown > a').click(function () {
+            if (!jQuery(this).next().is(':visible'))
+                jQuery(this).next().slideDown('fast'),
+				jQuery(this).parent().addClass('active');
+            else
+				jQuery(this).toggleClass('active'),
+                jQuery(this).next().slideUp('fast');
+            return false;
+        });
+    });</script>
+
+    <?php
+if (class_exists('JsHelper') && method_exists($this->Js, 'writeBuffer')){ echo $this->Js->writeBuffer(); }
+// Writes cached scripts
+?>
+</html>
+
