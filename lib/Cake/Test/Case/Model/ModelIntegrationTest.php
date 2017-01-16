@@ -1334,7 +1334,7 @@ class ModelIntegrationTest extends BaseModelTest {
 		$Article->useTable = false;
 		$Article->id = 1;
 		$result = $Article->exists();
-		$this->assertTrue($result);
+		$this->assertFalse($result);
 	}
 
 /**
@@ -1617,10 +1617,12 @@ class ModelIntegrationTest extends BaseModelTest {
 	public function testAutoConstructPluginAssociations() {
 		$Comment = ClassRegistry::init('TestPluginComment');
 
-		$this->assertEquals(2, count($Comment->belongsTo), 'Too many associations');
+		$this->assertEquals(3, count($Comment->belongsTo), 'Too many associations');
 		$this->assertFalse(isset($Comment->belongsTo['TestPlugin.User']));
+		$this->assertFalse(isset($Comment->belongsTo['TestPlugin.Source']));
 		$this->assertTrue(isset($Comment->belongsTo['User']), 'Missing association');
 		$this->assertTrue(isset($Comment->belongsTo['TestPluginArticle']), 'Missing association');
+		$this->assertTrue(isset($Comment->belongsTo['Source']), 'Missing association');
 	}
 
 /**
@@ -1994,7 +1996,7 @@ class ModelIntegrationTest extends BaseModelTest {
 					'afterFind' => 'Successfully added by AfterFind'
 				)
 			));
-		$this->assertEquals(self::date(), $result['Something']['updated']);
+		$this->assertEquals(static::date(), $result['Something']['updated']);
 		unset($result['Something']['updated']);
 		$this->assertEquals($expected, $result);
 	}

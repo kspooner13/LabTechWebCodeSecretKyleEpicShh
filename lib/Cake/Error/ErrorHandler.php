@@ -109,13 +109,13 @@ class ErrorHandler {
  * This will either use custom exception renderer class if configured,
  * or use the default ExceptionRenderer.
  *
- * @param Exception $exception The exception to render.
+ * @param Exception|ParseError $exception The exception to render.
  * @return void
  * @see http://php.net/manual/en/function.set-exception-handler.php
  */
-	public static function handleException(Exception $exception) {
+	public static function handleException($exception) {
 		$config = Configure::read('Exception');
-		self::_log($exception, $config);
+		static::_log($exception, $config);
 
 		$renderer = isset($config['renderer']) ? $config['renderer'] : 'ExceptionRenderer';
 		if ($renderer !== 'ExceptionRenderer') {
@@ -134,7 +134,7 @@ class ErrorHandler {
 				$e->getTraceAsString()
 			);
 
-			self::$_bailExceptionRendering = true;
+			static::$_bailExceptionRendering = true;
 			trigger_error($message, E_USER_ERROR);
 		}
 	}
@@ -156,7 +156,7 @@ class ErrorHandler {
 				$message .= "\nException Attributes: " . var_export($exception->getAttributes(), true);
 			}
 		}
-		if (php_sapi_name() !== 'cli') {
+		if (PHP_SAPI !== 'cli') {
 			$request = Router::getRequest();
 			if ($request) {
 				$message .= "\nRequest URL: " . $request->here();
@@ -169,11 +169,11 @@ class ErrorHandler {
 /**
  * Handles exception logging
  *
- * @param Exception $exception The exception to render.
+ * @param Exception|ParseError $exception The exception to render.
  * @param array $config An array of configuration for logging.
  * @return bool
  */
-	protected static function _log(Exception $exception, $config) {
+	protected static function _log($exception, $config) {
 		if (empty($config['log'])) {
 			return false;
 		}
@@ -185,7 +185,7 @@ class ErrorHandler {
 				}
 			}
 		}
-		return CakeLog::write(LOG_ERR, self::_getMessage($exception));
+		return CakeLog::write(LOG_ERR, static::_getMessage($exception));
 	}
 
 /**
@@ -207,10 +207,9 @@ class ErrorHandler {
 		if (error_reporting() === 0) {
 			return false;
 		}
-		$errorConfig = Configure::read('Error');
-		list($error, $log) = self::mapErrorCode($code);
+		list($error, $log) = static::mapErrorCode($code);
 		if ($log === LOG_ERR) {
-			return self::handleFatalError($code, $description, $file, $line);
+			return static::handleFatalError($code, $description, $file, $line);
 		}
 
 		$debug = Configure::read('debug');
@@ -228,11 +227,7 @@ class ErrorHandler {
 			);
 			return Debugger::getInstance()->outputError($data);
 		}
-		$message = $error . ' (' . $code . '): ' . $description . ' in [' . $file . ', line ' . $line . ']';
-		if (!empty($errorConfig['trace'])) {
-			$trace = Debugger::trace(array('start' => 1, 'format' => 'log'));
-			$message .= "\nTrace:\n" . $trace . "\n";
-		}
+		$message = static::_getErrorMessage($error, $code, $description, $file, $line);
 		return CakeLog::write($log, $message);
 	}
 
@@ -266,8 +261,8 @@ class ErrorHandler {
 			$exception = new InternalErrorException();
 		}
 
-		if (self::$_bailExceptionRendering) {
-			self::$_bailExceptionRendering = false;
+		if (static::$_bailExceptionRendering) {
+			static::$_bailExceptionRendering = false;
 			throw $exception;
 		}
 
@@ -318,4 +313,33 @@ class ErrorHandler {
 		return array($error, $log);
 	}
 
+/**
+ * Generate the string to use to describe the error.
+ *
+ * @param string $error The error type (e.g. "Warning")
+ * @param int $code Code of error
+ * @param string $description Error description
+ * @param string $file File on which error occurred
+ * @param int $line Line that triggered the error
+ * @return string
+ */
+	protected static function _getErrorMessage($error, $code, $description, $file, $line) {
+		$errorConfig = Configure::read('Error');
+		$message = $error . ' (' . $code . '): ' . $description . ' in [' . $file . ', line ' . $line . ']';
+		if (!empty($errorConfig['trace'])) {
+			// https://bugs.php.net/bug.php?id=65322
+			if (version_compare(PHP_VERSION, '5.4.21', '<')) {
+				if (!class_exists('Debugger')) {
+					App::load('Debugger');
+				}
+				if (!class_exists('CakeText')) {
+					App::uses('CakeText', 'Utility');
+					App::load('CakeText');
+				}
+			}
+			$trace = Debugger::trace(array('start' => 1, 'format' => 'log'));
+			$message .= "\nTrace:\n" . $trace . "\n";
+		}
+		return $message;
+	}
 }

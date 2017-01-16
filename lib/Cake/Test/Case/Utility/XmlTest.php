@@ -175,7 +175,7 @@ class XmlTest extends CakeTestCase {
  */
 	public function testBuildFromFileWhenDisabled() {
 		$xml = CAKE . 'Test' . DS . 'Fixture' . DS . 'sample.xml';
-		$obj = Xml::build($xml, array('readFile' => false));
+		Xml::build($xml, array('readFile' => false));
 	}
 
 /**
@@ -186,7 +186,7 @@ class XmlTest extends CakeTestCase {
  */
 	public function testBuildFromUrlWhenDisabled() {
 		$xml = 'http://www.google.com';
-		$obj = Xml::build($xml, array('readFile' => false));
+		Xml::build($xml, array('readFile' => false));
 	}
 
 /**
@@ -222,7 +222,7 @@ class XmlTest extends CakeTestCase {
  */
 	public function testBuildInvalidDataSimpleXml() {
 		$input = '<derp';
-		$xml = Xml::build($input, array('return' => 'simplexml'));
+		Xml::build($input, array('return' => 'simplexml'));
 	}
 
 /**
@@ -395,7 +395,14 @@ XML;
 		$obj = Xml::fromArray($xml, 'attributes');
 		$xmlText = '<' . '?xml version="1.0" encoding="UTF-8"?><tags><tag id="1">defect</tag></tags>';
 		$this->assertXmlStringEqualsXmlString($xmlText, $obj->asXML());
+	}
 
+/**
+ * Test fromArray() with zero values.
+ *
+ * @return void
+ */
+	public function testFromArrayZeroValue() {
 		$xml = array(
 			'tag' => array(
 				'@' => 0,
@@ -406,6 +413,16 @@ XML;
 		$xmlText = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
 <tag test="A test">0</tag>
+XML;
+		$this->assertXmlStringEqualsXmlString($xmlText, $obj->asXML());
+
+		$xml = array(
+			'tag' => array('0')
+		);
+		$obj = Xml::fromArray($xml);
+		$xmlText = <<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<tag>0</tag>
 XML;
 		$this->assertXmlStringEqualsXmlString($xmlText, $obj->asXML());
 	}

@@ -267,10 +267,19 @@ class HttpResponseTest extends CakeTestCase {
 		);
 		$this->assertEquals($expected, $r);
 
-		$header = "Multi-Line: I am a \r\nmulti line\t\r\nfield value.\r\nSingle-Line: I am not\r\n";
+		$header = "Date:Sat, 07 Apr 2007 10:10:25 GMT\r\nLink: \r\nX-Total-Count: 19\r\n";
 		$r = $this->HttpResponse->parseHeader($header);
 		$expected = array(
-			'Multi-Line' => "I am a\r\nmulti line\r\nfield value.",
+			'Date' => 'Sat, 07 Apr 2007 10:10:25 GMT',
+			'Link' => '',
+			'X-Total-Count' => '19',
+		);
+		$this->assertEquals($expected, $r);
+
+		$header = "Multi-Line: I am a\r\n multi line \r\n\tfield value.\r\nSingle-Line: I am not\r\n";
+		$r = $this->HttpResponse->parseHeader($header);
+		$expected = array(
+			'Multi-Line' => "I am a multi line field value.",
 			'Single-Line' => 'I am not'
 		);
 		$this->assertEquals($expected, $r);
@@ -471,7 +480,9 @@ class HttpResponseTest extends CakeTestCase {
 			'Set-Cookie' => array(
 				'foo=bar',
 				'people=jim,jack,johnny";";Path=/accounts',
-				'google=not=nice'
+				'google=not=nice',
+				'1271; domain=.example.com; expires=Fri, 04-Nov-2016 12:50:26 GMT; path=/',
+				'cakephp=great; Secure'
 			),
 			'Transfer-Encoding' => 'chunked',
 			'Date' => 'Sun, 18 Nov 2007 18:57:42 GMT',
@@ -487,17 +498,24 @@ class HttpResponseTest extends CakeTestCase {
 			),
 			'google' => array(
 				'value' => 'not=nice',
+			),
+			'' => array(
+				'value' => '1271',
+				'domain' => '.example.com',
+				'expires' => 'Fri, 04-Nov-2016 12:50:26 GMT',
+				'path' => '/'
+			),
+			'cakephp' => array(
+				'value' => 'great',
+				'secure' => true,
 			)
 		);
 		$this->assertEquals($expected, $cookies);
 
-		$header['Set-Cookie'][] = 'cakephp=great; Secure';
-		$expected['cakephp'] = array('value' => 'great', 'secure' => true);
-		$cookies = $this->HttpResponse->parseCookies($header);
-		$this->assertEquals($expected, $cookies);
-
 		$header['Set-Cookie'] = 'foo=bar';
-		unset($expected['people'], $expected['cakephp'], $expected['google']);
+		$expected = array(
+			'foo' => array('value' => 'bar')
+		);
 		$cookies = $this->HttpResponse->parseCookies($header);
 		$this->assertEquals($expected, $cookies);
 	}

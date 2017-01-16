@@ -41,7 +41,7 @@ class ClientsController extends AppController {
      */
     public $helpers = array('Html', 'Form', 'Js');
     public $components = array('Session', 'Paginator', 'RequestHandler');
-    public $uses = array('Computer', 'Dashboard', 'Client', 'Ticket', 'HealthCheck');
+    public $uses = array('Computer', 'Dashboard', 'Client', 'Ticket');
 
     //This is the default page when loading this controller/model/view
     public function index() {

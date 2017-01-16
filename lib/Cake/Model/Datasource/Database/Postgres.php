@@ -68,7 +68,8 @@ class Postgres extends DboSource {
 		'binary' => array('name' => 'bytea'),
 		'boolean' => array('name' => 'boolean'),
 		'number' => array('name' => 'numeric'),
-		'inet' => array('name' => 'inet')
+		'inet' => array('name' => 'inet'),
+		'uuid' => array('name' => 'uuid')
 	);
 
 /**
@@ -216,6 +217,7 @@ class Postgres extends DboSource {
 						$length = null;
 						$type = 'text';
 					} elseif ($c->type === 'uuid') {
+						$type = 'uuid';
 						$length = 36;
 					} else {
 						$length = (int)$c->oct_length;
@@ -241,7 +243,10 @@ class Postgres extends DboSource {
 				if ($model instanceof Model) {
 					if ($c->name === $model->primaryKey) {
 						$fields[$c->name]['key'] = 'primary';
-						if ($fields[$c->name]['type'] !== 'string') {
+						if (
+							$fields[$c->name]['type'] !== 'string' &&
+							$fields[$c->name]['type'] !== 'uuid'
+						) {
 							$fields[$c->name]['length'] = 11;
 						}
 					}
@@ -698,8 +703,10 @@ class Postgres extends DboSource {
 				return 'biginteger';
 			case (strpos($col, 'int') !== false && $col !== 'interval'):
 				return 'integer';
-			case (strpos($col, 'char') !== false || $col === 'uuid'):
+			case (strpos($col, 'char') !== false):
 				return 'string';
+			case (strpos($col, 'uuid') !== false):
+				return 'uuid';
 			case (strpos($col, 'text') !== false):
 				return 'text';
 			case (strpos($col, 'bytea') !== false):
@@ -720,19 +727,14 @@ class Postgres extends DboSource {
  * @return int An integer representing the length of the column
  */
 	public function length($real) {
-		$col = str_replace(array(')', 'unsigned'), '', $real);
-		$limit = null;
-
-		if (strpos($col, '(') !== false) {
-			list($col, $limit) = explode('(', $col);
+		$col = $real;
+		if (strpos($real, '(') !== false) {
+			list($col, $limit) = explode('(', $real);
 		}
 		if ($col === 'uuid') {
 			return 36;
 		}
-		if ($limit) {
-			return (int)$limit;
-		}
-		return null;
+		return parent::length($real);
 	}
 
 /**
@@ -920,6 +922,17 @@ class Postgres extends DboSource {
 			$join[] = $out;
 		}
 		return $join;
+	}
+
+/**
+ * {@inheritDoc}
+ */
+	public function value($data, $column = null, $null = true) {
+		$value = parent::value($data, $column, $null);
+		if ($column === 'uuid' && is_scalar($data) && $data === '') {
+			return 'NULL';
+		}
+		return $value;
 	}
 
 /**

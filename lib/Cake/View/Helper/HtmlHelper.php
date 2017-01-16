@@ -49,6 +49,7 @@ class HtmlHelper extends AppHelper {
 		'link' => '<a href="%s"%s>%s</a>',
 		'mailto' => '<a href="mailto:%s"%s>%s</a>',
 		'form' => '<form action="%s"%s>',
+		'formwithoutaction' => '<form%s>',
 		'formend' => '</form>',
 		'input' => '<input name="%s"%s/>',
 		'textarea' => '<textarea name="%s"%s>%s</textarea>',
@@ -174,7 +175,7 @@ class HtmlHelper extends AppHelper {
  * @param string $name Text for link
  * @param string $link URL for link (if empty it won't be a link)
  * @param string|array $options Link attributes e.g. array('id' => 'selected')
- * @return $this
+ * @return self
  * @see HtmlHelper::link() for details on $options that can be used.
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/html.html#creating-breadcrumb-trails-with-htmlhelper
  */
@@ -323,7 +324,7 @@ class HtmlHelper extends AppHelper {
  * - `escapeTitle` Set to false to disable escaping of title. (Takes precedence over value of `escape`)
  * - `confirm` JavaScript confirmation message.
  *
- * @param string $title The content to be wrapped by <a> tags.
+ * @param string $title The content to be wrapped by `<a>` tags.
  * @param string|array $url Cake-relative URL or array of URL parameters, or external URL (starts with http://)
  * @param array $options Array of options and HTML attributes.
  * @param string $confirmMessage JavaScript confirmation message. This
@@ -411,7 +412,7 @@ class HtmlHelper extends AppHelper {
  *   CSS stylesheets. If `$path` is prefixed with '/', the path will be relative to the webroot
  *   of your application. Otherwise, the path will be relative to your CSS path, usually webroot/css.
  * @param array $options Array of options and HTML arguments.
- * @return string CSS <link /> or <style /> tag, depending on the type of link.
+ * @return string CSS `<link />` or `<style />` tag, depending on the type of link.
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/html.html#HtmlHelper::css
  */
 	public function css($path, $options = array()) {
@@ -446,7 +447,7 @@ class HtmlHelper extends AppHelper {
 			if (empty($options['block'])) {
 				return $out . "\n";
 			}
-			return;
+			return '';
 		}
 
 		if ($options['once'] && isset($this->_includedAssets[__METHOD__][$path])) {
@@ -579,7 +580,7 @@ class HtmlHelper extends AppHelper {
  *
  * ### Options
  *
- * - `safe` (boolean) Whether or not the $script should be wrapped in <![CDATA[ ]]>
+ * - `safe` (boolean) Whether or not the $script should be wrapped in `<![CDATA[ ]]>`
  * - `inline` (boolean) Whether or not the $script should be added to
  *   `$scripts_for_layout` / `script` block, or output inline. (Deprecated, use `block` instead)
  * - `block` Which block you want this script block appended to.

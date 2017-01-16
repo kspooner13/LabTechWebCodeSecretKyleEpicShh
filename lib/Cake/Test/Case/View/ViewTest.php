@@ -220,7 +220,7 @@ class TestBeforeAfterHelper extends Helper {
 }
 
 /**
- * Class TestObjectWithToString
+ * TestObjectWithToString
  *
  * An object with the magic method __toString() for testing with view blocks.
  */
@@ -233,7 +233,7 @@ class TestObjectWithToString {
 }
 
 /**
- * Class TestObjectWithoutToString
+ * TestObjectWithoutToString
  *
  * An object without the magic method __toString() for testing with view blocks.
  */
@@ -241,7 +241,7 @@ class TestObjectWithoutToString {
 }
 
 /**
- * Class TestViewEventListener
+ * TestViewEventListener
  *
  * An event listener to test cakePHP events
  */
@@ -393,6 +393,26 @@ class ViewTest extends CakeTestCase {
 		$expected = CAKE . 'Test' . DS . 'test_app' . DS . 'View' . DS . 'Layouts' . DS . 'Emails' . DS . 'html' . DS . 'default.ctp';
 		$result = $ThemeView->getLayoutFileName();
 		$this->assertEquals($expected, $result);
+	}
+
+/**
+ * Test that plugin files with absolute file paths are scoped
+ * to the plugin and do now allow any file path.
+ *
+ * @expectedException MissingViewException
+ * @return void
+ */
+	public function testPluginGetTemplateAbsoluteFail() {
+		$this->Controller->viewPath = 'Pages';
+		$this->Controller->action = 'display';
+		$this->Controller->params['pass'] = array('home');
+
+		$view = new TestThemeView($this->Controller);
+		$expected = CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS . 'Company' . DS . 'TestPluginThree' . DS . 'View' . DS . 'Pages' . DS . 'index.ctp';
+		$result = $view->getViewFileName('Company/TestPluginThree./Pages/index');
+		$this->assertPathEquals($expected, $result);
+
+		$view->getViewFileName('Company/TestPluginThree./etc/passwd');
 	}
 
 /**
@@ -1440,7 +1460,6 @@ class ViewTest extends CakeTestCase {
  * Test setting a block's content to null
  *
  * @return void
- * @link https://cakephp.lighthouseapp.com/projects/42648/tickets/3938-this-redirectthis-auth-redirecturl-broken
  */
 	public function testBlockSetNull() {
 		$this->View->assign('testWithNull', null);
