@@ -25,7 +25,10 @@
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
 	Router::connect('/', array('controller' => 'dashboards', 'action' => 'index'));
+	Router::connect('/computers/', array('controller' => 'computers', 'action' => 'index'));
+	Router::connect('/computers/:id', array('controller' => 'computers' , 'action' => 'computer', 'id'=> '[0-9]+'));
 	Router::parseExtensions('json');
+	
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

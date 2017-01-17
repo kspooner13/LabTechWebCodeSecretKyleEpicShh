@@ -148,7 +148,7 @@
                             <ol class="breadcrumb">
                                 <li><a href="#">Acumen IT</a></li>
                                 <li><a href="#">Main Office</a></li>
-                                <li><a href="#"><?php echo $computer['Computer']['Name']; ?></a></li>
+                                <li><a href="#">AITTWLT</a></li>
                                 <li class="active">Dashboard</li>
                             </ol>
                             <!-- Content Panel -->
@@ -376,27 +376,54 @@
                                                     <h3 class="panel-title">Drives</h3>
                                                 </div>
                                                 <div class="panel-body fleet-issues">
+                                                <?php 
+
+                                               // var_dump($drive);
+                                                            foreach($drive as $dr){
+                                                                if(($dr['Drive']['Free'] != 0) && ($dr['Drive']['FileSystem'] != 'UKNFS') && ($dr['Drive']['FileSystem'] != 'CDFS')){    
+                                                    ?>
                                                     <div class="row">
                                                         <div class="col-sm-4 text-center">
+                                                        <div>
                                                             <?php
-                                                            $free = $drive[0]['drives']['Free'] / $drive[0]['drives']['Size']; 
+                                                            $drsize = $dr['Drive']['Size'];
+                                                            $drfree = $dr['Drive']['Free'];
+
+                                                            if (($drsize / 1024) > 1024){
+                                                                $drtag = "TB";
+                                                                $drfree = $drfree / 1024;
+                                                                $drsize = $drsize / 1024;
+                                                            }
+                                                            else
+                                                            {
+                                                                $drtag = "GB";
+                                                            }
+                                                            $free =  $drfree / $drsize ;  
                                                             $free = round($free * 100, 2);
                                                             
                                                             ?>
-                                                            <h1 class="<?php if ($free < 50) { echo 'success'; } else if ($free > 50 && $free < 75) { echo 'warning'; } else { echo 'danger'; } ?>">
-                                                               <?php echo $free; ?> % 
-                                                            </h1>
-                                                            <span class="caption"><?php echo 'Drive '; echo $drive[0]['drives']['Letter']; ?>:</span>
+                                                             <span class="caption"><?php echo 'Drive '; echo $dr['Drive']['Letter']; ?>:
+                                                             </div class="caption">
+                                                             <span class="success">
+                                                            <?php
+                                                            if ($dr['Drive']['VolumeName']=="System"){echo " [SYSTEM]";}
+                                                            ?>
+                                                            </span>
                                                         </div>
                                                         <div class="col-sm-4 text-center">
-                                                            <h1 class="success">0</h1>
-                                                            <span class="caption">Overdue</span>
+                                                            <div class="success"><?php echo round($drfree /1024,2); ?> / <?php echo round($drsize /1024,2); ?></div>
+                                                            <span class="caption">Free / Size <span class="text-small warning">(<?php echo $drtag;?>)</span></span>
                                                         </div>
                                                         <div class="col-sm-4 text-center">
-                                                            <h1 class="info">3</h1>
-                                                            <span class="caption">Resolved</span>
+                                                            <div class="<?php 
+                                                            if ($free < 50) { echo 'success'; } else if ($free > 50 && $free < 75) { echo 'warning'; } else { echo 'danger'; }?>">
+                                                               <?php echo $free; ?> %
+                                                            </div>
+                                                            <span class="caption">Drive Usage</span>
                                                         </div>
                                                     </div>
+                                                    <hr>
+                                                    <?php } } ?>
                                                 </div>
                                             </div>
 
@@ -465,12 +492,13 @@
                                                         <div class="panel-body">
                                                         <table class="table table-list text-small">
                                                         <tbody style="font-size: 11px;">
-														<?php foreach ($command as $compCommands): ?>
+                                                    
+                             							<?php foreach ($compCommands as $command): ?>
                                                             <tr>
-                                                                <td class="text-muted text-right col-md-3"><?php echo $command['h_commands']['User']; ?></td>
-                                                                <td>Install Webroot</td>
-                                                                <td class="text-success">Success!</td>
-                                                                <td>12/12/15 8:03 PM </td>
+                                                                <td class="text-muted text-right col-md-3"><?php echo $command['h']['user']; ?></td>
+                                                                <td class="text-muted text-right col-md-3"><?php echo $command['h']['status']; ?></td>
+                                                                <td class="text-right col-md-3 text-success"><?php echo $command['r']['name']; ?></td>
+                                                                <td class="text-muted text-right col-md-3"><?php echo $command['h']['DateFinished']; ?></td>
                                                             </tr>
 															<?php endforeach; ?>
                                                             

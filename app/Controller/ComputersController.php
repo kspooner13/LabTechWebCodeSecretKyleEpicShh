@@ -56,8 +56,8 @@ class ComputersController extends AppController {
 		}
                 
                 
-        public function index() {
-            
+   public function index() {
+   
             if (!empty($this->Session->read('database'))) {
             $this->Computer->setDataSource($this->Session->read('database'));
             
@@ -98,17 +98,18 @@ class ComputersController extends AppController {
             'order' => array('computers.computerID' => 'asc'));
         $computer = $this->paginate('Computer');
         $this->set(compact('computer', $computer));
-            
-        }        
+   
+    }
         
-        
-        
-        public function computer($computerid) {
+
+
+        public function computer() {
+            $computerid = $this->request->params['id'];
         if (!($computer = $this->Computer->find('first', array(
             'joins' => array(
                 array(
                     'table' => 'usersec',
-                    'alias' => 'usersec',
+                    'alias' => 'usersec',   
                     'type' => 'INNER',
                     'conditions' => array(
                         'usersec.computerid = computer.computerid'
@@ -129,8 +130,17 @@ class ComputersController extends AppController {
             )))) {
             throw new NotFoundException(__('ComputerID is not in the Database'));
         }
+        //setup drive conditions
 
-        $drive = $this->Drive->query("SELECT * FROM drives WHERE computerid ='" . $computerid . "' AND FileSystem != 'UKNFS' AND FileSystem != 'CDFS' AND FileSystem != 'DVDFS' AND SmartStatus !='%USB%' AND Letter = 'C'" );
+        $drivecondition = 
+       
+        //setup table conditions
+        $ticketcondition = array( 'conditions' => array( 'Ticket.ComputerID = "'.$computerid.'"')
+            );
+  
+        $drive =  $this->getComputerDrivebyID($computerid);
+        $ticket;// =  $this->getBaseInfo("Ticket", $ticketcondition,"");
+  
         $ticketOpen = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status' => '1')));
         $ticketClosed = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status >=' => '4')));
         $ticketStalled = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status' => '3')));
@@ -140,23 +150,35 @@ class ComputersController extends AppController {
 		$this->set(compact('compCommands',$compCommands));
         $this->set(compact('ticketStalled'));
         $this->set(compact('ticketClosed'));
+        $this->set(compact('ticket'));
         $this->set(compact('ticketOpen'));
         $this->set(compact('drive'));
         $this->set(compact('computer'));
 
 
-
-
-
-
-
-
-
-
-
-
     }
-        
-        
+
+         function getComputerDrivebyID($computerid){
+          if(!$baseinfo = $this->Drive->find('all',
+          array( 'conditions' => array( 'Drive.ComputerID = "'.$computerid.'"', 'SmartStatus != "%USB%"')
+            )
+            ));
+        return $baseinfo;
+        }
+
+        function driveSize($size){
+        $drSize = $size / 1024;
+        if($size / 1024 > 1024){
+            $driveSize['DriveSize'] = round($drSize/1024,2);
+            $driveSize['DriveTag'] = "TB";
+        }
+        else
+        {
+            $driveSize['Size'] = round($drSize, 2);
+            $driveSize['Tag'] = "TB";
+        }
+       return $driveSize;
+    }
+   
 
 }
