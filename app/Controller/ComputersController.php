@@ -130,15 +130,30 @@ class ComputersController extends AppController {
             )))) {
             throw new NotFoundException(__('ComputerID is not in the Database'));
         }
+        //GET DRIVE DATA
+        $drive =  $this->getComputerDrivebyID($computerid);
         //setup drive conditions
 
-        $drivecondition = 
-       
+        //$drivecondition = 
+        
+    /**      foreach($drive as $dr){
+            if(($dr['Drive']['Free'] != 0) && ($dr['Drive']['FileSystem'] != 'UKNFS') && ($dr['Drive']['FileSystem'] != 'CDFS')){    
+                    //var_dump($dr['Drive']['Size']);
+    //Check this line                driveSize($dr['Drive']['Size']); 
+                       //$driveData[0]['Free'] = driveSize($dr['Drive']['Free']); 
+                        
+                    }
+                }                         
+
+
+        var_dump($test);
+
+**/
         //setup table conditions
         $ticketcondition = array( 'conditions' => array( 'Ticket.ComputerID = "'.$computerid.'"')
             );
   
-        $drive =  $this->getComputerDrivebyID($computerid);
+        
         $ticket;// =  $this->getBaseInfo("Ticket", $ticketcondition,"");
   
         $ticketOpen = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status' => '1')));
@@ -166,18 +181,22 @@ class ComputersController extends AppController {
         return $baseinfo;
         }
 
-        function driveSize($size){
+
+       function driveSize($size){
+            var_dump($size);
         $drSize = $size / 1024;
         if($size / 1024 > 1024){
-            $driveSize['DriveSize'] = round($drSize/1024,2);
-            $driveSize['DriveTag'] = "TB";
+            $driveSize['Size'] = round($drSize/1024,2);
+            $driveSize['Tag'] = "TB";
         }
         else
         {
             $driveSize['Size'] = round($drSize, 2);
             $driveSize['Tag'] = "TB";
         }
+       var_dump($driveSize);
        return $driveSize;
+
     }
    
 
