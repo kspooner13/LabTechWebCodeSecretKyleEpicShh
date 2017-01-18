@@ -35,25 +35,25 @@ class ComputersController extends AppController {
  *
  * @return void
  * @throws NotFoundException When the view file could not be found
- *	or MissingViewException in debug mode.
+ *  or MissingViewException in debug mode.
  */
-	
-	
-	public $helpers = array('Html', 'Form');
-	
-	public $components = array('Session', 'Paginator');
+    
+    
+    public $helpers = array('Html', 'Form');
+    
+    public $components = array('Session', 'Paginator');
         
     public $uses = array('Drive', 'Computer', 'Client', 'Ticket');
-	
-	public $paginate = array('limit' => 15);
-	
-	
-	//This is the default page when loading this controller/model/view
-	
-	public function countTotal() {
-		$this->Computer->find('count');
-		$this->set('computer');
-		}
+    
+    public $paginate = array('limit' => 15);
+    
+    
+    //This is the default page when loading this controller/model/view
+    
+    public function countTotal() {
+        $this->Computer->find('count');
+        $this->set('computer');
+        }
                 
                 
    public function index() {
@@ -130,29 +130,46 @@ class ComputersController extends AppController {
             )))) {
             throw new NotFoundException(__('ComputerID is not in the Database'));
         }
+        //GET DRIVE DATA
+        $drive =  $this->getComputerDrivebyID($computerid);
         //setup drive conditions
+        
+        $count = 0 ;
 
-        $drivecondition = 
-       
+         foreach($drive as $dr){
+            if(($dr['Drive']['Free'] != 0) && ($dr['Drive']['FileSystem'] != 'UKNFS') && ($dr['Drive']['FileSystem'] != 'CDFS')){    
+
+                   $driveData[$count]["Free"] = $this->driveSize($dr['Drive']['Free'], "number");
+                   $driveData[$count]["Size"] = $this->driveSize($dr['Drive']['Size'], "number");
+                   $driveData[$count]["Tag"] = $this->driveSize($dr['Drive']['Size'], "word"); 
+                   $driveData[$count]["Letter"] = $dr['Drive']['Letter'];
+                   $driveData[$count]["VolumeName"] = $dr['Drive']['VolumeName'];
+                   $driveData[$count]["BackupFlag"] = $dr['Drive']['BackupFlag'];
+                   $driveData[$count]["Model"] = $dr['Drive']['Model'];
+                   $driveData[$count]["FileSystem"] = $dr['Drive']['FileSystem'];
+                   $driveData[$count]["Model"] = $dr['Drive']['Model']; 
+                   $count = $count + 1;  
+                    }
+                }                         
         //setup table conditions
         $ticketcondition = array( 'conditions' => array( 'Ticket.ComputerID = "'.$computerid.'"')
             );
   
-        $drive =  $this->getComputerDrivebyID($computerid);
+        
         $ticket;// =  $this->getBaseInfo("Ticket", $ticketcondition,"");
   
         $ticketOpen = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status' => '1')));
         $ticketClosed = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status >=' => '4')));
         $ticketStalled = $this->Ticket->find('count', array('conditions' => array('ticket.ComputerID' => $computerid, 'ticket.Status' => '3')));
-		$compCommands = $this->Computer->query('SELECT h.status, h.user, r.name, h.DateFinished  FROM h_commands h
-												INNER JOIN remotecommands r ON h.command = r.id
-												WHERE computerid = '.$computerid.' LIMIT 5');
-		$this->set(compact('compCommands',$compCommands));
+        $compCommands = $this->Computer->query('SELECT h.status, h.user, r.name, h.DateFinished  FROM h_commands h
+                                                INNER JOIN remotecommands r ON h.command = r.id
+                                                WHERE computerid = '.$computerid.' LIMIT 5');
+        $this->set(compact('compCommands',$compCommands));
         $this->set(compact('ticketStalled'));
         $this->set(compact('ticketClosed'));
         $this->set(compact('ticket'));
         $this->set(compact('ticketOpen'));
-        $this->set(compact('drive'));
+        $this->set(compact('driveData'));
         $this->set(compact('computer'));
 
 
@@ -166,18 +183,31 @@ class ComputersController extends AppController {
         return $baseinfo;
         }
 
-        function driveSize($size){
+
+       function driveSize($size, $type){
+
         $drSize = $size / 1024;
         if($size / 1024 > 1024){
-            $driveSize['DriveSize'] = round($drSize/1024,2);
-            $driveSize['DriveTag'] = "TB";
+            if ($type == "number"){
+                $driveSize = round($drSize/1024,2);
+            }
+            else
+            {
+                $driveSize = "TB";
+            }
         }
         else
         {
-            $driveSize['Size'] = round($drSize, 2);
-            $driveSize['Tag'] = "TB";
+            if ($type == "number"){
+                $driveSize = round($drSize, 2);
+            }
+            else
+            {
+                $driveSize = "GB";
+            }
         }
        return $driveSize;
+
     }
    
 

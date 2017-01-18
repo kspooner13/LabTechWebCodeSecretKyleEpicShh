@@ -378,52 +378,35 @@
                                                 <div class="panel-body fleet-issues">
                                                 <?php 
 
-                                               // var_dump($drive);
-                                                            foreach($drive as $dr){
-                                                                if(($dr['Drive']['Free'] != 0) && ($dr['Drive']['FileSystem'] != 'UKNFS') && ($dr['Drive']['FileSystem'] != 'CDFS')){    
+                                                            foreach($driveData as $dr){
+                                                                
                                                     ?>
                                                     <div class="row">
                                                         <div class="col-sm-4 text-center">
                                                         <div>
-                                                            <?php
-                                                            $drsize = $dr['Drive']['Size'];
-                                                            $drfree = $dr['Drive']['Free'];
-
-                                                            if (($drsize / 1024) > 1024){
-                                                                $drtag = "TB";
-                                                                $drfree = $drfree / 1024;
-                                                                $drsize = $drsize / 1024;
-                                                            }
-                                                            else
-                                                            {
-                                                                $drtag = "GB";
-                                                            }
-                                                            $free =  $drfree / $drsize ;  
-                                                            $free = round($free * 100, 2);
                                                             
-                                                            ?>
-                                                             <span class="caption"><?php echo 'Drive '; echo $dr['Drive']['Letter']; ?>:
+                                                             <span class="caption"><?php echo 'Drive '; echo $dr['Letter']; ?>:
                                                              </div class="caption">
                                                              <span class="success">
                                                             <?php
-                                                            if ($dr['Drive']['VolumeName']=="System"){echo " [SYSTEM]";}
+                                                            if ($dr['VolumeName']=="System"){echo " [SYSTEM]";}
                                                             ?>
                                                             </span>
                                                         </div>
                                                         <div class="col-sm-4 text-center">
-                                                            <div class="success"><?php echo round($drfree /1024,2); ?> / <?php echo round($drsize /1024,2); ?></div>
-                                                            <span class="caption">Free / Size <span class="text-small warning">(<?php echo $drtag;?>)</span></span>
+                                                            <div class="success"><?php echo $dr["Free"]; ?> / <?php echo $dr["Size"]; ?></div>
+                                                            <span class="caption">Free / Size <span class="text-small warning">(<?php echo $dr["Tag"];?>)</span></span>
                                                         </div>
                                                         <div class="col-sm-4 text-center">
                                                             <div class="<?php 
-                                                            if ($free < 50) { echo 'success'; } else if ($free > 50 && $free < 75) { echo 'warning'; } else { echo 'danger'; }?>">
-                                                               <?php echo $free; ?> %
+                                                            if ($dr['Free'] < 50) { echo 'success'; } else if ($dr['Free'] > 50 && $dr['Free'] < 75) { echo 'warning'; } else { echo 'danger'; }?>">
+                                                               <?php echo round(($dr["Free"] * 100)/ $dr["Size"],0); ?> %
                                                             </div>
                                                             <span class="caption">Drive Usage</span>
                                                         </div>
                                                     </div>
                                                     <hr>
-                                                    <?php } } ?>
+                                                    <?php }  ?>
                                                 </div>
                                             </div>
 
