@@ -1,0 +1,10 @@
+/node_modules
+/demo
+/doc
+/test
+/test*.html
+/index.phpl
+/mode/*/*test.js
+/mode/*/*.html
+/mode/index.phpl
+.*

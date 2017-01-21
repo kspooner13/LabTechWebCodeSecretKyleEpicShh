@@ -1,57 +1,59 @@
+      <div class="login-container">
 
-<script type="text/javascript">
-  jQuery(document).ready(function($){
+        <div class="page-content">
 
-    var min_height = jQuery(window).height();
-    jQuery('div.login-page-container').css('min-height', min_height);
-    jQuery('div.login-page-container').css('line-height', min_height + 'px');
-
-    //$(".inner", ".boxed").fadeIn(500);
-  });
-</script>
-
-      <div class="login_wrapper">
-
-        <div class="login-page-container">
-
-          <div class="boxed animated flipInY login-box">
-            <div class="inner">
+          <div class="animated flipInY">
+            <div class="panel panel-body login-form border-left border-left-lg border-left-info">
 			
-			<?php echo $this->Form->create('user', array('inputDefaults' => array('label' => false))); ?>
-	<fieldset>
-              <div class="login-title text-center">
-                <h4>Login to your account</h4>
+			     <?php echo $this->Form->create('user', array('inputDefaults' => array('label' => false))); ?>
+	         <fieldset>
+              <div class="text-center m-b-20">
+                <div class='icon-object bg-info'><i class='icon-user'></i></div>
+                <h5>Please sign-in to your account</h5>
                 
               </div>
-            <center> <DIV class="notification-error"><?php echo $this->Session->flash(); ?></div> </center><br>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            <center> <div class="notification-error bg-warning"><?php echo $this->Session->flash(); ?></div> </center><br>
+
+
+              <div class="form-group has-feedback has-feedback-left input-group">
+                <span class='input-group-addon'><i class='icon-user'></i></span>
                 <?php echo $this->Form->input('username', array('class' => 'form-control')); ?>
               </div>
 
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <?php echo $this->Form->input('password', array('class' => 'form-control')); ?>
+              <div class="form-group has-feedback has-feedback-left input-group">
+                <span class='input-group-addon'><i class='icon-key'></i></span>
+              <?php echo $this->Form->input('password', array('class' => 'form-control')); ?>
               </div>
+
+
             
             <div class='input-group' style='padding-left: 40px; padding-right: 40px;'>
                     Select Server:   <?php echo $this->Form->select('database', $dblist, array('class' => 'select input-sm', 'empty' => false)); ?>
             </div>
+            <div class='form-group'>
+              <button type="submit" id='submit' class="btn btn-info btn-labeled btn-labeled-right btn-block"><b><i class="icon-enter"></i></b> Sign in</button>
+            </div>
 
-            <input type="submit" class="btn btn-success center" value="Login to the System" name="login" style="width: 145px;" id="submit" />
-
+            <div class='form-group'>
+              <button type="button" id='submit' class="btn btn-success btn-labeled btn-labeled-right btn-block"><b><i class="icon-envelope"></i></b> Contact Administrator</button>
+            </div>
               <p class="footer">Please see your LabTech Adminstrator<br/>for any account issues.</p>
-</fieldset>
-                
-                <p class="footer"></p>
-                <div> 
+        </fieldset>
+        </div>
+        <?php echo $this->Form->end(); ?>
+
+        <div class="panel panel-body login-form border-left border-left-lg border-left-info"> 
                 
                 If you are sent here to establish a remote support session, please input your email below.
                 <br><br>
                     <div class="input-group">
+                    <span class='input-group-addon'><i class='icon-envelope'></i></span>
                         <input type="email" class="form-control" value="me@example.com" style="width: 250px;" />
-                        <input type="submit" class="btn btn-success center" value="Begin" name="email" />
+                        
                     </div>
+            <div class='form-group'>
+              <button type="submit" id='submit' class="btn btn-grey btn-labeled btn-labeled-right btn-block disabled"><b><i class="icon-enter"></i></b>Begin</button>
+            </div>
                 
                 </div>
             </div>

@@ -1,0 +1,11 @@
+.main-nav {background-color: #90A4AE;}
+.main-nav .navbar-left {background-color: #78909C;}
+.main-nav .navbar-left .logo {background: url('../../assets/images/logo-regentgrey.png') no-repeat 0 0;}
+.main-nav .bubble{background-color: #78909C;}
+.main-nav .top-search-bar{background-color: #78909C;}
+.conversation-row.odd .conversation-list > li{background-color: #78909C !important;}
+.conversation-row.odd .conversation-list > li:after{border-right-color: #78909C !important;}
+@media screen and (max-width: 768px) {
+	.main-nav{background-color: #78909C!important;}	
+}
+.user-profile-container {background: linear-gradient(rgba(120,144,156, 0.4), rgba(120,144,156, 0.4)), url(../../assets/images/material-menu.jpg) no-repeat bottom right !important;}

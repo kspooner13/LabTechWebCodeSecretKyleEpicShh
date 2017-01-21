@@ -1,0 +1,11 @@
+.main-nav {background-color: #BA68C8;}
+.main-nav .navbar-left {background-color: #AB47BC;}
+.main-nav .navbar-left .logo {background: url('../../assets/images/logo-amethyst.png') no-repeat 0 0;}
+.main-nav .bubble{background-color: #FFE082;}
+.main-nav .top-search-bar{background-color: #AB47BC;}
+.conversation-row.odd .conversation-list > li{background-color: #AB47BC !important;}
+.conversation-row.odd .conversation-list > li:after{border-right-color: #AB47BC !important;}
+@media screen and (max-width: 768px) {
+	.main-nav{background-color: #AB47BC!important;}	
+}
+.user-profile-container {background: linear-gradient(rgba(171,71,188, 0.4), rgba(171,71,188, 0.4)), url(../../assets/images/material-menu.jpg) no-repeat bottom right !important;}

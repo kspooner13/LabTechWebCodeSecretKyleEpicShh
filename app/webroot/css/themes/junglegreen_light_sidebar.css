@@ -1,0 +1,51 @@
+.main-nav {background-color:#4DB6AC;}
+.main-nav .navbar-left {background-color: #26A69A;}
+.main-nav .navbar-left .logo {background: url('../../assets/images/logo-junglegreen.png') no-repeat 0 0;}
+.main-nav .bubble{background-color: #26A69A;}
+.main-nav .top-search-bar{background-color: #26A69A;}
+.sidebar{background-color: #fff;border-right: 1px solid #ddd;}
+.sidebar p.text-size-mini {color: #999;}
+.sidebar .nav.nav-tabs{border-bottom: 1px solid #fff;}
+.sidebar .nav-tabs > li.active > a {border: 1px solid #fff;background: #fff;border-bottom: 1px solid #fff !important;}
+.sidebar .nav-tabs > li > a:hover, .sidebar .nav-tabs > li > a:focus {border: 1px solid #fff;background: #fff;border-bottom: 1px solid #fff !important;}
+.sidebar-accordion .list-title{color: rgba(0,0,0,0.5);}
+.sidebar-accordion > li > a{color:#657A9A;}
+.sidebar-accordion li.acc-parent-li ul{background:rgba(0,0,0,.08);}
+.sidebar-accordion li ul li a{color:#657A9A;}
+.sidebar-accordion > li > a.active, .sidebar-accordion > li > a.acc-parent.active{background-color: rgba(0,0,0,.05);color: #111;}
+.sidebar-accordion > li > a.active, .sidebar-accordion > li > a.acc-parent.active i {color: #111;}
+.sidebar-accordion li.active>a, .sidebar-accordion li ul li a.active{color:#000;}
+.sidebar-accordion li ul li a:hover, .sidebar-accordion li ul li a:focus{color:#000;}
+.sidebar-accordion .list-title{border-top: 1px solid rgba(0,0,0,0.1);}
+.sidebar-accordion li ul:after {border-left: 1px solid rgba(0,0,0,.2);}
+.sidebar-accordion > li > a:hover, .sidebar-accordion > li > a:focus{color:#657A9A;background-color: rgba(0,0,0,.05);}
+.sidebar .menu-list li>a{color: #000;font-family: open_sanssemibold;}
+.sidebar .menu-list li>a:focus, .menu-list li>a:hover {color: #fff !important;}
+.sidebar .tab-pane.profile h4, .sidebar .tab-pane.profile .followers, .sidebar .tab-pane.profile .media-heading{color:#000 !important;}
+.sidebar .tab-pane.profile .text-white, .sidebar .tab-pane.profile .text-white:focus, .sidebar .tab-pane.profile .text-white:hover{color:#000 !important;font-family:open_sanssemibold !important;}
+.sidebar .nav-tabs>li.active>a,.sidebar .nav-tabs>li.active>a:focus,.sidebar .nav-tabs>li.active>a:hover{border-width:0;background-color:#fff !important;}
+@media (max-width: 768px){
+	.sidebar .nav-tabs>li.active>a, .sidebar .nav-tabs>li.active>a:focus, .sidebar .nav-tabs>li.active>a:hover {background-color: #fff;}
+}
+.user-profile-container {background: linear-gradient(rgba(38,166,154, 0.4), rgba(38,166,154, 0.4)), url(../../assets/images/material-menu.jpg) no-repeat bottom right !important;}
+.rightbar {background: #fff;border-left:1px solid #ddd;}
+.chat-user-toolbar {border-bottom: 1px solid #ddd;background-color: #fff;}
+.chat-user-toolbar .chat-user-search input.form-control{border-color: #ddd;}
+.chat-user-toolbar .add-chat-list{color:#222;}
+.chat-user-list > li:hover{background: rgba(0,0,0,.05);}
+.chat-user-list > li .chat-u-info{color:#222;}
+.right-chat-bar{background-color: #fff;border-left:1px solid #ddd;}
+.coversation-header {border-bottom: 1px solid #ddd;background: rgba(0,0,0,.05);}
+.coversation-header .active-conversation .chat-user-status ul li{color:#222;}
+.coversation-header .chat-back i, .coversation-header .conversation-actions > ul > li i{color:#222;}
+.conversation-row.even .conversation-list > li{background-color: #ececec;}
+.conversation-row.even .conversation-list > li:after{border-right-color: #ececec;}
+.conversation-row.odd .conversation-list > li{background-color: #26A69A !important;}
+.conversation-row.odd .conversation-list > li:after{border-right-color: #26A69A !important;}
+.chat-text-input{background: rgba(0,0,0,.05);}
+.chat-text-input input.form-control{border-color:#ddd;color:#222!important;}
+.chat-text-input .btn-default {background: #ddd;border-color: #ddd;}
+.chat-text-input .btn-default i {color: #222;}
+@media screen and (max-width: 768px) {
+	.main-nav{background-color: #26A69A !important;}	
+}

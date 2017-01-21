@@ -1,0 +1,30 @@
+.main-nav {background-color: #fff;border-bottom: 1px solid #ddd;}
+.main-nav .navbar-left {background-color: #AB47BC;}
+.main-nav .navbar-left .logo {background: url('../../assets/images/logo-amethyst.png') no-repeat 0 0;}
+.main-nav .navbar-right .top-right-icons > li > a {color:#AB47BC;}
+.main-nav .navbar-right .top-right-icons > li > a:hover, .main-nav .navbar-right .top-right-icons > li > a:focus{color:#666;background-color: rgba(0,0,0,0.05);}
+.main-nav .top-search-bar{background-color: #fff;border-bottom: 1px solid #ddd;}
+.rightbar {background: #fff;border-left:1px solid #ddd;}
+.chat-user-toolbar {border-bottom: 1px solid #ddd;background-color: #fff;}
+.chat-user-toolbar .chat-user-search input.form-control{border-color: #ddd;}
+.chat-user-toolbar .add-chat-list{color:#222;}
+.chat-user-list > li:hover{background: rgba(0,0,0,.05);}
+.chat-user-list > li .chat-u-info{color:#222;}
+.right-chat-bar{background-color: #fff;border-left:1px solid #ddd;}
+.coversation-header {border-bottom: 1px solid #ddd;background: rgba(0,0,0,.05);}
+.coversation-header .active-conversation .chat-user-status ul li{color:#222;}
+.coversation-header .chat-back i, .coversation-header .conversation-actions > ul > li i{color:#222;}
+.conversation-row.even .conversation-list > li{background-color: #ececec;}
+.conversation-row.even .conversation-list > li:after{border-right-color: #ececec;}
+.conversation-row.odd .conversation-list > li{background-color: #AB47BC !important;}
+.conversation-row.odd .conversation-list > li:after{border-right-color: #AB47BC !important;}
+.chat-text-input{background: rgba(0,0,0,.05);}
+.chat-text-input input.form-control{border-color:#ddd;color:#222!important;}
+.chat-text-input .btn-default {background: #ddd;border-color: #ddd;}
+.chat-text-input .btn-default i {color: #222;}
+@media screen and (max-width: 768px) {
+	.main-nav .navbar-left{background:#fff !important;border-bottom: 1px solid #ddd;}
+	.main-nav .navbar-left .logo {background: url('../../assets/images/logo-amethyst-light.png') no-repeat 0 0;}
+	.main-nav .navbar-left .left-toggle-switch i {color: #AB47BC;}
+}
+.user-profile-container {background: linear-gradient(rgba(171,71,188, 0.4), rgba(171,71,188, 0.4)), url(../../assets/images/material-menu.jpg) no-repeat bottom right !important;}

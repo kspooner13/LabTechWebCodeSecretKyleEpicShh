@@ -1,0 +1,11 @@
+.main-nav {background-color: #64B5F6;}
+.main-nav .navbar-left {background-color: #42A5F5;}
+.main-nav .navbar-left .logo {background: url('../../assets/images/logo-pictonblue.png') no-repeat 0 0;}
+.main-nav .bubble{background-color: #42A5F5;}
+.main-nav .top-search-bar{background-color: #42A5F5;}
+.conversation-row.odd .conversation-list > li{background-color: #42A5F5 !important;}
+.conversation-row.odd .conversation-list > li:after{border-right-color: #42A5F5 !important;}
+@media screen and (max-width: 768px) {
+	.main-nav{background-color: #42A5F5!important;}	
+}
+.user-profile-container {background: linear-gradient(rgba(66,165,245, 0.4), rgba(66,165,245, 0.4)), url(../../assets/images/material-menu.jpg) no-repeat bottom right !important;}

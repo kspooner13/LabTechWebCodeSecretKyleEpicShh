@@ -1,0 +1,164 @@
+<!doctype html>
+
+<title>CodeMirror: Language Modes</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="../doc/docs.css">
+
+<div id=nav>
+  <a href="http://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+
+  <ul>
+    <li><a href="../index.phpl">Home</a>
+    <li><a href="../doc/manual.html">Manual</a>
+    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+  </ul>
+  <ul>
+    <li><a class=active href="#">Language modes</a>
+  </ul>
+</div>
+
+<article>
+
+  <h2>Language modes</h2>
+
+  <p>This is a list of every mode in the distribution. Each mode lives
+in a subdirectory of the <code>mode/</code> directory, and typically
+defines a single JavaScript file that implements the mode. Loading
+such file will make the language available to CodeMirror, through
+the <a href="../doc/manual.html#option_mode"><code>mode</code></a>
+option.</p>
+
+  <div style="-webkit-columns: 100px 2; -moz-columns: 100px 2; columns: 100px 2;">
+    <ul style="margin-top: 0">
+      <li><a href="apl/index.phpl">APL</a></li>
+      <li><a href="asn.1/index.phpl">ASN.1</a></li>
+      <li><a href="asterisk/index.phpl">Asterisk dialplan</a></li>
+      <li><a href="brainfuck/index.phpl">Brainfuck</a></li>
+      <li><a href="clike/index.phpl">C, C++, C#</a></li>
+      <li><a href="clike/index.phpl">Ceylon</a></li>
+      <li><a href="clojure/index.phpl">Clojure</a></li>
+      <li><a href="css/gss.html">Closure Stylesheets (GSS)</a></li>
+      <li><a href="cmake/index.phpl">CMake</a></li>
+      <li><a href="cobol/index.phpl">COBOL</a></li>
+      <li><a href="coffeescript/index.phpl">CoffeeScript</a></li>
+      <li><a href="commonlisp/index.phpl">Common Lisp</a></li>
+      <li><a href="crystal/index.phpl">Crystal</a></li>
+      <li><a href="css/index.phpl">CSS</a></li>
+      <li><a href="cypher/index.phpl">Cypher</a></li>
+      <li><a href="python/index.phpl">Cython</a></li>
+      <li><a href="d/index.phpl">D</a></li>
+      <li><a href="dart/index.phpl">Dart</a></li>
+      <li><a href="django/index.phpl">Django</a> (templating language)</li>
+      <li><a href="dockerfile/index.phpl">Dockerfile</a></li>
+      <li><a href="diff/index.phpl">diff</a></li>
+      <li><a href="dtd/index.phpl">DTD</a></li>
+      <li><a href="dylan/index.phpl">Dylan</a></li>
+      <li><a href="ebnf/index.phpl">EBNF</a></li>
+      <li><a href="ecl/index.phpl">ECL</a></li>
+      <li><a href="eiffel/index.phpl">Eiffel</a></li>
+      <li><a href="elm/index.phpl">Elm</a></li>
+      <li><a href="erlang/index.phpl">Erlang</a></li>
+      <li><a href="factor/index.phpl">Factor</a></li>
+      <li><a href="fcl/index.phpl">FCL</a></li>
+      <li><a href="forth/index.phpl">Forth</a></li>
+      <li><a href="fortran/index.phpl">Fortran</a></li>
+      <li><a href="mllike/index.phpl">F#</a></li>
+      <li><a href="gas/index.phpl">Gas</a> (AT&amp;T-style assembly)</li>
+      <li><a href="gherkin/index.phpl">Gherkin</a></li>
+      <li><a href="go/index.phpl">Go</a></li>
+      <li><a href="groovy/index.phpl">Groovy</a></li>
+      <li><a href="haml/index.phpl">HAML</a></li>
+      <li><a href="handlebars/index.phpl">Handlebars</a></li>
+      <li><a href="haskell/index.phpl">Haskell</a> (<a href="haskell-literate/index.phpl">Literate</a>)</li>
+      <li><a href="haxe/index.phpl">Haxe</a></li>
+      <li><a href="htmlembedded/index.phpl">HTML embedded</a> (JSP, ASP.NET)</li>
+      <li><a href="htmlmixed/index.phpl">HTML mixed-mode</a></li>
+      <li><a href="http/index.phpl">HTTP</a></li>
+      <li><a href="idl/index.phpl">IDL</a></li>
+      <li><a href="clike/index.phpl">Java</a></li>
+      <li><a href="jade/index.phpl">Jade</a></li>
+      <li><a href="javascript/index.phpl">JavaScript</a> (<a href="jsx/index.phpl">JSX</a>)</li>
+      <li><a href="jinja2/index.phpl">Jinja2</a></li>
+      <li><a href="julia/index.phpl">Julia</a></li>
+      <li><a href="kotlin/index.phpl">Kotlin</a></li>
+      <li><a href="css/less.html">LESS</a></li>
+      <li><a href="livescript/index.phpl">LiveScript</a></li>
+      <li><a href="lua/index.phpl">Lua</a></li>
+      <li><a href="markdown/index.phpl">Markdown</a> (<a href="gfm/index.phpl">GitHub-flavour</a>)</li>
+      <li><a href="mathematica/index.phpl">Mathematica</a></li>
+      <li><a href="mbox/index.phpl">mbox</a></li>
+      <li><a href="mirc/index.phpl">mIRC</a></li>
+      <li><a href="modelica/index.phpl">Modelica</a></li>
+      <li><a href="mscgen/index.phpl">MscGen</a></li>
+      <li><a href="mumps/index.phpl">MUMPS</a></li>
+      <li><a href="nginx/index.phpl">Nginx</a></li>
+      <li><a href="nsis/index.phpl">NSIS</a></li>
+      <li><a href="ntriples/index.phpl">NTriples</a></li>
+      <li><a href="clike/index.phpl">Objective C</a></li>
+      <li><a href="mllike/index.phpl">OCaml</a></li>
+      <li><a href="octave/index.phpl">Octave</a> (MATLAB)</li>
+      <li><a href="oz/index.phpl">Oz</a></li>
+      <li><a href="pascal/index.phpl">Pascal</a></li>
+      <li><a href="pegjs/index.phpl">PEG.js</a></li>
+      <li><a href="perl/index.phpl">Perl</a></li>
+      <li><a href="asciiarmor/index.phpl">PGP (ASCII armor)</a></li>
+      <li><a href="php/index.phpl">PHP</a></li>
+      <li><a href="pig/index.phpl">Pig Latin</a></li>
+      <li><a href="powershell/index.phpl">PowerShell</a></li>
+      <li><a href="properties/index.phpl">Properties files</a></li>
+      <li><a href="protobuf/index.phpl">ProtoBuf</a></li>
+      <li><a href="puppet/index.phpl">Puppet</a></li>
+      <li><a href="python/index.phpl">Python</a></li>
+      <li><a href="q/index.phpl">Q</a></li>
+      <li><a href="r/index.phpl">R</a></li>
+      <li><a href="rpm/index.phpl">RPM</a></li>
+      <li><a href="rst/index.phpl">reStructuredText</a></li>
+      <li><a href="ruby/index.phpl">Ruby</a></li>
+      <li><a href="rust/index.phpl">Rust</a></li>
+      <li><a href="sas/index.phpl">SAS</a></li>
+      <li><a href="sass/index.phpl">Sass</a></li>
+      <li><a href="spreadsheet/index.phpl">Spreadsheet</a></li>
+      <li><a href="clike/scala.html">Scala</a></li>
+      <li><a href="scheme/index.phpl">Scheme</a></li>
+      <li><a href="css/scss.html">SCSS</a></li>
+      <li><a href="shell/index.phpl">Shell</a></li>
+      <li><a href="sieve/index.phpl">Sieve</a></li>
+      <li><a href="slim/index.phpl">Slim</a></li>
+      <li><a href="smalltalk/index.phpl">Smalltalk</a></li>
+      <li><a href="smarty/index.phpl">Smarty</a></li>
+      <li><a href="solr/index.phpl">Solr</a></li>
+      <li><a href="soy/index.phpl">Soy</a></li>
+      <li><a href="stylus/index.phpl">Stylus</a></li>
+      <li><a href="sql/index.phpl">SQL</a> (several dialects)</li>
+      <li><a href="sparql/index.phpl">SPARQL</a></li>
+      <li><a href="clike/index.phpl">Squirrel</a></li>
+      <li><a href="swift/index.phpl">Swift</a></li>
+      <li><a href="stex/index.phpl">sTeX, LaTeX</a></li>
+      <li><a href="tcl/index.phpl">Tcl</a></li>
+      <li><a href="textile/index.phpl">Textile</a></li>
+      <li><a href="tiddlywiki/index.phpl">Tiddlywiki</a></li>
+      <li><a href="tiki/index.phpl">Tiki wiki</a></li>
+      <li><a href="toml/index.phpl">TOML</a></li>
+      <li><a href="tornado/index.phpl">Tornado</a> (templating language)</li>
+      <li><a href="troff/index.phpl">troff</a> (for manpages)</li>
+      <li><a href="ttcn/index.phpl">TTCN</a></li>
+      <li><a href="ttcn-cfg/index.phpl">TTCN Configuration</a></li>
+      <li><a href="turtle/index.phpl">Turtle</a></li>
+      <li><a href="twig/index.phpl">Twig</a></li>
+      <li><a href="vb/index.phpl">VB.NET</a></li>
+      <li><a href="vbscript/index.phpl">VBScript</a></li>
+      <li><a href="velocity/index.phpl">Velocity</a></li>
+      <li><a href="verilog/index.phpl">Verilog/SystemVerilog</a></li>
+      <li><a href="vhdl/index.phpl">VHDL</a></li>
+      <li><a href="vue/index.phpl">Vue.js app</a></li>
+      <li><a href="webidl/index.phpl">Web IDL</a></li>
+      <li><a href="xml/index.phpl">XML/HTML</a></li>
+      <li><a href="xquery/index.phpl">XQuery</a></li>
+      <li><a href="yacas/index.phpl">Yacas</a></li>
+      <li><a href="yaml/index.phpl">YAML</a></li>
+      <li><a href="yaml-frontmatter/index.phpl">YAML frontmatter</a></li>
+      <li><a href="z80/index.phpl">Z80</a></li>
+    </ul>
+  </div>
+
+</article>
