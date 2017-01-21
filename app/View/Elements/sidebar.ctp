@@ -63,8 +63,9 @@ $active = $this->params['controller'];
 						?>
  					
 						<ul class="nav child_menu">
+						<li><?php echo $this->Html->link('All Groups', array('controller' => 'Groups', 'action' => 'index')); ?></li>
 						<?php foreach ($navList as $group): ?>
-							  <li><?php echo $this->Html->link($group['Group']['Name'], array('controller' => 'Groups', 'action' => 'viewGroup', $group['Group']['GroupID'])); ?>
+							  <li><?php echo $this->Html->link($group['Group']['Name'], array('controller' => 'Groups', 'action' => 'group', $group['Group']['GroupID'])); ?>
 							  
 							  
 							  </li>

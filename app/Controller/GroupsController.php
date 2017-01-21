@@ -65,8 +65,31 @@ class GroupsController extends AppController {
 
 			
 			
+			
+			
             
         }        
+		
+		public function group($group) {
+			//Set DB type
+			if (!empty($this->Session->read('database'))) {
+            $this->Group->setDataSource($this->Session->read('database'));
+            
+			} else {
+				$this->Group->setDataSource('default');
+			}
+			//End DB Type
+			
+			//Lets get the data for the local group.
+			$groupData = $this->Group->find('first', array(
+            //MISSING SECURITY - VERIFY SEC IS REQUIRED ON GROUPS - ks
+            'conditions' => array('group.groupid' => $group)));
+			
+			
+			$this->set('group', $groupData);
+			
+			
+		}
 		
 		public function getNav() {
 			
