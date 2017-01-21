@@ -69,6 +69,7 @@ class ConfigureTest extends CakeTestCase {
 
 /**
  * Test to ensure bootrapping doesn't overwrite prior configs set under 'App' key
+ *
  * @return void
  */
 	public function testBootstrap() {
@@ -450,10 +451,16 @@ class ConfigureTest extends CakeTestCase {
  *
  * @expectedException PHPUnit_Framework_Error
  * @return void
+ * @throws PHPUnit_Framework_Error
  */
 	public function testReaderExceptionOnIncorrectClass() {
 		$reader = new StdClass();
-		Configure::config('test', $reader);
+
+		try {
+			Configure::config('test', $reader);
+		} catch (TypeError $e) {
+			throw new PHPUnit_Framework_Error('Raised an error', 100, __FILE__, __LINE__);
+		}
 	}
 
 /**
@@ -469,6 +476,8 @@ class ConfigureTest extends CakeTestCase {
 	}
 
 /**
+ * testDumpNoAdapter
+ *
  * @expectedException ConfigureException
  * @return void
  */

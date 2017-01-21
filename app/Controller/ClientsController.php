@@ -41,7 +41,7 @@ class ClientsController extends AppController {
      */
     public $helpers = array('Html', 'Form', 'Js');
     public $components = array('Session', 'Paginator', 'RequestHandler');
-    public $uses = array('Computer', 'Dashboard', 'Client', 'Ticket', 'HealthCheck');
+    public $uses = array('Computer', 'Dashboard', 'Client', 'Ticket');
 
     //This is the default page when loading this controller/model/view
     public function index() {
@@ -58,7 +58,7 @@ class ClientsController extends AppController {
         $PSA = Configure::read('PSA');
 
 
-        If ($PSA != true)   {
+        If ($PSA != 'true')   {
         $this->Paginator->settings = array('limit' => 15,
                 'joins' => array(
                     array(
@@ -126,7 +126,7 @@ class ClientsController extends AppController {
         
         $PSA = Configure::read('PSA');
         
-        if ($PSA == false) {
+        if ($PSA === 'false') {
             
         }
         else if ($PSA == true) {
@@ -164,23 +164,6 @@ class ClientsController extends AppController {
             )))) {
             throw new NotFoundException(__('Client not found'));
         }
-
-
-        if (!
-                ($clientScore = $this->HealthCheck->query("SELECT FORMAT(AVG(`Avg_Score`),2) AS score,"
-                        . " FORMAT(AVG(`Antivirus`),2) AS AV,"
-                        . " FORMAT(AVG(`Intrusion`),2) AS `INT`,"
-                        . " FORMAT(AVG(`Usability`),2) AS Usability,"
-                        . " FORMAT(AVG(`Event_Log`),2) AS EL,"
-                        . " FORMAT(AVG(`Disk`),2) AS `Disk`, "
-                        . " FORMAT(AVG(`Services`),2) AS Services,"
-                        . " FORMAT(AVG(`Updates`),2) AS Updates"
-                        . " FROM plugin_lthc_scores WHERE ClientID = " . $clientid . ""))
-        ) {
-            throw new NotFoundException(__('Team not found ERROR CODE: LT_HC_ET01'));
-        }
-
-        $this->set('clientScores', $clientScore);
 
         $this->set(compact('client'));
 

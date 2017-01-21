@@ -927,6 +927,44 @@ SQL;
 	}
 
 /**
+ * Test that describe() ignores `default current_timestamp` in datetime columns.
+ * This is for MySQL >= 5.6.
+ *
+ * @return void
+ */
+	public function testDescribeHandleCurrentTimestampDatetime() {
+		$mysqlVersion = $this->Dbo->query('SELECT VERSION() as version', array('log' => false));
+		$this->skipIf(version_compare($mysqlVersion[0][0]['version'], '5.6.0', '<'));
+
+		$name = $this->Dbo->fullTableName('timestamp_default_values');
+		$sql = <<<SQL
+CREATE TABLE $name (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	phone VARCHAR(10),
+	limit_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(id)
+);
+SQL;
+		$this->Dbo->execute($sql);
+		$model = new Model(array(
+			'table' => 'timestamp_default_values',
+			'ds' => 'test',
+			'alias' => 'TimestampDefaultValue'
+		));
+		$result = $this->Dbo->describe($model);
+		$this->Dbo->execute('DROP TABLE ' . $name);
+
+		$this->assertNull($result['limit_date']['default']);
+
+		$schema = new CakeSchema(array(
+			'connection' => 'test',
+			'testdescribes' => $result
+		));
+		$result = $this->Dbo->createSchema($schema);
+		$this->assertContains('`limit_date` datetime NOT NULL,', $result);
+	}
+
+/**
  * test that a describe() gets additional fieldParameters
  *
  * @return void
@@ -2872,9 +2910,15 @@ SQL;
  *
  * @expectedException PHPUnit_Framework_Error
  * @return void
+ * @throws PHPUnit_Framework_Error
  */
 	public function testDropSchemaNoSchema() {
-		$this->Dbo->dropSchema(null);
+		try {
+			$this->Dbo->dropSchema(null);
+			$this->fail('No exception');
+		} catch (TypeError $e) {
+			throw new PHPUnit_Framework_Error('Raised an error', 100, __FILE__, __LINE__);
+		}
 	}
 
 /**
@@ -4003,6 +4047,32 @@ SQL;
 	}
 
 /**
+ * Test deletes without complex conditions.
+ *
+ * @return void
+ */
+	public function testDeleteNoComplexCondition() {
+		$this->loadFixtures('Article', 'User');
+		$test = ConnectionManager::getDatasource('test');
+		$db = $test->config['database'];
+
+		$this->Dbo = $this->getMock('Mysql', array('execute'), array($test->config));
+
+		$this->Dbo->expects($this->at(0))->method('execute')
+			->with("DELETE `Article` FROM `$db`.`articles` AS `Article`   WHERE `id` = 1");
+
+		$this->Dbo->expects($this->at(1))->method('execute')
+			->with("DELETE `Article` FROM `$db`.`articles` AS `Article`   WHERE NOT (`id` = 1)");
+
+		$Article = new Article();
+
+		$conditions = array('id' => 1);
+		$this->Dbo->delete($Article, $conditions);
+		$conditions = array('NOT' => array('id' => 1));
+		$this->Dbo->delete($Article, $conditions);
+	}
+
+/**
  * Test truncate with a mock.
  *
  * @return void
@@ -4092,4 +4162,73 @@ SQL;
 		$this->assertEquals("'a'", $result);
 	}
 
+/**
+ * Test isConnected
+ *
+ * @return void
+ */
+	public function testIsConnected() {
+		$this->Dbo->disconnect();
+		$this->assertFalse($this->Dbo->isConnected(), 'Not connected now.');
+
+		$this->Dbo->connect();
+		$this->assertTrue($this->Dbo->isConnected(), 'Should be connected.');
+	}
+
+/**
+ * Test insertMulti with id position.
+ *
+ * @return void
+ */
+	public function testInsertMultiId() {
+		$this->loadFixtures('Article');
+		$Article = ClassRegistry::init('Article');
+		$db = $Article->getDatasource();
+		$datetime = date('Y-m-d H:i:s');
+		$data = array(
+			array(
+				'user_id' => 1,
+				'title' => 'test',
+				'body' => 'test',
+				'published' => 'N',
+				'created' => $datetime,
+				'updated' => $datetime,
+				'id' => 100,
+			),
+			array(
+				'user_id' => 1,
+				'title' => 'test 101',
+				'body' => 'test 101',
+				'published' => 'N',
+				'created' => $datetime,
+				'updated' => $datetime,
+				'id' => 101,
+			)
+		);
+		$result = $db->insertMulti('articles', array_keys($data[0]), $data);
+		$this->assertTrue($result, 'Data was saved');
+
+		$data = array(
+			array(
+				'id' => 102,
+				'user_id' => 1,
+				'title' => 'test',
+				'body' => 'test',
+				'published' => 'N',
+				'created' => $datetime,
+				'updated' => $datetime,
+			),
+			array(
+				'id' => 103,
+				'user_id' => 1,
+				'title' => 'test 101',
+				'body' => 'test 101',
+				'published' => 'N',
+				'created' => $datetime,
+				'updated' => $datetime,
+			)
+		);
+		$result = $db->insertMulti('articles', array_keys($data[0]), $data);
+		$this->assertTrue($result, 'Data was saved');
+	}
 }

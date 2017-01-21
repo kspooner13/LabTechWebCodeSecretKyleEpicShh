@@ -21,24 +21,24 @@ App::uses('DatabaseSession', 'Model/Datasource/Session');
 App::uses('CacheSession', 'Model/Datasource/Session');
 
 /**
- * Class TestCakeSession
+ * TestCakeSession
  *
  * @package       Cake.Test.Case.Model.Datasource
  */
 class TestCakeSession extends CakeSession {
 
 	public static function setUserAgent($value) {
-		self::$_userAgent = $value;
+		static::$_userAgent = $value;
 	}
 
 	public static function setHost($host) {
-		self::_setHost($host);
+		static::_setHost($host);
 	}
 
 }
 
 /**
- * Class TestCacheSession
+ * TestCacheSession
  *
  * @package       Cake.Test.Case.Model.Datasource
  */
@@ -51,7 +51,7 @@ class TestCacheSession extends CacheSession {
 }
 
 /**
- * Class TestDatabaseSession
+ * TestDatabaseSession
  *
  * @package       Cake.Test.Case.Model.Datasource
  */
@@ -86,7 +86,7 @@ class CakeSessionTest extends CakeTestCase {
  */
 	public static function setupBeforeClass() {
 		// Make sure garbage colector will be called
-		self::$_gcDivisor = ini_get('session.gc_divisor');
+		static::$_gcDivisor = ini_get('session.gc_divisor');
 		ini_set('session.gc_divisor', '1');
 	}
 
@@ -97,7 +97,7 @@ class CakeSessionTest extends CakeTestCase {
  */
 	public static function teardownAfterClass() {
 		// Revert to the default setting
-		ini_set('session.gc_divisor', self::$_gcDivisor);
+		ini_set('session.gc_divisor', static::$_gcDivisor);
 	}
 
 /**
@@ -307,9 +307,9 @@ class CakeSessionTest extends CakeTestCase {
  * @return void
  */
 	public function testWriteEmptyKey() {
-		$this->assertFalse(TestCakeSession::write('', 'graham'));
-		$this->assertFalse(TestCakeSession::write('', ''));
-		$this->assertFalse(TestCakeSession::write(''));
+		$this->assertTrue(TestCakeSession::write('', 'graham'));
+		$this->assertTrue(TestCakeSession::write('', ''));
+		$this->assertTrue(TestCakeSession::write(''));
 	}
 
 /**
@@ -401,6 +401,17 @@ class CakeSessionTest extends CakeTestCase {
 		$this->assertTrue(TestCakeSession::delete('Clearing'));
 		$this->assertFalse(TestCakeSession::check('Clearing.sale'));
 		$this->assertFalse(TestCakeSession::check('Clearing'));
+	}
+
+/**
+ * test delete
+ *
+ * @return void
+ */
+	public function testDeleteEmptyString() {
+		TestCakeSession::write('', 'empty string');
+		$this->assertTrue(TestCakeSession::delete(''));
+		$this->assertFalse(TestCakeSession::check(''));
 	}
 
 /**
@@ -500,6 +511,10 @@ class CakeSessionTest extends CakeTestCase {
  * @return void
  */
 	public function testReadingSavedEmpty() {
+		TestCakeSession::write('', 'empty string');
+		$this->assertTrue(TestCakeSession::check(''));
+		$this->assertEquals('empty string', TestCakeSession::read(''));
+
 		TestCakeSession::write('SessionTestCase', 0);
 		$this->assertEquals(0, TestCakeSession::read('SessionTestCase'));
 
@@ -511,7 +526,23 @@ class CakeSessionTest extends CakeTestCase {
 		$this->assertFalse(TestCakeSession::read('SessionTestCase'));
 
 		TestCakeSession::write('SessionTestCase', null);
-		$this->assertEquals(null, TestCakeSession::read('SessionTestCase'));
+		$this->assertNull(TestCakeSession::read('SessionTestCase'));
+	}
+
+/**
+ * Test te cacheLimiter settings.
+ *
+ * @return void
+ */
+	public function testCacheLimiter() {
+		Configure::write('Session.cacheLimiter', 'public');
+		TestCakeSession::start();
+		$this->assertSame('public', session_cache_limiter());
+
+		Configure::write('Session.cacheLimiter', 'private');
+		TestCakeSession::destroy();
+		TestCakeSession::start();
+		$this->assertSame('private', session_cache_limiter());
 	}
 
 /**

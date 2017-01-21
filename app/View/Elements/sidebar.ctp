@@ -51,14 +51,34 @@ $active = $this->params['controller'];
 			<li <?php if ($active === 'computers') {
                 echo "class='active'";
             } ?>><a href="<?php echo $comp; ?>"><i class="fa fa-desktop"></i> Computers </a></li>
-			<li<?php if ($active === 'clients') {
+			<li <?php if ($active === 'clients') {
                 echo "class='active'";
             } ?>><a href="<?php echo $client; ?>"><i class="fa fa-user"></i> Clients</a></li>
-			<li><a href="#"><i class="fa fa-object-group"></i> Groups</a></li>
+			<li class='dropdown'><a href="#"><i class="fa fa-object-group"></i> Groups <span class="fa fa-chevron-down"></span></a>
+						<?php
+						  $navList = $this->requestAction(
+							'groups/getNav'
+						  );
+						  
+						?>
+ 					
+						<ul class="nav child_menu">
+						<li><?php echo $this->Html->link('All Groups', array('controller' => 'Groups', 'action' => 'index')); ?></li>
+						<?php foreach ($navList as $group): ?>
+							  <li><?php echo $this->Html->link($group['Group']['Name'], array('controller' => 'Groups', 'action' => 'group', $group['Group']['GroupID'])); ?>
+							  
+							  
+							  </li>
+						<?php endforeach; ?>
+						</ul>
+			
+			</li>
+			
 			<li><a href="#"><i class="fa fa-file-code-o"></i> Scripts</a></li>
 			<li><a href="#"><i class="fa fa-file-text-o"></i> Reporting</a></li>
                   <li class='dropdown'><a><i class="fa fa-lock"></i> Admin <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+
                       <li><a href="index.html">User Management</a></li>
                       <li><a href="index2.html">Templates</a></li>
                       <li><a href="index3.html">Schedule</a></li>
@@ -134,57 +154,4 @@ $active = $this->params['controller'];
         <!-- /top navigation -->
 <?php 
 
-/* old stuff here for historical reasons -ks
-<div class="leftpanel">
-
-    <div class="leftmenu">        
-        <ul class="nav nav-tabs nav-stacked">
-            <?php
- )
-            ?>
-            <li class="nav-header">Navigation</li>
-            <li <?php if ($active === 'dashboards') {
-                echo "class='active'";
-            } ?>><a href="<?php echo $dash; ?>"><span class="fa fa-dashboard"></span> Dashboard </a><?php //echo $this->Html->link($this->Html->tag('span', ' Dashboard', array('class' => 'fa fa-dashboard')), array('controller' => 'dashboards', 'action' => 'index'), array('escape' => false) );  ?></li>
-            <li><a href="" ><span class="fa fa-ticket"></span> Tickets</a></li>
-            <li class="dropdown <?php if ($active === 'clients') {
-                echo "active";
-            } ?>"><a href='#'><span class="fa fa-building-o"></span> Clients</a>
-                <ul <?php if ($active === 'clients') {
-                echo "style='display: block;'";
-            } ?>>
-                    <li><?php echo $this->Html->link("Client List",
-                    array('controller' => 'clients', 'action' => 'index')); ?> </li>
-
-                </ul>
-            </li>
-            <li class="dropdown"><a href='#'><span class="fa fa-file-o"></span> Reporting</a>
-                <ul>
-                    <li><a href=''>By Client</a></li>
-                </ul>
-            </li>
-            <li <?php if ($active === 'computers') {
-                echo "class='active'";
-            } ?>><a href="<?php echo $dash; ?>"><span class="fa fa-desktop"></span> Computers </a></li>
-            <li class='dropdown <?php if ($active === 'HealthCheck') {
-                echo "active";
-            } ?>'><a href='#'> <span class="fa fa-hospital-o"></span> HealthCheck</a> <?php //echo $this->Html->link("Health Check", array('controller' => 'HealthCheck', 'action' => 'index') ) ;  ?>
-                <ul <?php if ($active === 'HealthCheck') {
-                echo "style='display: block;'";
-            } ?>>
-                    <li <?php if ($this->params['action'] === 'index') {
-                echo "class='active'";
-            } ?>><?php echo $this->Html->link("Home",
-                    array('controller' => 'HealthCheck', 'action' => 'index')); ?> </li>
-                    <li <?php if ($this->params['action'] === 'groupTeam') {
-                echo "class='active'";
-            } ?>><?php echo $this->Html->link("Teams",
-                    array('controller' => 'HealthCheck', 'action' => 'groupTeam')); ?> </li>
-                </ul>
-            </li>
-
-
-        </ul>
-    </div><!--leftmenu-->
-*/
 ?>

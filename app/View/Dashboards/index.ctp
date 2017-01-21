@@ -95,7 +95,7 @@
                   <div class="col-md-12 col-sm-12 col-xs-6">
                     <div class="panel form-control">
 <?php echo $this->Form->create('Dashboard',
-        array('action' => 'downloadAgent')); ?>
+        array('url' => 'downloadAgent')); ?>
 <?php echo $this->Form->select('Client.ClientID',
         $clientDrop,
         array('class' => 'select input-sm', 'empty' => ' --- SELECT CLIENT ---')); ?>
