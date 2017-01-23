@@ -1,11 +1,20 @@
-<?php
-//CLIENT PAGE FANCY LIKE
-?>
-<div class="rightpanel">
-    <div class="maincontent">
-        <div class="maincontentinner">
-            <div class="row-fluid">
-                <div class="page-content">
+<!-- BEGIN PAGE CONTENT -->
+    <section class="main-container">
+            <!--Page Header-->
+            <div class="header">
+                <div class="header-content">
+                    <div class="page-title"><i class="icon-display4"></i> Client List</div>
+                    <ul class="breadcrumb">
+                        <li><a href="index.htm">Home</a></li>
+                        <li><a href="index2.htm#">Clients</a></li>
+                    </ul>                   
+                </div>
+            </div>      
+            <!--/Page Header-->
+                 
+                 <!-- /top tiles -->
+
+        <div class="container-fluid page-content">
                     <div class="container-fluid fleet-view">
                         <div class='col-md-3 fleet-sidebar'>
                             <div class='panel fleet-panel panel-blockquote panel-border-info right'>

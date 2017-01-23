@@ -1,0 +1,11 @@
+.main-nav {background-color: #81C784;}
+.main-nav .navbar-left {background-color: #66BB6A;}
+.main-nav .navbar-left .logo {background: url('../../assets/images/logo-fern.png') no-repeat 0 0;}
+.main-nav .bubble{background-color: #66BB6A;}
+.main-nav .top-search-bar{background-color: #66BB6A;}
+.conversation-row.odd .conversation-list > li{background-color: #66BB6A !important;}
+.conversation-row.odd .conversation-list > li:after{border-right-color: #66BB6A !important;}
+@media screen and (max-width: 768px) {
+	.main-nav{background-color: #66BB6A!important;}	
+}
+.user-profile-container {background: linear-gradient(rgba(102,187,106, 0.4), rgba(102,187,106, 0.4)), url(../../assets/images/material-menu.jpg) no-repeat bottom right !important;}

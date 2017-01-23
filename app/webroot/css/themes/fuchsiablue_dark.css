@@ -1,0 +1,11 @@
+.main-nav {background-color: #9575CD;}
+.main-nav .navbar-left {background-color: #7E57C2;}
+.main-nav .navbar-left .logo {background: url('../../assets/images/logo-fuchsiablue.png') no-repeat 0 0;}
+.main-nav .bubble{background-color: #7E57C2;}
+.main-nav .top-search-bar{background-color: #7E57C2;}
+.conversation-row.odd .conversation-list > li{background-color: #7E57C2 !important;}
+.conversation-row.odd .conversation-list > li:after{border-right-color: #7E57C2 !important;}
+@media screen and (max-width: 768px) {
+	.main-nav{background-color: #7E57C2!important;}	
+}
+.user-profile-container {background: linear-gradient(rgba(126,87,194, 0.4), rgba(126,87,194, 0.4)), url(../../assets/images/material-menu.jpg) no-repeat bottom right !important;}

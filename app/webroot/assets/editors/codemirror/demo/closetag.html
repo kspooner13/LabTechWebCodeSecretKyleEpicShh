@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="../lib/codemirror.css">
+<script src="../lib/codemirror.js"></script>
+<script src="../addon/edit/closetag.js"></script>
+<script src="../addon/fold/xml-fold.js"></script>
+<script src="../mode/xml/xml.js"></script>
+<script src="../mode/javascript/javascript.js"></script>
+<script src="../mode/css/css.js"></script>
+<script src="../mode/htmlmixed/htmlmixed.js"></script>
+<form><textarea id="code" name="code"><html</textarea></form>
+
+    <script type="text/javascript">
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+	    lineNumbers: true,
+        mode: 'text/html',
+        autoCloseTags: true
+      });
+    </script>
+

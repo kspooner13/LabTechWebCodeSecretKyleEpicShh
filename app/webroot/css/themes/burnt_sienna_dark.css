@@ -1,0 +1,11 @@
+.main-nav {background-color: #EF5350;}
+.main-nav .navbar-left {background-color: #E53935;}
+.main-nav .navbar-left .logo {background: url('../../assets/images/logo-burnt-sienna.png') no-repeat 0 0;}
+.main-nav .bubble{background-color: #FFE082;}
+.main-nav .top-search-bar{background-color: #EF5350;}
+.conversation-row.odd .conversation-list > li{background-color: #E53935 !important;}
+.conversation-row.odd .conversation-list > li:after{border-right-color: #E53935 !important;}
+@media screen and (max-width: 768px) {
+	.main-nav{background-color: #E53935!important;}	
+}
+.user-profile-container {background: linear-gradient(rgba(229, 57, 53, 0.4), rgba(229, 57, 53, 0.4)), url(../../assets/images/material-menu.jpg) no-repeat bottom right !important;}

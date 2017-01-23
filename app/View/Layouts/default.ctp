@@ -13,17 +13,7 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-echo $this->Html->script('jquery-2.1.0.min.js');
-echo $this->Html->script('jquery-ui.min.js');
-echo $this->Html->script('all-pages.js');
-echo $this->Html->script('bootstrap/bootstrap.js');
-echo $this->Html->script('custom.js');
-echo $this->Html->script('dashboard.js');
-echo $this->Html->script('twitterfetch.js');
-echo $this->Html->script('jquery.feeds.js');
 
-echo $this->Html->script('https://maps.googleapis.com/maps/api/js?v=3.exp');
-echo $this->Html->script('jquery.simpleWeather.js');
 $cakeDescription = __d('cake_dev', 'EPIC: Enterprise Productivity Information Center');
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
@@ -36,19 +26,26 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             <?php echo $this->fetch('title'); ?>
         </title>
         <?php
-        echo $this->Html->meta('icon');
 
+
+        echo $this->Html->css('animate.min.css');
         echo $this->Html->css('bootstrap.css');
-        echo $this->Html->css('font-awesome.new.css');
-        echo $this->Html->css('font-awesome.min.css');
-        echo $this->Html->css('weather-icons.min.css');
-        echo $this->Html->css('style.default.css');
-        echo $this->Html->css('style-responsive.css');
-        echo $this->Html->css('responsive-tables.css');
-        echo $this->Html->css('animate.css');		
-        echo $this->Html->css('checkbox.new.css');
-
-echo $this->Html->css('dashboard.css');
+        echo $this->Html->css('core.css');
+        echo $this->Html->css('layout.css');
+        echo $this->Html->css('bootstrap-extended.css');
+        echo $this->Html->css('components.css');
+        echo $this->Html->css('plugins.css');
+        echo $this->Html->css('loaders.css');
+        echo $this->Html->css('responsive.css');
+        echo $this->Html->css('color-system.css');
+        echo $this->Html->css('fancybox/jquery.fancybox.css');
+        //Load Fonts
+        echo $this->Html->css('fonts/fonts.css');
+        echo $this->Html->css('icons/icomoon/icomoon.css');
+        echo $this->Html->css('icons/weather/weather-icons.min.css');
+        echo $this->Html->css('icons/weather/weather-icons-wind.min.css');
+        //End fonts
+        echo $this->fetch('fonts');
         echo $this->fetch('meta');
         echo $this->fetch('css');
         echo $this->fetch('script');
@@ -56,15 +53,39 @@ echo $this->Html->css('dashboard.css');
     </head>
           <?php
         if ($this->Session->check('Username')) { ?>
-          <body class="nav-md">  
-    <div class="container body">
-      <div class="main_container">
+<body class="material-menu" id="top">
+    <div id="preloader">
+        <div id="status">
+            <div class="loader">
+                <div class="loader-inner ball-pulse">
+                  <div class="bg-blue"></div>
+                  <div class="bg-amber"></div>
+                  <div class="bg-success"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <?php
             echo $this->element('sidebar');
         }
 		else {
-		?><body class="login"> <?php
+		?><body style="height:100%; background:url('../app/webroot/assets/images/assets/login_bg.jpg') no-repeat 0 0; background-size:cover;">
+                <div id="preloader">
+                    <div id="status">
+                        <div class="loader">
+                            <div class="loader-inner ball-pulse">
+                              <div class="bg-blue"></div>
+                              <div class="bg-amber"></div>
+                              <div class="bg-success"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+         <?php
 		}
         ?>
                 <?php echo $this->Session->flash(); ?>
@@ -74,24 +95,38 @@ echo $this->Html->css('dashboard.css');
         </div>
 		</div>
     </body>
+
+    <?php
+    //Load all JS Files Here
+
+    echo $this->Html->script('jquery.js');
+    echo $this->Html->script('bootstrap.js');
+    echo $this->Html->script('jquery.ui.js');
+    echo $this->Html->script('nav.accordion.js');
+    echo $this->Html->script('hammerjs.js');
+    echo $this->Html->script('jquery.hammer.js');
+    echo $this->Html->script('scrollup.js');
+    echo $this->Html->script('jquery.slimscroll.js');
+    echo $this->Html->script('smart-resize.js');
+    echo $this->Html->script('blockui.min.js');
+    echo $this->Html->script('wow.min.js');
+    echo $this->Html->script('fancybox.min.js');
+    echo $this->Html->script('venobox.js');
+    echo $this->Html->script('forms/uniform.min.js');
+    echo $this->Html->script('forms/switchery.js');
+    echo $this->Html->script('forms/select2.min.js');
+    echo $this->Html->script('core.js');
+
+
+    //This is page specific JS.  We check the controller, then load the JS for that page
+
+
+    ?>
     <script>
         var version = '0.3.10';
         function checkVersion() {alert('Version: ' + version); }
         
             </script>
-			<script>
-    jQuery(document).ready(function () {
-        jQuery('.side-menu .dropdown > a').click(function () {
-            if (!jQuery(this).next().is(':visible'))
-                jQuery(this).next().slideDown('fast'),
-				jQuery(this).parent().addClass('active');
-            else
-				jQuery(this).toggleClass('active'),
-                jQuery(this).next().slideUp('fast');
-            return false;
-        });
-    });</script>
-
     <?php
 if (class_exists('JsHelper') && method_exists($this->Js, 'writeBuffer')){ echo $this->Js->writeBuffer(); }
 // Writes cached scripts
