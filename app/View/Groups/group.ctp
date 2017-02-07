@@ -1,12 +1,66 @@
-<?php
-//CLIENT PAGE FANCY LIKE
-?>
-<div class="right_col" role="main">
-    <div class="maincontent">
-        <div class="maincontentinner">
-            <div class="row-fluid">
-                <div class="page-content">						
-                    <div class="container-fluid">
+<!-- BEGIN PAGE CONTENT -->
+    <section class="main-container">
+            <!--Page Header-->
+            <div class="header">
+                <div class="header-content">
+                    <div class="page-title"><i class="icon-display4"></i> Group Edit Page</div>
+                    <ul class="breadcrumb">
+                        <li><a href="index.htm">Home</a></li>
+                        <li><a href="index2.htm#">Groups</a></li>
+                        <li><a href=""><?php echo $group['Group']['Name']; ?></a></li>
+                    </ul>                   
+                </div>
+            </div>      
+
+            <div class="panel panel-flat">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                    <?php echo $group['Group']['Name']; ?> <small>Id: <?php echo $group['Group']['GroupID']; ?></small>
+                    </h4>       
+                  </div>
+                  <div class="panel-body">
+                    <div class="tabbable">
+                      <ul class="nav nav-tabs nav-tabs-highlight">
+                        <li class="active"><a href="ui_elements.htm#right-icon-tab1" data-toggle="tab">Main <i class="icon-home position-right"></i></a></li>
+                        <li><a href="ui_elements.htm#right-icon-tab2" data-toggle="tab">Computers <i class="icon-display position-right"></i></a></li>
+                        <li><a href="ui_elements.htm#right-icon-tab3" data-toggle="tab">Network Devices <i class="icon-lan position-right"></i></a></li>   
+                        <li><a href="ui_elements.htm#right-icon-tab4" data-toggle="tab">Contacts <i class="icon-user position-right"></i></a></li>   
+                        <li><a href="ui_elements.htm#right-icon-tab5" data-toggle="tab">Information <i class="icon-info position-right"></i></a></li>   
+                        <li><a href="ui_elements.htm#right-icon-tab6" data-toggle="tab">Group Stats <i class="icon-meter-slow position-right"></i></a></li>   
+                        <li><a href="ui_elements.htm#right-icon-tab7" data-toggle="tab">Managed Services Templates <i class="icon-clipboard3 position-right"></i></a></li>   
+                        <li><a href="ui_elements.htm#right-icon-tab8" data-toggle="tab">Standards & Health <i class="icon-height position-right"></i></a></li>            </ul>
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="right-icon-tab1">
+                          Add icon markup <code>after</code> tab nav text to display icons on the right side.
+                        </div>
+                        <div class="tab-pane" id="right-icon-tab2">
+                          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                        </div>
+                        <div class="tab-pane" id="right-icon-tab3">
+                          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                        </div>
+                        <div class="tab-pane" id="right-icon-tab4">
+                          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                        </div>
+                        <div class="tab-pane" id="right-icon-tab5">
+                          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                        </div>
+                        <div class="tab-pane" id="right-icon-tab6">
+                          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                        </div>
+                        <div class="tab-pane" id="right-icon-tab7">
+                          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                        </div>
+                        <div class="tab-pane" id="right-icon-tab8">
+                          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                        </div>
+                      </div>
+                    </div>  
+                  </div>
+                </div>
+
+
+            <?php /*
                          <div class="col-md-12 tab-section">
 						 <?php //print_r($group);?>
 						 <div class='x_panel'>
@@ -93,3 +147,4 @@
     </div>
 </div>
 
+*/ ?>
